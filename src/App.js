@@ -12,6 +12,7 @@ import PassingState from "./pages/PassingState/main";
 import RecursiveMenu from "./pages/RecursiveMenu/main";
 import TypescriptDemo from "./pages/TypescriptDemo";
 import SearchDebounce from "./pages/SearchDebounce";
+import SearchFilter from "./pages/SearchFilter";
 
 function App() {
   return (
@@ -72,6 +73,12 @@ function App() {
           path="/search-debounce"
           element={
             <PageLayout children={<SearchDebounce />} title="Search Debounce" />
+          }
+        />
+        <Route
+          path="/search-filter"
+          element={
+            <PageLayout children={<SearchFilter />} title="Search Filter" />
           }
         />
       </Routes>

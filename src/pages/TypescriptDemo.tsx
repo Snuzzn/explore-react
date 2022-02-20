@@ -15,7 +15,7 @@ interface Movie {
 const searchMovie = async (query: string) => {
   // if query is empty, replace with a letter to give the 'too many results' error
   const res = await fetch(
-    `http://www.omdbapi.com/?s=${query ? query : "s"}&apikey=${
+    `https://www.omdbapi.com/?s=${query ? query : "s"}&apikey=${
       process.env.REACT_APP_OMDB_API_KEY
     }`
   );
@@ -44,7 +44,7 @@ function TypescriptDemo() {
     // fetch a random movie from the defaultMovies list
     const fetchMovieById = async () => {
       const res = await fetch(
-        `http://www.omdbapi.com/?i=${defaultMovies[randMov]}&apikey=${process.env.REACT_APP_OMDB_API_KEY}`
+        `https://www.omdbapi.com/?i=${defaultMovies[randMov]}&apikey=${process.env.REACT_APP_OMDB_API_KEY}`
       );
       const data = await res.json();
       setMovie({
