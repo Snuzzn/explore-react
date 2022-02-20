@@ -22,7 +22,7 @@ const Container = styled.div`
   border-left: 3px solid #5773ff;
   color: ;
   position: relative;
-  width: 600px;
+  width: 700px;
   box-sizing: border-box;
 `;
 

@@ -14,6 +14,9 @@ function Home() {
         <Feature title="Loading Skeleton" route="loading-skeleton" />
         <Feature title="Passing State" route="passing-state" />
         <Feature title="Recursive Menu" route="menu" />
+        <Feature title="Typescript IMDB" route="typescript" />
+        <Feature title="Search Debounce" route="search-debounce" />
+        <Feature title="Search Filter" route="search-filter" />
       </GridContainer>
     </>
   );

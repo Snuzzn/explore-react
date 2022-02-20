@@ -1,5 +1,6 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
+import { ImSpinner2 } from "react-icons/im";
 
 export const Layout = styled.div`
   display: flex;
@@ -34,7 +35,6 @@ export const Input = styled.input`
   border-radius: 8px;
   color: white;
   font-size: 16pt;
-  width: 500px;
   box-sizing: border-box;
 `;
 
@@ -74,4 +74,17 @@ export const UnstyledBtn = styled.button`
   &:hover {
     cursor: pointer;
   }
+`;
+
+const spin = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }  
+  100% {
+    transform: rotate(360deg)
+  }
+`;
+
+export const Spinner = styled(ImSpinner2)`
+  animation: ${spin} 1.5s linear infinite;
 `;

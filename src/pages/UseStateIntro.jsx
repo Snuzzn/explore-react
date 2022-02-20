@@ -15,7 +15,7 @@ function UseStateIntro() {
         Every time a state changes, the component in which the state is located,
         as well as all its children components are re-rendered.
       </InfoCard>
-      <Codeblock code={codeblock} />
+      <Codeblock code={codeblock} lang="JS" />
       <InfoCard>
         If you need the previous value to update the state, you should pass a
         function that receives the previous value and returns the new value.

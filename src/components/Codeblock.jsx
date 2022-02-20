@@ -3,19 +3,22 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import styled from "styled-components";
 
-function Codeblock({ code }) {
+function Codeblock({ code, lang }) {
   return (
     <div
       style={{
-        width: "600px",
+        width: "700px",
         fontSize: "12pt",
         position: "relative",
       }}
     >
-      <SyntaxHighlighter language="jsx" style={dracula}>
+      <SyntaxHighlighter
+        language={lang === "JS" ? "jsx" : "tsx"}
+        style={{ ...dracula, height: "600px !important" }}
+      >
         {code}
       </SyntaxHighlighter>
-      <Language>JS</Language>
+      <Language lang={lang}>{lang}</Language>
     </div>
   );
 }
@@ -29,6 +32,6 @@ const Language = styled.div`
   font-weight: 600;
   color: #282a36;
   padding: 8px;
-  background-color: #d9e181;
+  background-color: ${(props) => (props.lang === "JS" ? "#d9e181" : "#415ce1")};
   border-radius: 0 0 0 10px;
 `;

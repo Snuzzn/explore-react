@@ -85,7 +85,7 @@ function UseEffectIntro() {
         Open your browser's console to study the behaviour of useEffect in these
         different stages.
       </InfoCard>
-      <Codeblock code={codeblock} />
+      <Codeblock code={codeblock} lang="JS" />
     </>
   );
 }

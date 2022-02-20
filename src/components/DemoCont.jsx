@@ -13,7 +13,7 @@ function DemoCont({ children }) {
 export default DemoCont;
 
 const Wrapper = styled.div`
-  min-width: 600px;
+  min-width: 700px;
   box-sizing: border-box;
   border: 1px solid #313944;
   display: flex;

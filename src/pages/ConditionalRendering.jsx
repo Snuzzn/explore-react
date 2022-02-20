@@ -1,8 +1,8 @@
 import React from "react";
-import { ImSpinner2 } from "react-icons/im";
 import styled, { keyframes } from "styled-components";
 import Codeblock from "../components/Codeblock";
 import DemoCont from "../components/DemoCont";
+import { Spinner } from "../components/styles/Styles";
 
 function ConditionalRendering() {
   const [isLoading, setIsLoading] = React.useState(true);
@@ -35,30 +35,17 @@ function ConditionalRendering() {
         )}
       </DemoCont>
 
-      <Codeblock code={codeblock} />
+      <Codeblock code={codeblock} lang="JS" />
     </>
   );
 }
 
 export default ConditionalRendering;
 
-const spin = keyframes`
-  0% {
-    transform: rotate(0deg);
-  }  
-  100% {
-    transform: rotate(360deg)
-  }
-`;
-
 const LoadingCont = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-`;
-
-const Spinner = styled(ImSpinner2)`
-  animation: ${spin} 1.5s linear infinite;
 `;
 
 const codeblock = `function ConditionalRenderingDemo() {

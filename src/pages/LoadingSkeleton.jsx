@@ -8,8 +8,7 @@ import { MiniLayout } from "../components/styles/Styles";
 function LoadingSkeleton() {
   // PREREQ: conditional rendering
 
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [comment, setComment] = React.useState({});
+  const [comment, setComment] = React.useState(null);
 
   const seed = Math.floor(Math.random() * 98);
 
@@ -21,7 +20,6 @@ function LoadingSkeleton() {
       );
       const data = await res.json();
       setComment(data);
-      setIsLoading(false);
     };
     fetchData();
   }, []);
@@ -30,7 +28,7 @@ function LoadingSkeleton() {
     <>
       <DemoCont>
         <Cont>
-          {isLoading ? (
+          {!comment ? (
             <>
               <SkeletonProfileImg />
               <TextCont>
@@ -57,7 +55,7 @@ function LoadingSkeleton() {
         refreshing or throttling the network in your browser's DevTools.
       </InfoCard>
 
-      <Codeblock code={codeblock} />
+      <Codeblock code={codeblock} lang="JS" />
     </>
   );
 }
@@ -127,9 +125,7 @@ const SkeletonText = styled.div`
 const codeblock = `function LoadingSkeletonDemo() {
   // PREREQ: Conditional Rendering
 
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [comment, setComment] = React.useState({});
-
+  const [comment, setComment] = React.useState(null);
   const seed = Math.floor(Math.random() * 98);
 
   // Note: useEffect runs after rendering.
@@ -140,14 +136,13 @@ const codeblock = `function LoadingSkeletonDemo() {
       );
       const data = await res.json();
       setComment(data);
-      setIsLoading(false);
     };
     fetchData();
   }, []);
 
   return (
     <Cont>
-      {isLoading ? (
+      {!comment ? (
         <>
           <SkeletonProfileImg />
           <TextCont>

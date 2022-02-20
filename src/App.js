@@ -1,7 +1,6 @@
 import Menu from "./pages/RecursiveMenu/Menu";
 import { Layout } from "./components/styles/Styles";
 import UseEffectExample from "./pages/UseEffectIntro";
-import styled from "styled-components";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import UseEffectIntro from "./pages/UseEffectIntro";
@@ -11,6 +10,8 @@ import ConditionalRendering from "./pages/ConditionalRendering";
 import LoadingSkeleton from "./pages/LoadingSkeleton";
 import PassingState from "./pages/PassingState/main";
 import RecursiveMenu from "./pages/RecursiveMenu/main";
+import TypescriptDemo from "./pages/TypescriptDemo";
+import SearchDebounce from "./pages/SearchDebounce";
 
 function App() {
   return (
@@ -59,6 +60,18 @@ function App() {
           path="/passing-state"
           element={
             <PageLayout children={<PassingState />} title="Passing State" />
+          }
+        />
+        <Route
+          path="/typescript"
+          element={
+            <PageLayout children={<TypescriptDemo />} title="Typescript IMDB" />
+          }
+        />
+        <Route
+          path="/search-debounce"
+          element={
+            <PageLayout children={<SearchDebounce />} title="Search Debounce" />
           }
         />
       </Routes>

@@ -5,6 +5,7 @@ import Prisms from "./Prisms";
 import DependentCounter from "./DependentCounter";
 import DemoCont from "../../components/DemoCont";
 import Codeblock from "../../components/Codeblock";
+import InfoCard from "../../components/InfoCard";
 
 function PassingState() {
   const [count, setCount] = React.useState(0);
@@ -28,7 +29,12 @@ function PassingState() {
           </div>
         </Cont>
       </DemoCont>
-      <Codeblock code={codeblock} />
+      <InfoCard>
+        You can pass state between sibilings by creating the state inside the
+        parent to begin with, then passing the state to the children so they can
+        both access it.
+      </InfoCard>
+      <Codeblock code={codeblock} lang="JS" />
     </>
   );
 }
@@ -51,9 +57,9 @@ const Cont = styled.div`
   display: flex;
   gap: 20px;
   padding: 30px;
-  /* outline: 2px solid #5773ff; */
+  outline: 2px solid #262930;
   border-radius: 5px;
-  background-color: #364dbd;
+  /* background-color: #364dbd; */
 `;
 
 const Title = styled.p`
