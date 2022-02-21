@@ -6,24 +6,30 @@ import { Input, UnstyledBtn } from "../components/styles/Styles";
 
 function TodoList() {
   const [todos, setTodos] = React.useState([
-    "Check off this task",
-    "Add a todo",
-    "Do stuff",
+    { task: "Check off this task", isCompleted: false },
+    { task: "Add new task", isCompleted: false },
+    { task: "Do stuff", isCompleted: false },
   ]);
 
   const [newTodo, setNewTodo] = React.useState("");
 
   const addNewTodo = (e) => {
     e.preventDefault();
-    setTodos([...todos, newTodo]);
+    setTodos([...todos, { task: newTodo, isCompleted: false }]);
   };
 
-  const removeTodo = (todo) => {
-    // delay removal todo from list to show strikethrough momentarily
-    // setTimeout(() => {
-    //   setTodos((todos) => todos.filter((item) => item !== todo));
-    // }, 1000);
-    setTodos((todos) => todos.filter((item) => item !== todo));
+  const completeTask = (task) => {
+    // setTodos((todos) => todos.filter((item) => item !== todo));
+    const newTodos = todos.map((item) => {
+      if (task === item.task) item.isCompleted = !item.isCompleted;
+      return item;
+    });
+    console.log(newTodos);
+    setTodos(newTodos);
+
+    setTimeout(() => {
+      setTodos((todos) => todos.filter((item) => item.task !== task));
+    }, 1000);
   };
 
   return (
@@ -46,7 +52,20 @@ function TodoList() {
 
       <TodoCont>
         {todos.map((todo) => (
-          <Todo todo={todo} removeTodo={removeTodo} />
+          <TodoWrapper>
+            <CheckboxWrapper
+              onClick={() => {
+                completeTask(todo.task);
+              }}
+            >
+              {todo.isCompleted ? (
+                <ImCheckboxChecked />
+              ) : (
+                <ImCheckboxUnchecked />
+              )}
+            </CheckboxWrapper>
+            <TodoText isChecked={todo.isCompleted}>{todo.task}</TodoText>
+          </TodoWrapper>
         ))}
       </TodoCont>
     </>
@@ -54,23 +73,6 @@ function TodoList() {
 }
 
 export default TodoList;
-
-function Todo({ todo, removeTodo }) {
-  const [isChecked, setIsChecked] = React.useState(false);
-  return (
-    <TodoWrapper>
-      <CheckboxWrapper
-        onClick={() => {
-          setIsChecked(!isChecked);
-          // if (!isChecked) removeTodo(todo);
-        }}
-      >
-        {isChecked ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}
-      </CheckboxWrapper>
-      <TodoText isChecked={isChecked}>{todo}</TodoText>
-    </TodoWrapper>
-  );
-}
 
 const TodoCont = styled.div`
   display: flex;
