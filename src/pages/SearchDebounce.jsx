@@ -4,7 +4,12 @@ import Codeblock from "../components/Codeblock";
 import DemoCont from "../components/DemoCont";
 import InfoCard from "../components/InfoCard";
 import SearchBar from "../components/SearchBar";
-import { Spinner, TextCont } from "../components/styles/Styles";
+import {
+  Result,
+  ResultsCont,
+  Spinner,
+  TextCont,
+} from "../components/styles/Styles";
 
 function SearchDebounce() {
   const [results, setResults] = React.useState([]);
@@ -52,11 +57,12 @@ function SearchDebounce() {
           onChange={(e) => {
             optimisedFunc(e.target.value);
           }}
+          placeholder="Search for a recipe..."
         />
-        <TextCont>
+        <>
           {isLoading && (
             <ResultsCont>
-              <Result>
+              <Result style={loadingStyles}>
                 <Spinner />
                 Loading
               </Result>
@@ -75,7 +81,7 @@ function SearchDebounce() {
               ))}
             </ResultsCont>
           )}
-        </TextCont>
+        </>
       </DemoCont>
 
       <InfoCard>
@@ -92,25 +98,7 @@ function SearchDebounce() {
 
 export default SearchDebounce;
 
-const ResultsCont = styled.div`
-  background-color: #2a2e33;
-  padding: 10px;
-  border-radius: 10px;
-`;
-
-const Result = styled.a`
-  text-decoration: none;
-  color: white;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  &:hover {
-    background-color: #202327;
-  }
-`;
+const loadingStyles = { display: "flex", alignItems: "center", gap: "10px" };
 
 const codeblock = `function SearchDebounce() {
   const [results, setResults] = React.useState([]);
@@ -157,6 +145,7 @@ const codeblock = `function SearchDebounce() {
         onChange={(e) => {
           optimisedFunc(e.target.value);
         }}
+        placeholder="Search for a recipe..."
       />
       <TextCont>
         {isLoading && (

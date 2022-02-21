@@ -128,6 +128,7 @@ function TypescriptDemo() {
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               setQuery(event.currentTarget.value);
             }}
+            placeholder="Search for a movie..."
           />
         </form>
       </DemoCont>
@@ -315,6 +316,7 @@ function TypescriptDemo() {
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             setQuery(event.currentTarget.value);
           }}
+          placeholder="Search for a movie..."
         />
       </form>
     </>
@@ -338,18 +340,18 @@ const searchMovie = async (query: string) => {
 interface SearchProps {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder: string;
 }
 
-const SearchBar: FC<SearchProps> = ({ value, onChange }) => {
+const SearchBar: FC<SearchProps> = ({ value, onChange, placeholder }) => {
   return (
-    <>
+    <Wrapper>
       <SearchIcon value={value} />
       <SearchInput
-        placeholder="Search now..."
+        placeholder={placeholder}
         value={value}
         onChange={onChange}
       />
-    </>
+    </Wrapper>
   );
-};
-`;
+};`;

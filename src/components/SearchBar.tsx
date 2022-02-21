@@ -6,14 +6,15 @@ import { BsSearch } from "react-icons/bs";
 interface SearchProps {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder: string;
 }
 
-const SearchBar: FC<SearchProps> = ({ value, onChange }) => {
+const SearchBar: FC<SearchProps> = ({ value, onChange, placeholder }) => {
   return (
     <Wrapper>
       <SearchIcon value={value} />
       <SearchInput
-        placeholder="Search now..."
+        placeholder={placeholder}
         value={value}
         onChange={onChange}
       />

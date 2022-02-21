@@ -13,6 +13,7 @@ import RecursiveMenu from "./pages/RecursiveMenu/main";
 import TypescriptDemo from "./pages/TypescriptDemo";
 import SearchDebounce from "./pages/SearchDebounce";
 import SearchFilter from "./pages/SearchFilter";
+import TodoList from "./pages/TodoList";
 
 function App() {
   return (
@@ -80,6 +81,10 @@ function App() {
           element={
             <PageLayout children={<SearchFilter />} title="Search Filter" />
           }
+        />
+        <Route
+          path="/todo-list"
+          element={<PageLayout children={<TodoList />} title="Todo List" />}
         />
       </Routes>
     </Layout>

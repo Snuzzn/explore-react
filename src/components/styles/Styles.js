@@ -46,7 +46,7 @@ export const MiniLayout = styled.div`
 `;
 
 export const TextCont = styled.div`
-  width: 600px;
+  width: 700px;
   font-size: 14pt;
 `;
 
@@ -87,4 +87,25 @@ const spin = keyframes`
 
 export const Spinner = styled(ImSpinner2)`
   animation: ${spin} 1.5s linear infinite;
+`;
+
+export const ResultsCont = styled.div`
+  background-color: #2a2e33;
+  padding: 10px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  width: 100%;
+`;
+
+export const Result = styled.a`
+  max-width: 580px;
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  display: block;
+  &:hover {
+    background-color: #202327;
+  }
 `;

@@ -17,6 +17,7 @@ function Home() {
         <Feature title="Typescript IMDB" route="typescript" />
         <Feature title="Search Debounce" route="search-debounce" />
         <Feature title="Search Filter" route="search-filter" />
+        <Feature title="Todo List" route="todo-list" />
       </GridContainer>
     </>
   );
