@@ -19,14 +19,13 @@ function TodoList() {
   };
 
   const completeTask = (task) => {
-    // setTodos((todos) => todos.filter((item) => item !== todo));
     const newTodos = todos.map((item) => {
       if (task === item.task) item.isCompleted = !item.isCompleted;
       return item;
     });
-    console.log(newTodos);
     setTodos(newTodos);
 
+    // make task disappear after a delay
     setTimeout(() => {
       setTodos((todos) => todos.filter((item) => item.task !== task));
     }, 1000);

@@ -14,6 +14,7 @@ import TypescriptDemo from "./pages/TypescriptDemo";
 import SearchDebounce from "./pages/SearchDebounce";
 import SearchFilter from "./pages/SearchFilter";
 import TodoList from "./pages/TodoList";
+import PokemonRedux from "./pages/PokemonRedux/main";
 
 function App() {
   return (
@@ -85,6 +86,12 @@ function App() {
         <Route
           path="/todo-list"
           element={<PageLayout children={<TodoList />} title="Todo List" />}
+        />
+        <Route
+          path="/pokemon-redux"
+          element={
+            <PageLayout children={<PokemonRedux />} title="Pokemon Redux" />
+          }
         />
       </Routes>
     </Layout>

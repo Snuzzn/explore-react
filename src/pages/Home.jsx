@@ -18,6 +18,7 @@ function Home() {
         <Feature title="Search Debounce" route="search-debounce" />
         <Feature title="Search Filter" route="search-filter" />
         <Feature title="Todo List" route="todo-list" />
+        <Feature title="Pokemon Redux" route="pokemon-redux" />
       </GridContainer>
     </>
   );
