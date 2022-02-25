@@ -2,32 +2,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { atkOpponent, reduceAtk, switchTurn } from "./actions/gameActions";
+import { growlMove, scratchMove } from "./moves";
 
-function PlayerDialog({ updateMoveTxt }) {
+function PlayerDialog() {
   const dispatch = useDispatch();
   const { game } = useSelector((state) => state);
-
-  const scratchMove = (opponent) => {
-    dispatch(atkOpponent({ char: opponent, dmg: 7 }));
-    updateMoveTxt(opponent, "scratch");
-  };
-
-  const growlMove = (opponent) => {
-    dispatch(reduceAtk({ target: opponent, atkReduction: 3 }));
-    updateMoveTxt(opponent, "growl");
-  };
-
-  React.useEffect(() => {
-    if (game.playerTurn === "enemy")
-      setTimeout(() => {
-        scratchMove("player");
-      }, 1000);
-
-    if (game.playerTurn === "waiting")
-      setTimeout(() => {
-        dispatch(switchTurn());
-      }, 1000);
-  }, [game.playerTurn]);
 
   return (
     <>
@@ -37,14 +16,14 @@ function PlayerDialog({ updateMoveTxt }) {
       <MovesCont>
         <Move
           onClick={() => {
-            scratchMove("enemy");
+            scratchMove("enemy", dispatch);
           }}
         >
           Scratch
         </Move>
         <Move
           onClick={() => {
-            growlMove("enemy");
+            growlMove("enemy", dispatch);
           }}
         >
           Growl

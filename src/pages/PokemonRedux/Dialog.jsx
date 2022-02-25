@@ -2,54 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import { atkOpponent, reduceAtk, switchTurn } from "./actions/gameActions";
 import { useDispatch, useSelector } from "react-redux";
+import { growlMove, scratchMove } from "./moves";
+import PlayerDialog from "./PlayerDialog";
 
 function Dialog() {
   const dispatch = useDispatch();
   const { game } = useSelector((state) => state);
-  const [playerMove, setPlayerMove] = React.useState("");
-  const [enemyMove, setEnemyMove] = React.useState("");
-
-  const scratchMove = (opponent) => {
-    dispatch(atkOpponent({ char: opponent, dmg: 7 }));
-    updateMoveTxt(opponent, "scratch");
-  };
-
-  const growlMove = (opponent) => {
-    dispatch(reduceAtk({ target: opponent, atkReduction: 3 }));
-    updateMoveTxt(opponent, "growl");
-  };
-
-  const updateMoveTxt = (opponent, move) => {
-    if (opponent === "enemy") setPlayerMove(move);
-    else setEnemyMove(move);
-  };
+  const { playerMove, enemyMove, player } = game;
 
   const renderDialog = () => {
     switch (game.playerTurn) {
       case "player":
-        return (
-          <>
-            <div>
-              What will <b>Charmander</b> do?
-            </div>
-            <MovesCont>
-              <Move
-                onClick={() => {
-                  scratchMove("enemy");
-                }}
-              >
-                Scratch
-              </Move>
-              <Move
-                onClick={() => {
-                  growlMove("enemy");
-                }}
-              >
-                Growl
-              </Move>
-            </MovesCont>
-          </>
-        );
+        return <PlayerDialog />;
       case "enemy":
         return (
           <div>
@@ -62,6 +26,10 @@ function Dialog() {
             Enemy used <b>{enemyMove}</b>!
           </div>
         );
+      case "end":
+        if (player.currHealth <= 0)
+          return <div>Defeat! Your pokemon fainted.</div>;
+        else return <div>Victory! The enemy fainted.</div>;
       default:
         return <></>;
     }
@@ -70,7 +38,7 @@ function Dialog() {
   React.useEffect(() => {
     if (game.playerTurn === "enemy")
       setTimeout(() => {
-        scratchMove("player");
+        scratchMove("player", dispatch);
       }, 1000);
 
     if (game.playerTurn === "waiting")

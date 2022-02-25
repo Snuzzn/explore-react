@@ -5,26 +5,24 @@ import Charmander from "../../images/charmander.gif";
 import { useDispatch, useSelector } from "react-redux";
 import HealthBar from "./HealthBar";
 import Dialog from "./Dialog";
+import Character from "./Character";
 
 function Game() {
   const dispatch = useDispatch();
-  const { game } = useSelector((state) => state);
 
   return (
     <GameCont>
-      {game && (
-        <>
-          <CharacterCont>
-            <HealthBar character="enemy" />
-            <img src={Squirtle} alt="" width="160px" />
-          </CharacterCont>
-          <CharacterCont>
-            <img src={Charmander} alt="" width="180px" />
-            <HealthBar character="player" />
-          </CharacterCont>
-          <Dialog />
-        </>
-      )}
+      <>
+        <CharacterCont>
+          <HealthBar character="enemy" />
+          <Character src={Squirtle} type="enemy" />
+        </CharacterCont>
+        <CharacterCont>
+          <Character src={Charmander} type="player" />
+          <HealthBar character="player" />
+        </CharacterCont>
+        <Dialog />
+      </>
     </GameCont>
   );
 }

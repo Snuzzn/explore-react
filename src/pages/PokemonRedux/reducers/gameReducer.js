@@ -12,6 +12,8 @@ export const initialState = {
     baseAtk: 10,
   },
   playerTurn: "player",
+  playerMove: "",
+  enemyMove: "",
 };
 
 export default function gameReducer(state = initialState, action) {
@@ -19,11 +21,18 @@ export default function gameReducer(state = initialState, action) {
   let { curr, opponent } = getPlayerAndEnemy(state);
 
   switch (action.type) {
+    case "SET_PLAYER_MOVE":
+      return { ...state, playerMove: action.payload };
+    case "SET_ENEMY_MOVE":
+      return { ...state, enemyMove: action.payload };
     case "ATK_OPPONENT":
       cpy = Object.assign({}, opponent);
       cpy.currHealth -= action.payload.dmg + curr.baseAtk;
       if (cpy.currHealth < 0) cpy.currHealth = 0;
-      finalState = { ...state, playerTurn: switchTurn(state.playerTurn) };
+      finalState = {
+        ...state,
+        playerTurn: cpy.currHealth > 0 ? switchTurn(state.playerTurn) : "end",
+      };
       finalState[getOpponentName(state.playerTurn)] = cpy;
       return finalState;
     case "REDUCE_ATK":
@@ -36,6 +45,7 @@ export default function gameReducer(state = initialState, action) {
       return finalState;
     case "SWITCH_TURN":
       return { ...state, playerTurn: switchTurn(state.playerTurn) };
+
     default:
       return state;
   }
