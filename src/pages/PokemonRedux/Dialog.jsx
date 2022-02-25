@@ -35,10 +35,13 @@ function Dialog() {
     }
   };
 
+  console.log();
+
   React.useEffect(() => {
     if (game.playerTurn === "enemy")
       setTimeout(() => {
-        scratchMove("player", dispatch);
+        if (Math.floor(Math.random() * 3) === 0) growlMove("player", dispatch);
+        else scratchMove("player", dispatch);
       }, 1000);
 
     if (game.playerTurn === "waiting")
