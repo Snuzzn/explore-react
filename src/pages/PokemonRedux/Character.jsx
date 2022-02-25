@@ -31,7 +31,7 @@ export default Character;
 
 const CharacterImg = styled.img`
   width: 180px;
-  filter: ${(props) => props.hasTakenDmg && `sepia(10)`};
+  filter: ${(props) => props.hasTakenDmg && `sepia(100%)`};
   opacity: ${(props) => props.health <= 0 && `0`};
-  transition: opacity 750ms ease;
+  transition: all 750ms ease;
 `;

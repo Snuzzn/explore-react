@@ -12,7 +12,9 @@ function HealthBar({ character }) {
     <div>
       {char && (
         <>
-          {char.currHealth}
+          <HP>
+            {char.currHealth} / {char.totalHealth}
+          </HP>
           <HealthBarWrapper>
             <Bar currHealth={char.currHealth} />
           </HealthBarWrapper>
@@ -38,4 +40,10 @@ const HealthBarWrapper = styled.div`
   background-color: #24252f;
   padding: 6px;
   position: relative;
+`;
+
+const HP = styled.div`
+  color: #8a94a0;
+  margin-bottom: 3px;
+  font-size: 14pt;
 `;
