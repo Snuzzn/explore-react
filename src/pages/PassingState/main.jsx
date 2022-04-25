@@ -42,8 +42,8 @@ function PassingState() {
 export default PassingState;
 
 const Box = styled.div`
-  width: 400px;
-  height: 400px;
+  width: 250px;
+  height: 350px;
   background-color: #2a2e33;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 9px;
@@ -59,11 +59,14 @@ const Cont = styled.div`
   padding: 30px;
   outline: 2px solid #262930;
   border-radius: 5px;
+  width: 525px;
+  justify-content: center;
   /* background-color: #364dbd; */
 `;
 
 const Title = styled.p`
   text-align: center;
+  margin-bottom: 15px;
 `;
 
 const codeblock = `function PassingStateDemo() {

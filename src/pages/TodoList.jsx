@@ -17,17 +17,24 @@ function TodoList() {
   const addNewTodo = (e) => {
     e.preventDefault();
     setTodos([...todos, { task: newTodo, isCompleted: false }]);
+    setNewTodo("");
   };
 
   const completeTask = (task) => {
+    let isFound = false;
     const newTodos = todos.map((item) => {
-      if (task === item.task) item.isCompleted = !item.isCompleted;
+      if (task === item.task && !isFound) {
+        item.isCompleted = !item.isCompleted;
+        // prevent duplicate from being checked off
+        isFound = true;
+      }
       return item;
     });
     setTodos(newTodos);
 
     // make task disappear after a delay
     setTimeout(() => {
+      let isFound = false;
       setTodos((todos) => todos.filter((item) => item.task !== task));
     }, 1000);
   };
@@ -52,7 +59,12 @@ function TodoList() {
 
       <TodoCont>
         {todos.map((todo) => (
-          <TodoWrapper layout key={todo.task}>
+          <TodoWrapper
+            layout
+            key={todo.task}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
             <CheckboxWrapper
               onClick={() => {
                 completeTask(todo.task);

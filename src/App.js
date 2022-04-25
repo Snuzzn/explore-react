@@ -16,6 +16,7 @@ import SearchFilter from "./pages/SearchFilter";
 import TodoList from "./pages/TodoList";
 import PokemonRedux from "./pages/PokemonRedux/main";
 import { AnimatePresence } from "framer-motion/dist/framer-motion";
+import UseInputDemo from "./pages/UseInputDemo";
 
 function App() {
   const location = useLocation();
@@ -99,6 +100,12 @@ function App() {
             path="/pokemon-redux"
             element={
               <PageLayout children={<PokemonRedux />} title="Pokemon Redux" />
+            }
+          />
+          <Route
+            path="/useInput"
+            element={
+              <PageLayout children={<UseInputDemo />} title="useInput" />
             }
           />
         </Routes>

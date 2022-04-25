@@ -21,8 +21,8 @@ import {
 // Note: useEffect runs after rendering.
 
 function UseEffectIntro() {
-  const [example1, setExample1] = React.useState("first");
-  const [example2, setExample2] = React.useState("second");
+  const [example1, setExample1] = React.useState("");
+  const [example2, setExample2] = React.useState("");
 
   React.useEffect(() => {
     // only happens once (commonly used to fetch data)
@@ -48,12 +48,12 @@ function UseEffectIntro() {
     <>
       <DemoCont>
         <Input
-          placeholder="Write text here..."
+          placeholder="Example 1..."
           value={example1}
           onChange={(e) => setExample1(e.target.value)}
         />
         <Input
-          placeholder="Write text here..."
+          placeholder="Example 2..."
           value={example2}
           onChange={(e) => setExample2(e.target.value)}
         />
@@ -93,6 +93,8 @@ function UseEffectIntro() {
 export default UseEffectIntro;
 
 const codeblock = `function UseEffectDemo() {
+  const [example1, setExample1] = React.useState("");
+  const [example2, setExample2] = React.useState("");
 
   React.useEffect(() => {
     // only happens once (commonly used to fetch data)
@@ -114,5 +116,18 @@ const codeblock = `function UseEffectDemo() {
     console.log(\`example1: \${example1}\`);
   }, [example1]);
 
-  return <> ... </>
+  return (
+    <> 
+      <Input
+        placeholder="Example 1..."
+        value={example1}
+        onChange={(e) => setExample1(e.target.value)}
+      />
+      <Input
+        placeholder="Example 2..."
+        value={example2}
+        onChange={(e) => setExample2(e.target.value)}
+      />
+    </>
+  );
 }`;

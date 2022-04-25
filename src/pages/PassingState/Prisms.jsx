@@ -1,10 +1,11 @@
 import React from "react";
 import prism from "../../images/darkBox.svg";
 import styled from "styled-components";
+import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
 
 function Prisms({ count }) {
   return (
-    <Cont>
+    <Cont layout>
       {[...Array(count)].map((val, ind) => (
         <img
           src={prism}
@@ -20,7 +21,7 @@ function Prisms({ count }) {
 
 export default Prisms;
 
-const Cont = styled.div`
+const Cont = styled(motion.div)`
   display: flex;
   flex-direction: column;
   justify-content: center;

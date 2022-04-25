@@ -23,6 +23,7 @@ function Home() {
             route="conditional-rendering"
           />
           <Feature title="Passing State" route="passing-state" />
+          <Feature title="useInput" route="useInput" />
         </GridContainer>
       </CategoryCont>
 
