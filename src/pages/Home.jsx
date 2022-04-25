@@ -3,10 +3,16 @@ import styled from "styled-components";
 import CategoryCont from "../components/CategoryCont";
 import DemoCont from "../components/DemoCont";
 import Feature from "../components/Feature";
+import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
 
 function Home() {
   return (
-    <>
+    <HomeWrapper
+      initial={{ opacity: 0, x: 100 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3, type: "tween" }}
+    >
       <Title>React Grove</Title>
       <CategoryCont borderText="Fundamentals">
         <GridContainer>
@@ -36,7 +42,7 @@ function Home() {
           <Feature title="Pokemon Redux" route="pokemon-redux" />
         </GridContainer>
       </CategoryCont>
-    </>
+    </HomeWrapper>
   );
 }
 
@@ -52,4 +58,11 @@ const GridContainer = styled.div`
 const Title = styled.h1`
   font-size: 26pt;
   align-self: flex-start;
+  margin-bottom: 0;
+`;
+
+const HomeWrapper = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
 `;

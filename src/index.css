@@ -11,6 +11,27 @@ body {
   color: white;
   padding: 20px;
   font-size: 18pt;
+
+
+}
+
+*{
+  scrollbar-color: #3e55cb transparent;
+  scrollbar-width: thin;
+}
+
+
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px transparent; 
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #3e55cb;
 }
 
 

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { ImCheckboxChecked, ImCheckboxUnchecked } from "react-icons/im";
 import { BsPlusLg } from "react-icons/bs";
 import { Input, UnstyledBtn } from "../components/styles/Styles";
+import { motion } from "framer-motion/dist/framer-motion";
 
 function TodoList() {
   const [todos, setTodos] = React.useState([
@@ -51,7 +52,7 @@ function TodoList() {
 
       <TodoCont>
         {todos.map((todo) => (
-          <TodoWrapper>
+          <TodoWrapper layout key={todo.task}>
             <CheckboxWrapper
               onClick={() => {
                 completeTask(todo.task);
@@ -79,7 +80,7 @@ const TodoCont = styled.div`
   gap: 10px;
 `;
 
-const TodoWrapper = styled.div`
+const TodoWrapper = styled(motion.div)`
   background-color: #282844;
   padding: 20px 30px;
   width: 400px;

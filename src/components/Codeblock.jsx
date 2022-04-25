@@ -5,21 +5,15 @@ import styled from "styled-components";
 
 function Codeblock({ code, lang }) {
   return (
-    <div
-      style={{
-        width: "700px",
-        fontSize: "12pt",
-        position: "relative",
-      }}
-    >
-      <SyntaxHighlighter
+    <Wrapper>
+      <CodeWrapper
         language={lang === "JS" ? "jsx" : "tsx"}
         style={{ ...dracula, height: "600px !important" }}
       >
         {code}
-      </SyntaxHighlighter>
+      </CodeWrapper>
       <Language lang={lang}>{lang}</Language>
-    </div>
+    </Wrapper>
   );
 }
 
@@ -34,4 +28,16 @@ const Language = styled.div`
   padding: 8px;
   background-color: ${(props) => (props.lang === "JS" ? "#d9e181" : "#415ce1")};
   border-radius: 0 0 0 10px;
+`;
+
+const Wrapper = styled.div`
+  width: 700px;
+  font-size: 12pt;
+  position: relative;
+`;
+
+const CodeWrapper = styled(SyntaxHighlighter)`
+  &::-webkit-scrollbar {
+    height: 0px;
+  }
 `;
