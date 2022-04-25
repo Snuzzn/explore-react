@@ -21,7 +21,7 @@ import {
 // Note: useEffect runs after rendering.
 
 function UseEffectIntro() {
-  const [example, setExample] = React.useState("first");
+  const [example1, setExample1] = React.useState("first");
   const [example2, setExample2] = React.useState("second");
 
   React.useEffect(() => {
@@ -36,21 +36,21 @@ function UseEffectIntro() {
   }, []);
 
   React.useEffect(() => {
-    console.log("component rendered");
+    console.log("component updated");
   });
 
   React.useEffect(() => {
     // runs every time the example state is updated
-    console.log(`component updated: ${example}`);
-  }, [example]);
+    console.log(`example1 :  ${example1}`);
+  }, [example1]);
 
   return (
     <>
       <DemoCont>
         <Input
           placeholder="Write text here..."
-          value={example}
-          onChange={(e) => setExample(e.target.value)}
+          value={example1}
+          onChange={(e) => setExample1(e.target.value)}
         />
         <Input
           placeholder="Write text here..."
@@ -106,13 +106,13 @@ const codeblock = `function UseEffectDemo() {
   }, []);
   
   React.useEffect(() => {
-    console.log("component rendered");
+    console.log("component updated");
   });
   
   React.useEffect(() => {
     // runs every time the example state is updated
-    console.log(\`component updated: \${example}\`);
-  }, [example]);
+    console.log(\`example1: \${example1}\`);
+  }, [example1]);
 
   return <> ... </>
 }`;

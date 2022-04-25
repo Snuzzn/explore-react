@@ -7,7 +7,7 @@ import Feature from "../components/Feature";
 function Home() {
   return (
     <>
-      <Title>React Handbook</Title>
+      <Title>React Grove</Title>
       <CategoryCont borderText="Fundamentals">
         <GridContainer>
           <Feature title="useState" route="useState" />
@@ -49,7 +49,7 @@ const GridContainer = styled.div`
   width: 100%;
 `;
 
-const Title = styled.h2`
-  line-height: 0px;
+const Title = styled.h1`
+  font-size: 26pt;
   align-self: flex-start;
 `;

@@ -5,7 +5,7 @@ import { BorderText, Wrapper } from "./DemoCont";
 const CategoryCont = ({ children, borderText }) => {
   return (
     <CategoryWrapper>
-      <BorderText>{borderText}</BorderText>
+      <CategoryText>{borderText}</CategoryText>
       {children}
     </CategoryWrapper>
   );
@@ -15,6 +15,12 @@ export default CategoryCont;
 
 const CategoryWrapper = styled(Wrapper)`
   width: 100%;
-  padding: 40px 30px;
+  padding: 50px 30px;
   margin-bottom: 20px;
+`;
+
+const CategoryText = styled(BorderText)`
+  color: #666e7a;
+  font-size: 18pt;
+  font-weight: 600;
 `;
