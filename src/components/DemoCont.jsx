@@ -4,7 +4,7 @@ import styled from "styled-components";
 function DemoCont({ children }) {
   return (
     <Wrapper>
-      <DemoTxt>DEMO</DemoTxt>
+      <BorderText>DEMO</BorderText>
       {children}
     </Wrapper>
   );
@@ -12,7 +12,7 @@ function DemoCont({ children }) {
 
 export default DemoCont;
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   min-width: 700px;
   box-sizing: border-box;
   border: 1px solid #313944;
@@ -26,7 +26,7 @@ const Wrapper = styled.div`
   position: relative;
 `;
 
-const DemoTxt = styled.div`
+export const BorderText = styled.div`
   position: absolute;
   top: -14px;
   left: 35px;

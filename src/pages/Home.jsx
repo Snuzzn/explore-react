@@ -1,25 +1,41 @@
 import React from "react";
 import styled from "styled-components";
+import CategoryCont from "../components/CategoryCont";
+import DemoCont from "../components/DemoCont";
 import Feature from "../components/Feature";
 
 function Home() {
   return (
     <>
-      <Title>React Toolkit</Title>
+      <Title>React Handbook</Title>
+      <CategoryCont borderText="Fundamentals">
+        <GridContainer>
+          <Feature title="useState" route="useState" />
+          <Feature title="useEffect" route="useEffect" />
+          <Feature
+            title="Conditional Rendering"
+            route="conditional-rendering"
+          />
+          <Feature title="Passing State" route="passing-state" />
+        </GridContainer>
+      </CategoryCont>
 
-      <GridContainer>
-        <Feature title="useState" route="useState" />
-        <Feature title="useEffect" route="useEffect" />
-        <Feature title="Conditional Rendering" route="conditional-rendering" />
-        <Feature title="Loading Skeleton" route="loading-skeleton" />
-        <Feature title="Passing State" route="passing-state" />
-        <Feature title="Recursive Menu" route="menu" />
-        <Feature title="Typescript IMDB" route="typescript" />
-        <Feature title="Search Debounce" route="search-debounce" />
-        <Feature title="Search Filter" route="search-filter" />
-        <Feature title="Todo List" route="todo-list" />
-        <Feature title="Pokemon Redux" route="pokemon-redux" />
-      </GridContainer>
+      <CategoryCont borderText="Common features">
+        <GridContainer>
+          <Feature title="Loading Skeleton" route="loading-skeleton" />
+          <Feature title="Recursive Menu" route="menu" />
+          <Feature title="Search Debounce" route="search-debounce" />
+          <Feature title="Search Filter" route="search-filter" />
+        </GridContainer>
+      </CategoryCont>
+
+      <CategoryCont borderText="Mini demos">
+        <GridContainer>
+          <Feature title="Typescript IMDB" route="typescript" />
+          <Feature title="Todo List" route="todo-list" />
+          <Feature title="Pokemon Redux" route="pokemon-redux" />
+        </GridContainer>
+      </CategoryCont>
     </>
   );
 }
@@ -29,7 +45,7 @@ export default Home;
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 50px;
+  gap: 30px;
   width: 100%;
 `;
 

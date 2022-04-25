@@ -14,13 +14,12 @@ function InfoCard({ children }) {
 export default InfoCard;
 
 const Container = styled.div`
-  font-size: 13pt;
+  font-size: 14pt;
   margin-top: 20px;
   padding: 25px;
   background-color: #292e33;
   border-radius: 0 9px 9px 0;
   border-left: 3px solid #5773ff;
-  color: ;
   position: relative;
   width: 700px;
   box-sizing: border-box;
