@@ -13,7 +13,7 @@ function Home() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3, type: "tween" }}
     >
-      <Title>React Grove</Title>
+      <Title>Explore React</Title>
       <CategoryCont borderText="Fundamentals">
         <GridContainer>
           <Feature title="useState" route="useState" />

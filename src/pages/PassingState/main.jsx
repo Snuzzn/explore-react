@@ -14,7 +14,7 @@ function PassingState() {
     <>
       <DemoCont>
         <Title>Parent Component</Title>
-        <Cont>
+        <ParentCont>
           <div>
             <Title>Child Component</Title>
             <Box>
@@ -27,7 +27,7 @@ function PassingState() {
               <Prisms count={count} />
             </Box>
           </div>
-        </Cont>
+        </ParentCont>
       </DemoCont>
       <InfoCard>
         You can pass state between sibilings by creating the state inside the
@@ -53,7 +53,7 @@ const Box = styled.div`
   flex-direction: column;
 `;
 
-const Cont = styled.div`
+const ParentCont = styled.div`
   display: flex;
   gap: 20px;
   padding: 30px;
@@ -72,14 +72,14 @@ const Title = styled.p`
 const codeblock = `function PassingStateDemo() {
   const [count, setCount] = React.useState(0);
   return (
-    <>
-      <Counter count={count} setCount={setCount} />
-      <Prisms count={count} />
-    </>
+    <Parent>
+      <CounterChild count={count} setCount={setCount} />
+      <PrismsChild count={count} />
+    </Parent>
   );
 }
 
-function Counter({ count, setCount }) {
+function CounterChild({ count, setCount }) {
   const decrementCount = () => {
     if (count - 1 >= 0) setCount(count - 1);
   };
@@ -97,7 +97,7 @@ function Counter({ count, setCount }) {
 }
 
 
-function Prisms({ count }) {
+function PrismsChild({ count }) {
   return (
     <>
       {[...Array(count)].map((val, ind) => (
