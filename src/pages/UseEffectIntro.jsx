@@ -4,15 +4,8 @@ import Codeblock from "../components/Codeblock";
 import Console from "../components/Console";
 import DemoCont from "../components/DemoCont";
 import InfoCard from "../components/InfoCard";
-import {
-  Input,
-  Layout,
-  List,
-  ListItem,
-  ListNumber,
-  MiniLayout,
-  TextCont,
-} from "../components/styles/Styles";
+import { Input, List, ListItem, ListNumber } from "../components/styles/Styles";
+import useLogs from "../hooks/useLogs";
 
 // === COMPONENT LIFECYCLE ===
 // 1. Mount - Component is added to DOM
@@ -25,35 +18,27 @@ function UseEffectIntro() {
   const [example1, setExample1] = React.useState("");
   const [example2, setExample2] = React.useState("");
 
-  const [logs, setLogs] = React.useState([]);
-
-  const consoleLog = useCallback(
-    (newEntry) => {
-      console.log(newEntry);
-      setLogs((logs) => [...logs, newEntry]);
-    },
-    [logs]
-  );
+  const { logs, updateLogs } = useLogs();
 
   React.useEffect(() => {
     // only happens once (commonly used to fetch data)
-    consoleLog("component mounted");
+    updateLogs("component mounted");
 
     // optional clean-up function
     return () => {
       // e.g. when you go back to the home page
-      consoleLog("component about to unmount");
+      updateLogs("component about to unmount");
     };
   }, []);
 
   React.useEffect(() => {
-    consoleLog("component updated");
+    updateLogs("component updated");
   }, [example2]);
 
   React.useEffect(() => {
     // runs every time the example state is updated
-    consoleLog(`example1 :  "${example1}"`);
-    consoleLog("component updated");
+    updateLogs(`example1 :  "${example1}"`);
+    updateLogs("component updated");
   }, [example1]);
 
   return (

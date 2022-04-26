@@ -5,13 +5,10 @@ import InfoCard from "../components/InfoCard";
 import Codeblock from "../components/Codeblock";
 import DemoCont from "../components/DemoCont";
 import Console from "../components/Console";
+import useLogs from "../hooks/useLogs";
 
 function UseStateIntro() {
-  const [logs, setLogs] = useState([]);
-
-  const updateLogs = (newEntry) => {
-    setLogs((logs) => [...logs, newEntry]);
-  };
+  const { logs, updateLogs } = useLogs();
 
   return (
     <>
