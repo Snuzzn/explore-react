@@ -1,18 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Codeblock from "../components/Codeblock";
+import Console from "../components/Console";
 import DemoCont from "../components/DemoCont";
 import InfoCard from "../components/InfoCard";
 import { Input } from "../components/styles/Styles";
 import useInput from "../hooks/useInput";
+import useLogs from "../hooks/useLogs";
 
 const UseInputDemo = () => {
-  const exampleInput = useInput("");
-  console.log(exampleInput);
+  const name = useInput("");
+  console.log(name);
+
+  const { logs, updateLogs } = useLogs();
+  useEffect(() => {
+    // console.log(name.input);
+    updateLogs(`name: "${name.input}"`);
+  }, [name.input, updateLogs]);
+
   return (
     <>
       <DemoCont>
-        <Input placeholder="Enter your name..." {...exampleInput} />
+        <Input placeholder="Enter your name..." {...name} />
       </DemoCont>
+      <Console logs={logs} />
       <InfoCard>
         This a custom hook that allows us to succinctly capture form inputs.
       </InfoCard>
@@ -23,7 +33,16 @@ const UseInputDemo = () => {
 
 export default UseInputDemo;
 
-const code = `// useInput.js
+const code = `// useInputDemo.jsx
+const UseInputDemo = () => {
+  const name = useInput("");
+  console.log(\`name: \"\${name.input}\"\`);
+  return (
+    <Input placeholder="Enter your name..." {...name} />
+  );
+};
+
+// useInput.js
 const useInput = () => {
   const [input, setInput] = React.useState("");
 
@@ -37,15 +56,4 @@ const useInput = () => {
   };
 };
 
-export default useInput;
-
-
-// useInputDemo.jsx
-const UseInputDemo = () => {
-  const exampleInput = useInput("");
-  console.log(exampleInput);
-  return (
-    <Input placeholder="Enter your name..." {...exampleInput} />
-  );
-};
-`;
+export default useInput;`;

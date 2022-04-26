@@ -5,9 +5,11 @@ import { StyledLink } from "./styles/Styles";
 
 function Feature({ title, route }) {
   return (
-    <Container to={`/${route}`}>
-      <Title>{title}</Title>
-    </Container>
+    <div style={{ position: "relative" }}>
+      <Container to={`/${route}`}>
+        <Title>{title}</Title>
+      </Container>
+    </div>
   );
 }
 
@@ -20,6 +22,7 @@ const Container = styled(StyledLink)`
   padding: 15px;
   background-color: #23222a;
   cursor: pointer;
+  transition: 150ms all ease;
   &:hover {
     background-color: #2c2b35;
   }

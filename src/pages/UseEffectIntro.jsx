@@ -94,8 +94,15 @@ function UseEffectIntro() {
             </div>
           </ListItem>
         </List>
-        Open your browser's console to study the behaviour of useEffect in these
-        different stages.
+        <p>
+          Open your browser's console to study the behaviour of useEffect in
+          these different stages.
+        </p>
+        <p>
+          The useEffect hook's callback will always run <strong>after</strong>{" "}
+          the first render, and <strong>after</strong> every update (unless
+          dependency array is empty).
+        </p>
       </InfoCard>
       <Codeblock code={codeblock} lang="JS" />
     </>

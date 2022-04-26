@@ -58,13 +58,12 @@ const Header = styled.div`
   position: sticky;
   top: 0;
   left: 0;
-  /* border-radius: 15px 15px 0 0; */
-  background-color: #14161c;
+  background-color: #1c1e27;
   width: 100%;
   display: flex;
-  /* justify-content: end; */
   padding: 10px;
   padding-left: 15px;
   box-sizing: border-box;
   font-size: 12pt;
+  border-radius: 10px 10px 0 0;
 `;
