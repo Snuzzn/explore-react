@@ -19,7 +19,6 @@ export const IconButton = styled(StyledLink)`
   background-color: #2b2a33;
   cursor: pointer;
   padding: 11px;
-  padding-bottom: 5px;
   border-radius: 8px;
   &:hover {
     background-color: #373641;

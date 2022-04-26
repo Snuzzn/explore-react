@@ -28,19 +28,19 @@ function App() {
         <Routes location={location} key={location.key}>
           <Route path="/" element={<Home />} />
           <Route
-            path="/useEffect"
+            path="/use-effect"
             element={
               <PageLayout children={<UseEffectIntro />} title="useEffect" />
             }
           />
           <Route
-            path="/menu"
+            path="/recursive-menu"
             element={
               <PageLayout children={<RecursiveMenu />} title="Recursive Menu" />
             }
           />
           <Route
-            path="/useState"
+            path="/use-state"
             element={
               <PageLayout children={<UseStateIntro />} title="useState" />
             }
@@ -55,7 +55,7 @@ function App() {
             }
           />
           <Route
-            path="/loading-skeleton"
+            path="/fetch-with-skeleton"
             element={
               <PageLayout
                 children={<LoadingSkeleton />}
@@ -70,7 +70,7 @@ function App() {
             }
           />
           <Route
-            path="/typescript"
+            path="/typescript-imdb"
             element={
               <PageLayout
                 children={<TypescriptDemo />}
@@ -104,7 +104,7 @@ function App() {
             }
           />
           <Route
-            path="/useInput"
+            path="/use-input"
             element={
               <PageLayout children={<UseInputDemo />} title="useInput" />
             }

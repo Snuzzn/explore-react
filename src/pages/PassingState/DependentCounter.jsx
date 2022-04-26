@@ -15,12 +15,12 @@ function DependentCounter({ count, setCount }) {
     <div>
       <CounterContainer>
         <UnstyledBtn>
-          <MinusIcon size="3em" onClick={decrementCount} />
+          <MinusIcon size="2em" onClick={decrementCount} />
         </UnstyledBtn>
         {count}
         <UnstyledBtn>
           <PlusIcon
-            size="3em"
+            size="2em"
             onClick={() => {
               if (count < 10) setCount(count + 1);
             }}

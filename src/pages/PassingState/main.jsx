@@ -42,7 +42,7 @@ function PassingState() {
 export default PassingState;
 
 const Box = styled.div`
-  width: 250px;
+  width: 270px;
   height: 350px;
   background-color: #2a2e33;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -59,7 +59,7 @@ const ParentCont = styled.div`
   padding: 30px;
   outline: 2px solid #262930;
   border-radius: 5px;
-  width: 525px;
+  width: 600px;
   justify-content: center;
   /* background-color: #364dbd; */
 `;

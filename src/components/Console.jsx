@@ -34,6 +34,7 @@ const Wrapper = styled.div`
   background-color: #0d0f14;
   position: relative;
   font-size: 14pt;
+  margin-top: 10px;
 `;
 
 const ConsoleContent = styled.div`

@@ -6,7 +6,39 @@ import Feature from "../components/Feature";
 import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
 import { Link } from "react-scroll";
 function Home() {
-  const [currSection, setCurrSection] = React.useState("");
+  const [currSection, setCurrSection] = React.useState("Fundamentals");
+
+  const linkData = [
+    {
+      title: "Fundamentals",
+      features: [
+        "useState",
+        "useEffect",
+        "Passing State",
+        "useInput",
+        "Styled Components",
+      ],
+    },
+    {
+      title: "Common features",
+      features: [
+        "Fetch with Skeleton",
+        "Recursive Menu",
+        "Search Debounce",
+        "Search Filter",
+      ],
+    },
+    {
+      title: "Mini Projects",
+      features: ["Typescript IMDB", "Todo List", "Pokemon Redux"],
+    },
+  ];
+
+  const toKebabCase = (str) =>
+    str
+      .replace(/([a-z])([A-Z])/g, "$1-$2")
+      .replace(/[\s_]+/g, "-")
+      .toLowerCase();
 
   return (
     <HomeWrapper
@@ -18,39 +50,22 @@ function Home() {
     >
       <ContentsWrapper>
         <Title>Explore React</Title>
-        <CategoryCont borderText="Fundamentals" id="fundamentals">
-          <FlexContainer>
-            <Feature title="useState" route="useState" />
-            <Feature title="useEffect" route="useEffect" />
-            <Feature
-              title="Conditional Rendering"
-              route="conditional-rendering"
-            />
-            <Feature title="Passing State" route="passing-state" />
-            <Feature title="useInput" route="useInput" />
-            <Feature title="Styled Components" route="styled-components" />
-          </FlexContainer>
-        </CategoryCont>
-
-        <CategoryCont borderText="Common features" id="common-features">
-          <FlexContainer>
-            <Feature title="Fetch with Skeleton" route="loading-skeleton" />
-            <Feature title="Recursive Menu" route="menu" />
-            <Feature title="Search Debounce" route="search-debounce" />
-            <Feature title="Search Filter" route="search-filter" />
-          </FlexContainer>
-        </CategoryCont>
-
-        <CategoryCont borderText="Mini projects" id="mini-projects">
-          <FlexContainer>
-            <Feature title="Typescript IMDB" route="typescript" />
-            <Feature title="Todo List" route="todo-list" />
-            <Feature title="Pokemon Redux" route="pokemon-redux" />
-          </FlexContainer>
-        </CategoryCont>
+        {linkData.map((category) => (
+          <CategoryCont
+            borderText={category.title}
+            id={toKebabCase(category.title)}
+          >
+            <FlexContainer>
+              {category.features.map((feature) => (
+                <Feature title={feature} route={toKebabCase(feature)} />
+              ))}
+            </FlexContainer>
+          </CategoryCont>
+        ))}
       </ContentsWrapper>
+
       <TableOfContents>
-        <TocTitle>Table of Contents</TocTitle>
+        <TocTitle>Overview</TocTitle>
         <TocItem
           to="fundamentals"
           smooth
@@ -96,25 +111,25 @@ const ContentsWrapper = styled.div`
   gap: 50px;
 `;
 
-const TableOfContents = styled.div`
+const TableOfContents = styled.aside`
   display: flex;
   flex-direction: column;
   gap: 20px;
   position: sticky;
   top: 150px;
-  font-size: 1.3rem;
   height: 100%;
 `;
 
 const TocTitle = styled.div`
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   font-weight: bold;
 `;
 
 const TocItem = styled(Link)`
   cursor: pointer;
   color: ${(p) => (p.isSelected ? "#5773FE" : "white")};
-  transition: color 100ms ease;
+  transition: all 200ms ease;
+  font-size: 1.2rem;
 `;
 
 const GridContainer = styled.div`
