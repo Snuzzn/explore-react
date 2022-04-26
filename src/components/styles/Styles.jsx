@@ -10,32 +10,42 @@ export const Layout = styled.div`
   align-items: center;
 `;
 
-export const IconButton = styled.div`
-  background-color: #2b2a33;
-  cursor: pointer;
-  padding: 11px;
-  padding-bottom: 5px;
-  align-self: flex-start;
-  border-radius: 8px;
-  &:hover {
-    background-color: #373641;
-    color: white;
-  }
-`;
-
 export const StyledLink = styled(Link)`
   color: #bdbdbd;
   text-decoration: none;
 `;
 
+export const IconButton = styled(StyledLink)`
+  background-color: #2b2a33;
+  cursor: pointer;
+  padding: 11px;
+  padding-bottom: 5px;
+  border-radius: 8px;
+  &:hover {
+    background-color: #373641;
+    color: white;
+  }
+  &:focus {
+    outline-offset: 2px;
+    outline: 2px solid #393842;
+  }
+`;
+
 export const Input = styled.input`
   padding: 15px;
-  background-color: #4e4d59;
+  background-color: #363540;
   border: none;
   border-radius: 8px;
   color: white;
   font-size: 16pt;
   box-sizing: border-box;
+  border: 2px solid transparent;
+  ::placeholder {
+    color: #8e8d9b;
+  }
+  &:focus {
+    border: 2px solid #3e55cb;
+  }
 `;
 
 export const MiniLayout = styled.div`

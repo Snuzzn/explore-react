@@ -16,17 +16,16 @@ function Counter({ updateLogs }) {
 
   return (
     <CounterContainer>
-      <UnstyledBtn>
-        <MinusIcon size="3em" onClick={decrementCount} />
+      <UnstyledBtn onClick={decrementCount}>
+        <MinusIcon size="3em" />
       </UnstyledBtn>
       <div>{count}</div>
-      <UnstyledBtn>
-        <PlusIcon
-          size="3em"
-          onClick={() => {
-            setCount(count + 1);
-          }}
-        />
+      <UnstyledBtn
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        <PlusIcon size="3em" />
       </UnstyledBtn>
     </CounterContainer>
   );

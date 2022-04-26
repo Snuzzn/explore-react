@@ -13,11 +13,9 @@ function PageLayout({ children, title }) {
       transition={{ duration: 0.3, type: "tween" }}
     >
       <Header>
-        <StyledLink to="/">
-          <IconButton>
-            <IoArrowBackSharp size="1em" />
-          </IconButton>
-        </StyledLink>
+        <IconButton to="/">
+          <IoArrowBackSharp size="1em" />
+        </IconButton>
         <h3>{title}</h3>
       </Header>
       <ContentsWrapper>{children}</ContentsWrapper>

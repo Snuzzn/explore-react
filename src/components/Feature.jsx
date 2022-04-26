@@ -5,11 +5,9 @@ import { StyledLink } from "./styles/Styles";
 
 function Feature({ title, route }) {
   return (
-    <div style={{ position: "relative" }}>
-      <Container to={`/${route}`}>
-        <Title>{title}</Title>
-      </Container>
-    </div>
+    <Container to={`/${route}`}>
+      <Title>{title}</Title>
+    </Container>
   );
 }
 
@@ -25,6 +23,10 @@ const Container = styled(StyledLink)`
   transition: 150ms all ease;
   &:hover {
     background-color: #2c2b35;
+  }
+  &:focus {
+    outline: 2px solid #403f4b;
+    outline-offset: 2px;
   }
 `;
 

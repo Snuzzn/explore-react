@@ -24,12 +24,13 @@ function Home() {
           />
           <Feature title="Passing State" route="passing-state" />
           <Feature title="useInput" route="useInput" />
+          <Feature title="Styled Components" route="styled-components" />
         </GridContainer>
       </CategoryCont>
 
       <CategoryCont borderText="Common features">
         <GridContainer>
-          <Feature title="Loading Skeleton" route="loading-skeleton" />
+          <Feature title="Fetch with Skeleton" route="loading-skeleton" />
           <Feature title="Recursive Menu" route="menu" />
           <Feature title="Search Debounce" route="search-debounce" />
           <Feature title="Search Filter" route="search-filter" />

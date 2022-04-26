@@ -17,6 +17,7 @@ import TodoList from "./pages/TodoList";
 import PokemonRedux from "./pages/PokemonRedux/main";
 import { AnimatePresence } from "framer-motion/dist/framer-motion";
 import UseInputDemo from "./pages/UseInputDemo";
+import StyledComponents from "./pages/StyledComponents";
 
 function App() {
   const location = useLocation();
@@ -58,7 +59,7 @@ function App() {
             element={
               <PageLayout
                 children={<LoadingSkeleton />}
-                title="Loading Skeleton"
+                title="Fetch with Skeleton"
               />
             }
           />
@@ -106,6 +107,15 @@ function App() {
             path="/useInput"
             element={
               <PageLayout children={<UseInputDemo />} title="useInput" />
+            }
+          />
+          <Route
+            path="/styled-components"
+            element={
+              <PageLayout
+                children={<StyledComponents />}
+                title="Styled Components"
+              />
             }
           />
         </Routes>

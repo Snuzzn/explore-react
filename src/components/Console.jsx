@@ -45,7 +45,7 @@ const ConsoleContent = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    background-color: #14161c;
+    background-color: #0d0f14;
   }
 
   &::-webkit-scrollbar-thumb {

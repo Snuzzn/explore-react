@@ -4,6 +4,8 @@ import { ImCheckboxChecked, ImCheckboxUnchecked } from "react-icons/im";
 import { BsPlusLg } from "react-icons/bs";
 import { Input, UnstyledBtn } from "../components/styles/Styles";
 import { motion } from "framer-motion/dist/framer-motion";
+import DemoCont from "../components/DemoCont";
+import Codeblock from "../components/Codeblock";
 
 function TodoList() {
   const [todos, setTodos] = React.useState([
@@ -16,70 +18,68 @@ function TodoList() {
 
   const addNewTodo = (e) => {
     e.preventDefault();
+    if (newTodo === "") return;
     setTodos([...todos, { task: newTodo, isCompleted: false }]);
     setNewTodo("");
   };
 
   const completeTask = (task) => {
-    let isFound = false;
+    // check off todo
     const newTodos = todos.map((item) => {
-      if (task === item.task && !isFound) {
-        item.isCompleted = !item.isCompleted;
-        // prevent duplicate from being checked off
-        isFound = true;
-      }
+      if (task === item.task) item.isCompleted = !item.isCompleted;
       return item;
     });
     setTodos(newTodos);
 
     // make task disappear after a delay
     setTimeout(() => {
-      let isFound = false;
       setTodos((todos) => todos.filter((item) => item.task !== task));
     }, 1000);
   };
 
   return (
     <>
-      <form onSubmit={addNewTodo}>
-        <AddTodoCont>
-          <Input
-            value={newTodo}
-            onChange={(e) => {
-              setNewTodo(e.target.value);
-            }}
-            placeholder="Add todo..."
-            style={{ width: "400px" }}
-          />
-          <UnstyledBtn>
-            <AddTodoIcon />
-          </UnstyledBtn>
-        </AddTodoCont>
-      </form>
-
-      <TodoCont>
-        {todos.map((todo) => (
-          <TodoWrapper
-            layout
-            key={todo.task}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            <CheckboxWrapper
-              onClick={() => {
-                completeTask(todo.task);
+      <DemoCont>
+        <form onSubmit={addNewTodo}>
+          <AddTodoCont>
+            <Input
+              value={newTodo}
+              onChange={(e) => {
+                setNewTodo(e.target.value);
               }}
+              placeholder="Add todo..."
+              style={{ width: "400px" }}
+            />
+            <UnstyledBtn>
+              <AddTodoIcon />
+            </UnstyledBtn>
+          </AddTodoCont>
+        </form>
+        <TodoCont>
+          {todos.map((todo) => (
+            <TodoWrapper
+              layout
+              key={todo.task}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
             >
-              {todo.isCompleted ? (
-                <ImCheckboxChecked />
-              ) : (
-                <ImCheckboxUnchecked />
-              )}
-            </CheckboxWrapper>
-            <TodoText isChecked={todo.isCompleted}>{todo.task}</TodoText>
-          </TodoWrapper>
-        ))}
-      </TodoCont>
+              <CheckboxWrapper
+                onClick={() => {
+                  completeTask(todo.task);
+                }}
+              >
+                {todo.isCompleted ? (
+                  <ImCheckboxChecked />
+                ) : (
+                  <ImCheckboxUnchecked />
+                )}
+              </CheckboxWrapper>
+              <TodoText isChecked={todo.isCompleted}>{todo.task}</TodoText>
+            </TodoWrapper>
+          ))}
+        </TodoCont>
+      </DemoCont>
+      <Codeblock lang="JS" code={code} />
     </>
   );
 }
@@ -125,4 +125,79 @@ const AddTodoIcon = styled(BsPlusLg)`
   &:hover {
     color: #3650d2;
   }
+`;
+
+const code = `
+function TodoList() {
+  const [todos, setTodos] = React.useState([
+    { task: "Check off this task", isCompleted: false },
+    { task: "Add new task", isCompleted: false },
+    { task: "Do stuff", isCompleted: false },
+  ]);
+  const [newTodo, setNewTodo] = React.useState("");
+
+  const addNewTodo = (e) => {
+    e.preventDefault();
+    if (newTodo === "") return;
+    setTodos([...todos, { task: newTodo, isCompleted: false }]);
+    setNewTodo("");
+  };
+
+  const completeTask = (task) => {
+    // check off todo
+    const newTodos = todos.map((item) => {
+      if (task === item.task) item.isCompleted = !item.isCompleted;
+      return item;
+    });
+    setTodos(newTodos);
+
+    // make task disappear after a delay
+    setTimeout(() => {
+      setTodos((todos) => todos.filter((item) => item.task !== task));
+    }, 1000);
+  };
+
+  return (
+    <>
+      <form onSubmit={addNewTodo}>
+        <AddTodoCont>
+          <Input
+            value={newTodo}
+            onChange={(e) => {
+              setNewTodo(e.target.value);
+            }}
+            placeholder="Add todo..."
+            style={{ width: "400px" }}
+          />
+          <UnstyledBtn>
+            <AddTodoIcon />
+          </UnstyledBtn>
+        </AddTodoCont>
+      </form>
+      <TodoCont>
+        {todos.map((todo) => (
+          <TodoWrapper
+            layout
+            key={todo.task}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <CheckboxWrapper
+              onClick={() => {
+                completeTask(todo.task);
+              }}
+            >
+              {todo.isCompleted ? (
+                <ImCheckboxChecked />
+              ) : (
+                <ImCheckboxUnchecked />
+              )}
+            </CheckboxWrapper>
+            <TodoText isChecked={todo.isCompleted}>{todo.task}</TodoText>
+          </TodoWrapper>
+        ))}
+      </TodoCont>
+    </>
+  );
+}
 `;
