@@ -55,11 +55,14 @@ const COLORS = {
   },
 };
 
+// core options are provided via props
 const Button = ({ variant, color, children }) => {
   let styles = COLORS[color];
   if (!styles) styles = COLORS["blue"];
 
   let Component;
+  // using composition for this as there are more than 2 variants
+  // which could get verbose if using only one styled component/
   if (variant === "outline") Component = OutlineBtn;
   else if (variant === "ghost") Component = GhostBtn;
   else Component = BaseBtn;
@@ -88,16 +91,13 @@ const OutlineBtn = styled(BaseBtn)`
   color: var(--textColor);
   border: 2px solid var(--defaultColor);
   background: none;
-  &:hover {
-    background-color: var(--hoverColor);
-    /* opacity: 30%; */
-  }
 `;
 
 const GhostBtn = styled(OutlineBtn)`
   border-color: transparent;
 `;
 
+// one-off component like this uses composition
 const GradientBtn = styled(BaseBtn)`
   background: linear-gradient(-45deg, #8a2387, #e94057, #f27121, #f2d621);
   background-size: 800% 800%;
@@ -204,11 +204,14 @@ const COLORS = {
   },
 };
 
+// core options are provided via props
 const Button = ({ variant, color, children }) => {
   let styles = COLORS[color];
   if (!styles) styles = COLORS["blue"];
 
   let Component;
+  // using composition for this as there are more than 2 variants
+  // which could get verbose if using only one styled component
   if (variant === "outline") Component = OutlineBtn;
   else if (variant === "ghost") Component = GhostBtn;
   else Component = BaseBtn;
@@ -239,7 +242,6 @@ const OutlineBtn = styled(BaseBtn)\`
   background: none;
   &:hover {
     background-color: var(--hoverColor);
-    /* opacity: 30%; */
   }
 \`;
 
@@ -247,6 +249,7 @@ const GhostBtn = styled(OutlineBtn)\`
   border-color: transparent;
 \`;
 
+// one-off component like this uses composition
 const GradientBtn = styled(BaseBtn)\`
   background: linear-gradient(-45deg, #8a2387, #e94057, #f27121, #f2d621);
   background-size: 800% 800%;

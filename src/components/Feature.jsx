@@ -28,9 +28,13 @@ const Container = styled(StyledLink)`
     outline: 2px solid #403f4b;
     outline-offset: 2px;
   }
+  hyphens: auto;
 `;
 
-const Title = styled.div`
+const Title = styled.span`
   font-weight: 400;
+  font-size: 15pt;
   padding: 13px;
+  width: 100%;
+  hyphens: auto;
 `;
