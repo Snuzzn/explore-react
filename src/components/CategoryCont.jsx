@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { BorderText, Wrapper } from "./DemoCont";
 
-const CategoryCont = ({ children, borderText }) => {
+const CategoryCont = ({ children, borderText, id }) => {
   return (
-    <CategoryWrapper>
+    <CategoryWrapper id={id}>
       <CategoryText>{borderText}</CategoryText>
       {children}
     </CategoryWrapper>
