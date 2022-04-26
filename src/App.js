@@ -29,7 +29,7 @@ function App() {
           <Route
             path="/useEffect"
             element={
-              <PageLayout children={<UseEffectIntro />} title="Use Effect" />
+              <PageLayout children={<UseEffectIntro />} title="useEffect" />
             }
           />
           <Route
@@ -41,7 +41,7 @@ function App() {
           <Route
             path="/useState"
             element={
-              <PageLayout children={<UseStateIntro />} title="Use State" />
+              <PageLayout children={<UseStateIntro />} title="useState" />
             }
           />
           <Route

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import styled from "styled-components";
 import Codeblock from "../components/Codeblock";
+import Console from "../components/Console";
 import DemoCont from "../components/DemoCont";
 import InfoCard from "../components/InfoCard";
 import {
@@ -24,24 +25,35 @@ function UseEffectIntro() {
   const [example1, setExample1] = React.useState("");
   const [example2, setExample2] = React.useState("");
 
+  const [logs, setLogs] = React.useState([]);
+
+  const consoleLog = useCallback(
+    (newEntry) => {
+      console.log(newEntry);
+      setLogs((logs) => [...logs, newEntry]);
+    },
+    [logs]
+  );
+
   React.useEffect(() => {
     // only happens once (commonly used to fetch data)
-    console.log("component mounted");
+    consoleLog("component mounted");
 
     // optional clean-up function
     return () => {
       // e.g. when you go back to the home page
-      console.log("component about to unmount");
+      consoleLog("component about to unmount");
     };
   }, []);
 
   React.useEffect(() => {
-    console.log("component updated");
-  });
+    consoleLog("component updated");
+  }, [example2]);
 
   React.useEffect(() => {
     // runs every time the example state is updated
-    console.log(`example1 :  ${example1}`);
+    consoleLog(`example1 :  "${example1}"`);
+    consoleLog("component updated");
   }, [example1]);
 
   return (
@@ -58,7 +70,7 @@ function UseEffectIntro() {
           onChange={(e) => setExample2(e.target.value)}
         />
       </DemoCont>
-
+      <Console logs={logs} />
       <InfoCard>
         There are 3 main stages in a component's lifecycle:
         <List>
@@ -99,25 +111,25 @@ const codeblock = `function UseEffectDemo() {
   React.useEffect(() => {
     // only happens once (commonly used to fetch data)
     console.log("component mounted");
-    
+
     // optional clean-up function
     return () => {
       // e.g. when you go back to the home page
       console.log("component about to unmount");
     };
   }, []);
-  
+
   React.useEffect(() => {
     console.log("component updated");
   });
-  
+
   React.useEffect(() => {
     // runs every time the example state is updated
     console.log(\`example1: \${example1}\`);
   }, [example1]);
 
   return (
-    <> 
+    <>
       <Input
         placeholder="Example 1..."
         value={example1}

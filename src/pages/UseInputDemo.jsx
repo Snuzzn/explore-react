@@ -1,6 +1,7 @@
 import React from "react";
 import Codeblock from "../components/Codeblock";
 import DemoCont from "../components/DemoCont";
+import InfoCard from "../components/InfoCard";
 import { Input } from "../components/styles/Styles";
 import useInput from "../hooks/useInput";
 
@@ -12,6 +13,9 @@ const UseInputDemo = () => {
       <DemoCont>
         <Input placeholder="Enter your name..." {...exampleInput} />
       </DemoCont>
+      <InfoCard>
+        This a custom hook that allows us to succinctly capture form inputs.
+      </InfoCard>
       <Codeblock lang="JS" code={code} />
     </>
   );

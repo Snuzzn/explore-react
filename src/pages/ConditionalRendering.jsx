@@ -31,7 +31,7 @@ function ConditionalRendering() {
             <p>Loading</p>
           </LoadingCont>
         ) : (
-          <p>Ready</p>
+          <p>Done</p>
         )}
       </DemoCont>
 
@@ -65,7 +65,7 @@ const codeblock = `function ConditionalRenderingDemo() {
           <p>Loading</p>
         </div>
       ) : (
-        <p>Ready</p>
+        <p>Done</p>
       )}
     </>
   );
