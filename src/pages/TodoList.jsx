@@ -40,7 +40,7 @@ function TodoList() {
   return (
     <>
       <DemoCont>
-        <form onSubmit={addNewTodo}>
+        <Form onSubmit={addNewTodo}>
           <AddTodoCont>
             <Input
               value={newTodo}
@@ -48,13 +48,13 @@ function TodoList() {
                 setNewTodo(e.target.value);
               }}
               placeholder="Add todo..."
-              style={{ width: "400px" }}
+              style={{ width: "100%" }}
             />
             <UnstyledBtn>
               <AddTodoIcon />
             </UnstyledBtn>
           </AddTodoCont>
-        </form>
+        </Form>
         <TodoCont>
           {todos.map((todo) => (
             <TodoWrapper
@@ -86,16 +86,21 @@ function TodoList() {
 
 export default TodoList;
 
+const Form = styled.form`
+  align-self: stretch;
+`;
+
 const TodoCont = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  align-self: stretch;
 `;
 
 const TodoWrapper = styled(motion.div)`
   background-color: #282844;
   padding: 20px 30px;
-  width: 400px;
+  width: 100%;
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -120,8 +125,8 @@ const AddTodoCont = styled.div`
 
 const AddTodoIcon = styled(BsPlusLg)`
   color: #5773ff;
-  width: 2em;
-  height: 2em;
+  width: 1.5em;
+  height: 1.5em;
   &:hover {
     color: #3650d2;
   }
