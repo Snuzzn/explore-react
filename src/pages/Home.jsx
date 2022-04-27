@@ -76,6 +76,7 @@ function Home() {
             {category.title}
           </TocItem>
         ))}
+        <TocDivider />
       </TableOfContents>
     </HomeWrapper>
   );
@@ -101,6 +102,7 @@ const TableOfContents = styled.aside`
   position: sticky;
   top: 150px;
   height: 100%;
+  width: 200px;
 `;
 
 const TocTitle = styled.div`
@@ -110,13 +112,29 @@ const TocTitle = styled.div`
 
 const TocItem = styled(Link)`
   cursor: pointer;
-  /* color: ${(p) => (p.isSelected ? "#5773FE" : "white")}; */
   transition: all 100ms ease-out;
   font-size: 1.2rem;
+  margin-left: 18px;
+  color: #82878f;
+  display: flex;
+  align-items: center;
 
   &.active {
+    margin-left: 0px;
+    /* padding-left: 18px; */
+    /* background-color: #3345ac4e; */
+    border-radius: 5px;
     color: #5773fe;
+    ::before {
+      content: "︱";
+      margin-right: 8px;
+    }
   }
+`;
+
+const TocDivider = styled.hr`
+  width: 100%;
+  color: #323944;
 `;
 
 const GridContainer = styled.div`
