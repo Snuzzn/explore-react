@@ -41,9 +41,9 @@ const codeblock = `function CounterDemo() {
 
   return (
     <>
-      <MinusIcon  onClick={decrementCount} />
+      <MinusBtn  onClick={decrementCount} />
       <div>{count}</div>
-      <PlusIcon onClick={() => {
+      <PlusBtn onClick={() => {
           setCount(count => count + 1);
         }}
       />

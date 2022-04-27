@@ -3,16 +3,18 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { StyledLink } from "./styles/Styles";
 import useSound from "use-sound";
-import hoverPop from "../sounds/hoverPop.mp3";
+import bubbleClick from "../sounds/bubbleClick.mp3";
 import { ThemeContext } from "../ThemeProvider";
 
 function Feature({ title, route }) {
   const { isSoundEnabled } = React.useContext(ThemeContext);
 
-  const [play, { stop }] = useSound(hoverPop, { soundEnabled: isSoundEnabled });
+  const [play, { stop }] = useSound(bubbleClick, {
+    soundEnabled: isSoundEnabled,
+  });
 
   return (
-    <Container to={`/${route}`} onMouseEnter={() => play()}>
+    <Container to={`/${route}`} onClick={() => play()}>
       <Title>{title}</Title>
     </Container>
   );

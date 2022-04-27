@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { IoArrowBackSharp } from "react-icons/io5";
 import {
@@ -9,7 +9,16 @@ import {
 } from "./styles/Styles";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
+import { ThemeContext } from "../ThemeProvider";
+import useSound from "use-sound";
+import bubbleClick from "../sounds/bubbleClick.mp3";
+
 function PageLayout({ children, title }) {
+  const { isSoundEnabled } = useContext(ThemeContext);
+  const [play, { stop }] = useSound(bubbleClick, {
+    soundEnabled: isSoundEnabled,
+  });
+
   return (
     <motion.div
       initial={{ y: 200, opacity: 0 }}
@@ -18,7 +27,10 @@ function PageLayout({ children, title }) {
       transition={{ duration: 0.3, type: "tween" }}
     >
       <Header>
-        <IconBtnLink to="/">
+        <IconBtnLink
+          to="/"
+          //  onClick={() => play()}
+        >
           <IoArrowBackSharp size="1em" />
         </IconBtnLink>
         <h3>{title}</h3>

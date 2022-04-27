@@ -18,7 +18,7 @@ const popularPosts = [
     category: "Education",
   },
   {
-    title: "Up, up and away! Say farewell to gift-giving",
+    title: "Up, up and away! Say goodbye to gift-giving",
     img: "https://img.freepik.com/free-photo/3d-balloons-present-box_23-2148993002.jpg",
     category: "Holiday",
   },
@@ -37,7 +37,7 @@ const ListRendering = () => {
   return (
     <>
       <DemoCont>
-        <Title {...animationProps}>What's Popular</Title>
+        <Title {...animationProps}>Popular Articles</Title>
         {popularPosts.map((post) => (
           <Post key={post.title} {...animationProps}>
             <Thumbnail src={post.img} alt="" />
@@ -113,7 +113,7 @@ const ListRendering = () => {
   return (
     <>
       <DemoCont>
-        <Title>What's Popular</Title>
+        <Title>Popular Articles</Title>
         {popularPosts.map((post) => (
           <Post key={post.title}>
             <Thumbnail src={post.img} alt="" />

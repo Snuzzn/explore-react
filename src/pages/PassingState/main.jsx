@@ -31,7 +31,7 @@ function PassingState() {
       </DemoCont>
       <InfoCard>
         You can pass state between sibilings by creating the state inside the
-        parent to begin with, then passing the state to the children so they can
+        parent to begin with, then pass the state to the children so they can
         both access it.
       </InfoCard>
       <Codeblock code={codeblock} lang="JS" />
