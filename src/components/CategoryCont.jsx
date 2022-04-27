@@ -14,7 +14,6 @@ const CategoryCont = ({ children, borderText, id }) => {
 export default CategoryCont;
 
 const CategoryWrapper = styled(Wrapper)`
-  width: 100%;
   padding: 50px 30px;
 `;
 
