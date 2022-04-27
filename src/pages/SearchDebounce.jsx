@@ -4,12 +4,7 @@ import Codeblock from "../components/Codeblock";
 import DemoCont from "../components/DemoCont";
 import InfoCard from "../components/InfoCard";
 import SearchBar from "../components/SearchBar";
-import {
-  Result,
-  ResultsCont,
-  Spinner,
-  TextCont,
-} from "../components/styles/Styles";
+import { Result, ResultsCont, Spinner } from "../components/styles/Styles";
 
 function SearchDebounce() {
   const [results, setResults] = React.useState([]);
@@ -44,7 +39,7 @@ function SearchDebounce() {
       timer = setTimeout(() => {
         timer = null;
         func.apply(context, args);
-      }, 200);
+      }, 100);
     };
   };
 

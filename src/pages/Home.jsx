@@ -5,41 +5,40 @@ import DemoCont from "../components/DemoCont";
 import Feature from "../components/Feature";
 import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
 import { Link } from "react-scroll";
+
+const linkData = [
+  {
+    title: "Fundamentals",
+    features: [
+      "useState",
+      "useEffect",
+      "Passing State",
+      "useInput",
+      "Styled Components",
+    ],
+  },
+  {
+    title: "Common features",
+    features: [
+      "Fetch with Skeleton",
+      "Recursive Menu",
+      "Search Debounce",
+      "Search Filter",
+    ],
+  },
+  {
+    title: "Mini Projects",
+    features: ["Typescript IMDB", "Todo List", "Pokemon Redux"],
+  },
+];
+
+const toKebabCase = (str) =>
+  str
+    .replace(/([a-z])([A-Z])/g, "$1-$2")
+    .replace(/[\s_]+/g, "-")
+    .toLowerCase();
+
 function Home() {
-  const [currSection, setCurrSection] = React.useState("Fundamentals");
-
-  const linkData = [
-    {
-      title: "Fundamentals",
-      features: [
-        "useState",
-        "useEffect",
-        "Passing State",
-        "useInput",
-        "Styled Components",
-      ],
-    },
-    {
-      title: "Common features",
-      features: [
-        "Fetch with Skeleton",
-        "Recursive Menu",
-        "Search Debounce",
-        "Search Filter",
-      ],
-    },
-    {
-      title: "Mini Projects",
-      features: ["Typescript IMDB", "Todo List", "Pokemon Redux"],
-    },
-  ];
-
-  const toKebabCase = (str) =>
-    str
-      .replace(/([a-z])([A-Z])/g, "$1-$2")
-      .replace(/[\s_]+/g, "-")
-      .toLowerCase();
-
   return (
     <HomeWrapper
       initial={{ opacity: 0, x: 100 }}
@@ -66,33 +65,17 @@ function Home() {
 
       <TableOfContents>
         <TocTitle>Overview</TocTitle>
-        <TocItem
-          to="fundamentals"
-          smooth
-          offset={-30}
-          onClick={() => setCurrSection("Fundamentals")}
-          isSelected={"Fundamentals" === currSection}
-        >
-          Fundamentals
-        </TocItem>
-        <TocItem
-          to="common-features"
-          smooth
-          offset={-30}
-          onClick={() => setCurrSection("Common features")}
-          isSelected={"Common features" === currSection}
-        >
-          Common features
-        </TocItem>
-        <TocItem
-          to="mini-projects"
-          smooth
-          offset={-30}
-          onClick={() => setCurrSection("Mini projects")}
-          isSelected={"Mini projects" === currSection}
-        >
-          Mini projects
-        </TocItem>
+        {linkData.map((category) => (
+          <TocItem
+            to={toKebabCase(category.title)}
+            smooth
+            offset={-50}
+            spy={true}
+            duration={700}
+          >
+            {category.title}
+          </TocItem>
+        ))}
       </TableOfContents>
     </HomeWrapper>
   );
@@ -127,9 +110,13 @@ const TocTitle = styled.div`
 
 const TocItem = styled(Link)`
   cursor: pointer;
-  color: ${(p) => (p.isSelected ? "#5773FE" : "white")};
-  transition: all 200ms ease;
+  /* color: ${(p) => (p.isSelected ? "#5773FE" : "white")}; */
+  transition: all 100ms ease-out;
   font-size: 1.2rem;
+
+  &.active {
+    color: #5773fe;
+  }
 `;
 
 const GridContainer = styled.div`

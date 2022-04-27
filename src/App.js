@@ -19,114 +19,129 @@ import { AnimatePresence } from "framer-motion/dist/framer-motion";
 import UseInputDemo from "./pages/UseInputDemo";
 import StyledComponents from "./pages/StyledComponents";
 import { useEffect } from "react";
+import styled from "styled-components";
 
 function App() {
   const location = useLocation();
 
   return (
-    <Layout>
-      <AnimatePresence exitBeforeEnter>
-        <ScrollToTop>
-          <Routes location={location} key={location.key}>
-            <Route path="/" element={<Home />} />
-            <Route
-              path="/use-effect"
-              element={
-                <PageLayout children={<UseEffectIntro />} title="useEffect" />
-              }
-            />
-            <Route
-              path="/recursive-menu"
-              element={
-                <PageLayout
-                  children={<RecursiveMenu />}
-                  title="Recursive Menu"
-                />
-              }
-            />
-            <Route
-              path="/use-state"
-              element={
-                <PageLayout children={<UseStateIntro />} title="useState" />
-              }
-            />
-            <Route
-              path="/conditional-rendering"
-              element={
-                <PageLayout
-                  children={<ConditionalRendering />}
-                  title="Conditional Rendering"
-                />
-              }
-            />
-            <Route
-              path="/fetch-with-skeleton"
-              element={
-                <PageLayout
-                  children={<LoadingSkeleton />}
-                  title="Fetch with Skeleton"
-                />
-              }
-            />
-            <Route
-              path="/passing-state"
-              element={
-                <PageLayout children={<PassingState />} title="Passing State" />
-              }
-            />
-            <Route
-              path="/typescript-imdb"
-              element={
-                <PageLayout
-                  children={<TypescriptDemo />}
-                  title="Typescript IMDB"
-                />
-              }
-            />
-            <Route
-              path="/search-debounce"
-              element={
-                <PageLayout
-                  children={<SearchDebounce />}
-                  title="Search Debounce"
-                />
-              }
-            />
-            <Route
-              path="/search-filter"
-              element={
-                <PageLayout children={<SearchFilter />} title="Search Filter" />
-              }
-            />
-            <Route
-              path="/todo-list"
-              element={<PageLayout children={<TodoList />} title="Todo List" />}
-            />
-            <Route
-              path="/pokemon-redux"
-              element={
-                <PageLayout children={<PokemonRedux />} title="Pokemon Redux" />
-              }
-            />
-            <Route
-              path="/use-input"
-              element={
-                <PageLayout children={<UseInputDemo />} title="useInput" />
-              }
-            />
-            <Route
-              path="/styled-components"
-              element={
-                <PageLayout
-                  children={<StyledComponents />}
-                  title="Styled Components"
-                />
-              }
-            />
-          </Routes>
-        </ScrollToTop>
-      </AnimatePresence>
-    </Layout>
+    <>
+      <Layout>
+        <AnimatePresence exitBeforeEnter>
+          <ScrollToTop>
+            <Routes location={location} key={location.key}>
+              <Route path="/" element={<Home />} />
+              <Route
+                path="/use-effect"
+                element={
+                  <PageLayout children={<UseEffectIntro />} title="useEffect" />
+                }
+              />
+              <Route
+                path="/recursive-menu"
+                element={
+                  <PageLayout
+                    children={<RecursiveMenu />}
+                    title="Recursive Menu"
+                  />
+                }
+              />
+              <Route
+                path="/use-state"
+                element={
+                  <PageLayout children={<UseStateIntro />} title="useState" />
+                }
+              />
+              <Route
+                path="/conditional-rendering"
+                element={
+                  <PageLayout
+                    children={<ConditionalRendering />}
+                    title="Conditional Rendering"
+                  />
+                }
+              />
+              <Route
+                path="/fetch-with-skeleton"
+                element={
+                  <PageLayout
+                    children={<LoadingSkeleton />}
+                    title="Fetch with Skeleton"
+                  />
+                }
+              />
+              <Route
+                path="/passing-state"
+                element={
+                  <PageLayout
+                    children={<PassingState />}
+                    title="Passing State"
+                  />
+                }
+              />
+              <Route
+                path="/typescript-imdb"
+                element={
+                  <PageLayout
+                    children={<TypescriptDemo />}
+                    title="Typescript IMDB"
+                  />
+                }
+              />
+              <Route
+                path="/search-debounce"
+                element={
+                  <PageLayout
+                    children={<SearchDebounce />}
+                    title="Search Debounce"
+                  />
+                }
+              />
+              <Route
+                path="/search-filter"
+                element={
+                  <PageLayout
+                    children={<SearchFilter />}
+                    title="Search Filter"
+                  />
+                }
+              />
+              <Route
+                path="/todo-list"
+                element={
+                  <PageLayout children={<TodoList />} title="Todo List" />
+                }
+              />
+              <Route
+                path="/pokemon-redux"
+                element={
+                  <PageLayout
+                    children={<PokemonRedux />}
+                    title="Pokemon Redux"
+                  />
+                }
+              />
+              <Route
+                path="/use-input"
+                element={
+                  <PageLayout children={<UseInputDemo />} title="useInput" />
+                }
+              />
+              <Route
+                path="/styled-components"
+                element={
+                  <PageLayout
+                    children={<StyledComponents />}
+                    title="Styled Components"
+                  />
+                }
+              />
+            </Routes>
+          </ScrollToTop>
+        </AnimatePresence>
+      </Layout>
+      <Footer />
+    </>
   );
 }
 export default App;
@@ -139,3 +154,10 @@ const ScrollToTop = (props) => {
 
   return <>{props.children}</>;
 };
+
+const Footer = styled.footer`
+  margin-top: 50px;
+  /* height: 100px;
+  width: 100%;
+  border-top: 1px solid #2c303a; */
+`;
