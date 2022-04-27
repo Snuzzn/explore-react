@@ -2,16 +2,11 @@ import { OverviewItem } from "./../components/OverviewItem";
 import React from "react";
 import styled from "styled-components";
 import CategoryCont from "../components/CategoryCont";
-import DemoCont from "../components/DemoCont";
 import Feature from "../components/Feature";
-import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
+import { motion } from "framer-motion/dist/framer-motion";
 import { toKebabCase } from "../helper/general";
 import { Link } from "react-scroll";
-import { GoMute, GoUnmute } from "react-icons/go";
-import { ThemeContext } from "../ThemeProvider";
-import { IconButton } from "../components/styles/Styles";
-import unmuteSfx from "../sounds/intuition.mp3";
-import useSound from "use-sound";
+import MuteButton from "../components/MuteButton";
 
 const linkData = [
   {
@@ -44,32 +39,17 @@ const linkData = [
 function Home() {
   const [activeCategory, setActiveCategory] = React.useState("");
 
-  const { isSoundEnabled, setIsSoundEnabled } = React.useContext(ThemeContext);
-  const [play, { stop }] = useSound(unmuteSfx);
-
   return (
     <HomeWrapper
       initial={{ opacity: 0, x: 100 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3, type: "tween" }}
-      id="home"
     >
       <ContentsWrapper>
-        <HeaderBar>
+        <HeaderBar id="fundamentals">
           <Title>Explore React</Title>
-          <IconButton
-            onClick={() => {
-              if (!isSoundEnabled) play();
-              setIsSoundEnabled(!isSoundEnabled);
-            }}
-          >
-            {isSoundEnabled ? (
-              <GoUnmute size="0.9em" />
-            ) : (
-              <GoMute size="0.9em" />
-            )}
-          </IconButton>
+          <MuteButton />
         </HeaderBar>
         {linkData.map((category) => (
           <CategoryCont
@@ -86,9 +66,7 @@ function Home() {
       </ContentsWrapper>
 
       <TableOfContents>
-        <TocTitle to="home" smooth>
-          Overview
-        </TocTitle>
+        <TocTitle smooth>Overview</TocTitle>
         {linkData.map((category) => (
           <OverviewItem
             category={category}
@@ -130,10 +108,11 @@ const TableOfContents = styled.aside`
   width: 200px;
 `;
 
-const TocTitle = styled(Link)`
+const TocTitle = styled.h1`
   font-size: 1.35rem;
   font-weight: bold;
   cursor: pointer;
+  line-height: 0;
 `;
 
 const TocDivider = styled.hr`

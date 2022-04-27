@@ -12,6 +12,7 @@ import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
 import { ThemeContext } from "../ThemeProvider";
 import bubbleClick from "../sounds/bubbleClick.mp3";
 import useUiSound from "../hooks/useUiSound";
+import MuteButton from "./MuteButton";
 
 function PageLayout({ children, title }) {
   const { play } = useUiSound(bubbleClick, 1);
@@ -24,13 +25,17 @@ function PageLayout({ children, title }) {
       transition={{ duration: 0.3, type: "tween" }}
     >
       <Header>
-        <IconBtnLink
-          to="/"
-          //  onClick={() => play()}
-        >
-          <IoArrowBackSharp size="1em" />
-        </IconBtnLink>
-        <h3>{title}</h3>
+        <Breadcrumbs>
+          <IconBtnLink
+            to="/"
+            //  onClick={() => play()}
+          >
+            <IoArrowBackSharp size="1em" />
+          </IconBtnLink>
+          <h3>{title}</h3>
+        </Breadcrumbs>
+
+        <MuteButton />
       </Header>
       <ContentsWrapper>{children}</ContentsWrapper>
     </motion.div>
@@ -43,8 +48,8 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
-  align-self: flex-start;
   margin-bottom: 20px;
+  justify-content: space-between;
 `;
 
 const ContentsWrapper = styled.div`
@@ -52,4 +57,11 @@ const ContentsWrapper = styled.div`
   gap: 15px;
   flex-direction: column;
   align-items: center;
+`;
+
+const Breadcrumbs = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  align-self: flex-start;
 `;
