@@ -2,16 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { StyledLink } from "./styles/Styles";
-import useSound from "use-sound";
 import bubbleClick from "../sounds/bubbleClick.mp3";
 import { ThemeContext } from "../ThemeProvider";
+import useUiSound from "../hooks/useUiSound";
 
 function Feature({ title, route }) {
-  const { isSoundEnabled } = React.useContext(ThemeContext);
-
-  const [play, { stop }] = useSound(bubbleClick, {
-    soundEnabled: isSoundEnabled,
-  });
+  const { play } = useUiSound(bubbleClick, 1);
 
   return (
     <Container to={`/${route}`} onClick={() => play()}>

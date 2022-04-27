@@ -10,14 +10,11 @@ import {
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
 import { ThemeContext } from "../ThemeProvider";
-import useSound from "use-sound";
 import bubbleClick from "../sounds/bubbleClick.mp3";
+import useUiSound from "../hooks/useUiSound";
 
 function PageLayout({ children, title }) {
-  const { isSoundEnabled } = useContext(ThemeContext);
-  const [play, { stop }] = useSound(bubbleClick, {
-    soundEnabled: isSoundEnabled,
-  });
+  const { play } = useUiSound(bubbleClick, 1);
 
   return (
     <motion.div

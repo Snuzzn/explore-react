@@ -5,7 +5,7 @@ import { UnstyledBtn } from "./styles/Styles";
 import increaseSfx from "../sounds/increase.ogg";
 import decreaseSfx from "../sounds/decrease.ogg";
 import { ThemeContext } from "../ThemeProvider";
-import useSound from "use-sound";
+import useUiSound from "../hooks/useUiSound";
 
 function Counter({ updateLogs }) {
   const [count, setCount] = React.useState(0);
@@ -13,16 +13,8 @@ function Counter({ updateLogs }) {
   const [increaseRate, setIncreaseRate] = React.useState(0.75);
   const [decreaseRate, setDecreaseRate] = React.useState(0.75);
 
-  const { isSoundEnabled } = useContext(ThemeContext);
-  const [playIncrease, { stopIncrease }] = useSound(increaseSfx, {
-    playbackRate: increaseRate,
-    soundEnabled: isSoundEnabled,
-  });
-
-  const [playDecrease, { stopDecrease }] = useSound(decreaseSfx, {
-    playbackRate: decreaseRate,
-    soundEnabled: isSoundEnabled,
-  });
+  const { play: playIncrease } = useUiSound(increaseSfx, increaseRate);
+  const { play: playDecrease } = useUiSound(decreaseSfx, decreaseRate);
 
   const decrementCount = () => {
     if (count > 0) {
