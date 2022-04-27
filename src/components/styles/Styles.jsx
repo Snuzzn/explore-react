@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 import { ImSpinner2 } from "react-icons/im";
 
@@ -15,7 +15,7 @@ export const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-export const IconButton = styled(StyledLink)`
+const baseIconBtn = css`
   background-color: #2b2a33;
   cursor: pointer;
   padding: 11px;
@@ -28,6 +28,16 @@ export const IconButton = styled(StyledLink)`
     outline-offset: 2px;
     outline: 2px solid #393842;
   }
+`;
+
+export const IconBtnLink = styled(StyledLink)`
+  ${baseIconBtn}
+`;
+
+export const IconButton = styled.button`
+  border: none;
+  padding: 10px;
+  ${baseIconBtn}
 `;
 
 export const Input = styled.input`

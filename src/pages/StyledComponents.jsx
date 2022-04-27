@@ -56,7 +56,7 @@ const COLORS = {
 };
 
 // core options are provided via props
-const Button = ({ variant, color, children }) => {
+export const Button = ({ variant, color, children }) => {
   let styles = COLORS[color];
   if (!styles) styles = COLORS["blue"];
 

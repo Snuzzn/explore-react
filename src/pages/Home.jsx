@@ -7,6 +7,11 @@ import Feature from "../components/Feature";
 import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
 import { toKebabCase } from "../helper/general";
 import { Link } from "react-scroll";
+import { GoMute, GoUnmute } from "react-icons/go";
+import { ThemeContext } from "../ThemeProvider";
+import { IconButton } from "../components/styles/Styles";
+import unmuteSfx from "../sounds/intuition.mp3";
+import useSound from "use-sound";
 
 const linkData = [
   {
@@ -39,6 +44,9 @@ const linkData = [
 function Home() {
   const [activeCategory, setActiveCategory] = React.useState("");
 
+  const { isSoundEnabled, setIsSoundEnabled } = React.useContext(ThemeContext);
+  const [play, { stop }] = useSound(unmuteSfx);
+
   return (
     <HomeWrapper
       initial={{ opacity: 0, x: 100 }}
@@ -48,7 +56,21 @@ function Home() {
       id="home"
     >
       <ContentsWrapper>
-        <Title>Explore React</Title>
+        <HeaderBar>
+          <Title>Explore React</Title>
+          <IconButton
+            onClick={() => {
+              if (!isSoundEnabled) play();
+              setIsSoundEnabled(!isSoundEnabled);
+            }}
+          >
+            {isSoundEnabled ? (
+              <GoUnmute size="0.9em" />
+            ) : (
+              <GoMute size="0.9em" />
+            )}
+          </IconButton>
+        </HeaderBar>
         {linkData.map((category) => (
           <CategoryCont
             borderText={category.title}
@@ -81,6 +103,11 @@ function Home() {
 }
 
 export default Home;
+const HeaderBar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const HomeWrapper = styled(motion.div)`
   display: flex;

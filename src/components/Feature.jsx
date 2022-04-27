@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import { StyledLink } from "./styles/Styles";
 import useSound from "use-sound";
 import hoverPop from "../sounds/hoverPop.mp3";
+import { ThemeContext } from "../ThemeProvider";
 
 function Feature({ title, route }) {
-  const [play, { stop }] = useSound(hoverPop);
+  const { isSoundEnabled } = React.useContext(ThemeContext);
+
+  const [play, { stop }] = useSound(hoverPop, { soundEnabled: isSoundEnabled });
 
   return (
     <Container to={`/${route}`} onMouseEnter={() => play()}>

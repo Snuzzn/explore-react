@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IoArrowBackSharp } from "react-icons/io5";
-import { IconButton, MiniLayout, StyledLink } from "./styles/Styles";
+import {
+  IconBtnLink,
+  IconButton,
+  MiniLayout,
+  StyledLink,
+} from "./styles/Styles";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
 function PageLayout({ children, title }) {
@@ -13,9 +18,9 @@ function PageLayout({ children, title }) {
       transition={{ duration: 0.3, type: "tween" }}
     >
       <Header>
-        <IconButton to="/">
+        <IconBtnLink to="/">
           <IoArrowBackSharp size="1em" />
-        </IconButton>
+        </IconBtnLink>
         <h3>{title}</h3>
       </Header>
       <ContentsWrapper>{children}</ContentsWrapper>
