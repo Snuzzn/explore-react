@@ -20,6 +20,7 @@ import UseInputDemo from "./pages/UseInputDemo";
 import StyledComponents from "./pages/StyledComponents";
 import { useEffect } from "react";
 import styled from "styled-components";
+import ListRendering from "./pages/ListRendering";
 
 function App() {
   const location = useLocation();
@@ -133,6 +134,15 @@ function App() {
                   <PageLayout
                     children={<StyledComponents />}
                     title="Styled Components"
+                  />
+                }
+              />
+              <Route
+                path="/list-rendering"
+                element={
+                  <PageLayout
+                    children={<ListRendering />}
+                    title="List Rendering"
                   />
                 }
               />

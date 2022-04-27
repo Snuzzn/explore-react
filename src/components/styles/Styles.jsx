@@ -118,3 +118,12 @@ export const Result = styled.a`
     background-color: #202327;
   }
 `;
+
+export const InlineCode = styled.code`
+  background-color: #1d2024;
+  padding: 0px 7px;
+  margin: 0 3px;
+  border-radius: 4px;
+  outline: 1px solid #323944;
+  font-family: "Fira Mono", monospace;
+`;

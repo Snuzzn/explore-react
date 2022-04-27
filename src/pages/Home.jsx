@@ -13,7 +13,7 @@ const linkData = [
       "useState",
       "useEffect",
       "Passing State",
-      "useInput",
+      "List Rendering",
       "Styled Components",
     ],
   },
@@ -21,6 +21,7 @@ const linkData = [
     title: "Common features",
     features: [
       "Fetch with Skeleton",
+      "useInput",
       "Recursive Menu",
       "Search Debounce",
       "Search Filter",
@@ -64,7 +65,9 @@ function Home() {
       </ContentsWrapper>
 
       <TableOfContents>
-        <TocTitle>Overview</TocTitle>
+        <TocTitle to="home" smooth>
+          Overview
+        </TocTitle>
         {linkData.map((category) => (
           <TocItem
             to={toKebabCase(category.title)}
@@ -105,9 +108,10 @@ const TableOfContents = styled.aside`
   width: 200px;
 `;
 
-const TocTitle = styled.div`
+const TocTitle = styled(Link)`
   font-size: 1.35rem;
   font-weight: bold;
+  cursor: pointer;
 `;
 
 const TocItem = styled(Link)`

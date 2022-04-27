@@ -5,14 +5,15 @@ import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
 
 function Prisms({ count }) {
   return (
-    <Cont layout>
+    <Cont>
       {[...Array(count)].map((val, ind) => (
-        <img
+        <motion.img
           src={prism}
           width="200px"
           alt="prism"
           style={{ marginBottom: "-10px", zIndex: count - ind }}
           key={ind}
+          layout
         />
       ))}
     </Cont>
@@ -21,7 +22,7 @@ function Prisms({ count }) {
 
 export default Prisms;
 
-const Cont = styled(motion.div)`
+const Cont = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

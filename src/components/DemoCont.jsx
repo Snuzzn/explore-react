@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion/dist/framer-motion";
 
 function DemoCont({ children }) {
   return (
@@ -12,8 +13,8 @@ function DemoCont({ children }) {
 
 export default DemoCont;
 
-export const Wrapper = styled.div`
-  min-width: 700px;
+export const Wrapper = styled(motion.div)`
+  width: 700px;
   box-sizing: border-box;
   border: 1px solid #313944;
   display: flex;
