@@ -32,7 +32,7 @@ const linkData = [
   },
   {
     title: "Mini Projects",
-    features: ["Typescript IMDB", "Todo List", "Pokemon Redux"],
+    features: ["Typescript IMDB", "Todo List", "Pokemon Redux", "Music Player"],
   },
 ];
 

@@ -21,6 +21,7 @@ import StyledComponents from "./pages/StyledComponents";
 import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import ListRendering from "./pages/ListRendering";
+import MusicPlayer from "./pages/MusicPlayer";
 
 function App() {
   const location = useLocation();
@@ -144,6 +145,12 @@ function App() {
                     children={<ListRendering />}
                     title="List Rendering"
                   />
+                }
+              />
+              <Route
+                path="/music-player"
+                element={
+                  <PageLayout children={<MusicPlayer />} title="Music Player" />
                 }
               />
             </Routes>

@@ -5,7 +5,7 @@ import { ThemeContext } from "../ThemeProvider";
 const useUiSound = (soundFile, rate) => {
   const { isSoundEnabled } = useContext(ThemeContext);
 
-  const [play, { stop }] = useSound(soundFile, {
+  const [play, { stop, sound, isPlaying, pause }] = useSound(soundFile, {
     playbackRate: rate,
     soundEnabled: isSoundEnabled,
   });
@@ -13,6 +13,8 @@ const useUiSound = (soundFile, rate) => {
   return {
     play,
     stop,
+    sound,
+    pause,
   };
 };
 

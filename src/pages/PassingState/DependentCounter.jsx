@@ -7,7 +7,6 @@ import {
 import { UnstyledBtn } from "../../components/styles/Styles";
 import useUiSound from "../../hooks/useUiSound";
 import plup from "../../sounds/plup.mp3";
-import { ThemeContext } from "../../ThemeProvider";
 
 function DependentCounter({ count, setCount }) {
   const { play } = useUiSound(plup, 1);

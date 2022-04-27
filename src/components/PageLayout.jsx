@@ -1,15 +1,9 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { IoArrowBackSharp } from "react-icons/io5";
-import {
-  IconBtnLink,
-  IconButton,
-  MiniLayout,
-  StyledLink,
-} from "./styles/Styles";
+import { IconBtnLink } from "./styles/Styles";
 import styled from "styled-components";
-import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
-import { ThemeContext } from "../ThemeProvider";
+import { motion } from "framer-motion/dist/framer-motion";
 import bubbleClick from "../sounds/bubbleClick.mp3";
 import useUiSound from "../hooks/useUiSound";
 import MuteButton from "./MuteButton";
