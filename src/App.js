@@ -21,7 +21,6 @@ import StyledComponents from "./pages/StyledComponents";
 import { useEffect } from "react";
 import styled from "styled-components";
 import ListRendering from "./pages/ListRendering";
-
 function App() {
   const location = useLocation();
 

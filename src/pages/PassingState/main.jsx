@@ -57,7 +57,7 @@ const ParentCont = styled.div`
   display: flex;
   gap: 20px;
   padding: 30px;
-  outline: 2px solid #262930;
+  outline: 2px dashed #262930;
   border-radius: 5px;
   width: 600px;
   justify-content: center;

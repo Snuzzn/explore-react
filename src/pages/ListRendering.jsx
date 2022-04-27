@@ -4,6 +4,7 @@ import Codeblock from "../components/Codeblock";
 import DemoCont from "../components/DemoCont";
 import InfoCard from "../components/InfoCard";
 import { InlineCode } from "../components/styles/Styles";
+import { AnimatePresence, motion } from "framer-motion/dist/framer-motion";
 
 const popularPosts = [
   {
@@ -23,13 +24,22 @@ const popularPosts = [
   },
 ];
 
+const animationProps = {
+  initial: { opacity: 0, y: 100 },
+  animate: { opacity: 1, y: 0 },
+  transition: {
+    ease: "easeOut",
+    default: { duration: 0.5 },
+  },
+};
+
 const ListRendering = () => {
   return (
     <>
       <DemoCont>
-        <Title>What's Popular</Title>
+        <Title {...animationProps}>What's Popular</Title>
         {popularPosts.map((post) => (
-          <Post key={post.title}>
+          <Post key={post.title} {...animationProps}>
             <Thumbnail src={post.img} alt="" />
             <div>
               <Category>{post.category.toUpperCase()}</Category>
@@ -50,7 +60,7 @@ const ListRendering = () => {
 
 export default ListRendering;
 
-const Post = styled.div`
+const Post = styled(motion.div)`
   display: flex;
   width: 100%;
   gap: 30px;
@@ -62,7 +72,7 @@ const Thumbnail = styled.img`
   object-fit: cover;
 `;
 
-const Title = styled.h1`
+const Title = styled(motion.h1)`
   font-size: 1.7rem;
   align-self: flex-start;
   margin-top: 0px;
