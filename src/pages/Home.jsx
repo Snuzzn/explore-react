@@ -13,6 +13,7 @@ const linkData = [
       "useState",
       "useEffect",
       "Passing State",
+      "Conditional Rendering",
       "List Rendering",
       "Styled Components",
     ],
@@ -138,7 +139,9 @@ const TocItem = styled(Link)`
 
 const TocDivider = styled.hr`
   width: 100%;
-  color: #323944;
+  height: 2px;
+  border: none;
+  background-color: #323944;
 `;
 
 const GridContainer = styled.div`

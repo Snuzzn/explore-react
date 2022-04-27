@@ -65,6 +65,7 @@ const Thumbnail = styled.img`
 const Title = styled.h1`
   font-size: 1.7rem;
   align-self: flex-start;
+  margin-top: 0px;
 `;
 
 const Category = styled.h2`
@@ -75,7 +76,7 @@ const Category = styled.h2`
 `;
 
 const PostTitle = styled.h3`
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   line-height: 1;
 `;
 

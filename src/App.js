@@ -7,7 +7,7 @@ import UseEffectIntro from "./pages/UseEffectIntro";
 import PageLayout from "./components/PageLayout";
 import UseStateIntro from "./pages/UseStateIntro";
 import ConditionalRendering from "./pages/ConditionalRendering";
-import LoadingSkeleton from "./pages/LoadingSkeleton";
+import LoadingSkeleton from "./pages/FetchWithSkeleton";
 import PassingState from "./pages/PassingState/main";
 import RecursiveMenu from "./pages/RecursiveMenu/main";
 import TypescriptDemo from "./pages/TypescriptDemo";
