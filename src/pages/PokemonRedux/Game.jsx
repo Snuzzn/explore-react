@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Squirtle from "../../images/squirtle.gif";
 import Charmander from "../../images/charmander.gif";
@@ -6,9 +6,21 @@ import { useDispatch, useSelector } from "react-redux";
 import HealthBar from "./HealthBar";
 import Dialog from "./Dialog";
 import Character from "./Character";
+import useUiSound from "../../hooks/useUiSound";
+import battleMusicSfx from "../../sounds/battleMusic.mp3";
 
 function Game() {
   const dispatch = useDispatch();
+
+  const { play, stop, sound } = useUiSound(battleMusicSfx, 1);
+
+  useEffect(() => {
+    if (sound) sound._loop = true;
+    play();
+    return () => {
+      stop();
+    };
+  }, [play, stop]);
 
   return (
     <GameCont>

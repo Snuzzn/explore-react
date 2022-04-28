@@ -4,11 +4,15 @@ import { atkOpponent, reduceAtk, switchTurn } from "./actions/gameActions";
 import { useDispatch, useSelector } from "react-redux";
 import { growlMove, scratchMove } from "./moves";
 import PlayerDialog from "./PlayerDialog";
+import scratchSfx from "../../sounds/scratch.mp3";
+import useUiSound from "../../hooks/useUiSound";
 
 function Dialog() {
   const dispatch = useDispatch();
   const { game } = useSelector((state) => state);
   const { playerMove, enemyMove, player } = game;
+
+  const { play } = useUiSound(scratchSfx, 1);
 
   const renderDialog = () => {
     switch (game.playerTurn) {
@@ -35,13 +39,11 @@ function Dialog() {
     }
   };
 
-  console.log();
-
   React.useEffect(() => {
     if (game.playerTurn === "enemy")
       setTimeout(() => {
         if (Math.floor(Math.random() * 3) === 0) growlMove("player", dispatch);
-        else scratchMove("player", dispatch);
+        else scratchMove("player", dispatch, play);
       }, 1000);
 
     if (game.playerTurn === "waiting")

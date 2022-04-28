@@ -38,7 +38,6 @@ const HealthBarWrapper = styled.div`
   height: 10px;
   border-radius: 10px;
   background-color: #24252f;
-  padding: 6px;
   position: relative;
 `;
 

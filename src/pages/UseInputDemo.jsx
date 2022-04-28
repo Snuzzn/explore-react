@@ -25,6 +25,7 @@ const UseInputDemo = () => {
       <Console logs={logs} />
       <InfoCard>
         This a custom hook that allows us to succinctly capture form inputs.
+        This is particuarly useful when building long forms.
       </InfoCard>
       <Codeblock lang="JS" code={code} />
     </>

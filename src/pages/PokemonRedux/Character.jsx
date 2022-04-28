@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import useUiSound from "../../hooks/useUiSound";
 import Charmander from "../../images/charmander.gif";
 
 function Character({ src, type }) {

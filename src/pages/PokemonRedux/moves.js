@@ -1,3 +1,4 @@
+import useUiSound from "../../hooks/useUiSound";
 import {
   atkOpponent,
   reduceAtk,
@@ -5,7 +6,8 @@ import {
   setPlayerMove,
 } from "./actions/gameActions";
 
-export const scratchMove = (opponent, dispatch) => {
+export const scratchMove = (opponent, dispatch, play) => {
+  play();
   dispatch(atkOpponent({ char: opponent, dmg: 7 }));
   updateMoveTxt(opponent, dispatch, "scratch");
 };

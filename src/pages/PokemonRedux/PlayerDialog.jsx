@@ -3,10 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { atkOpponent, reduceAtk, switchTurn } from "./actions/gameActions";
 import { growlMove, scratchMove } from "./moves";
+import scratchSfx from "../../sounds/scratch.mp3";
+import useUiSound from "../../hooks/useUiSound";
 
 function PlayerDialog() {
   const dispatch = useDispatch();
   const { game } = useSelector((state) => state);
+  const { play } = useUiSound(scratchSfx, 1);
 
   return (
     <>
@@ -16,7 +19,7 @@ function PlayerDialog() {
       <MovesCont>
         <Move
           onClick={() => {
-            scratchMove("enemy", dispatch);
+            scratchMove("enemy", dispatch, play);
           }}
         >
           Scratch
