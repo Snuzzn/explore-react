@@ -6,6 +6,8 @@ import { Input, UnstyledBtn } from "../components/styles/Styles";
 import { motion } from "framer-motion/dist/framer-motion";
 import DemoCont from "../components/DemoCont";
 import Codeblock from "../components/Codeblock";
+import useUiSound from "../hooks/useUiSound";
+import bubbleSfx from "../sounds/bubble.mp3";
 
 function TodoList() {
   const [todos, setTodos] = React.useState([
@@ -15,6 +17,7 @@ function TodoList() {
   ]);
 
   const [newTodo, setNewTodo] = React.useState("");
+  const { play } = useUiSound(bubbleSfx, 1);
 
   const addNewTodo = (e) => {
     e.preventDefault();
@@ -24,6 +27,7 @@ function TodoList() {
   };
 
   const completeTask = (task) => {
+    play();
     // check off todo
     const newTodos = todos.map((item) => {
       if (task === item.task) item.isCompleted = !item.isCompleted;
@@ -39,7 +43,7 @@ function TodoList() {
 
   return (
     <>
-      <DemoCont>
+      <DemoCont style={{ minHeight: "700px" }}>
         <Form onSubmit={addNewTodo}>
           <AddTodoCont>
             <Input
@@ -79,6 +83,7 @@ function TodoList() {
           ))}
         </TodoCont>
       </DemoCont>
+
       <Codeblock lang="JS" code={code} />
     </>
   );

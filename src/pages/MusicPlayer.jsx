@@ -13,6 +13,7 @@ import * as SliderPrimitive from "@radix-ui/react-slider";
 import { IoPlaySkipBack, IoPlaySkipForward } from "react-icons/io5";
 import useKeyPress from "../hooks/useKeyPress";
 import { motion } from "framer-motion/dist/framer-motion";
+import Codeblock from "../components/Codeblock";
 
 const progressBarLength = 300; //px
 
@@ -106,51 +107,54 @@ const MusicPlayer = () => {
   }, [stop]);
 
   return (
-    <DemoCont>
-      {/* <ReactHowler src={orderSong} playing={isPlaying} ref={player} /> */}
-      <PlayerWrapper>
-        <div style={{ position: "relative" }}>
-          <CoverArt
-            src={tracks[currTrack].imgSrc}
-            initial={{ opacity: 0, x: `${isNextTrack ? -150 : 150}` }}
-            animate={{ opacity: 1, x: 0 }}
-            key={tracks[currTrack].imgSrc}
-          />
-          <GlowingCoverArt src={tracks[currTrack].imgSrc} />
-        </div>
-        <SongTitle>{tracks[currTrack].title}</SongTitle>
-        <SongArtist>{tracks[currTrack].artist}</SongArtist>
+    <>
+      <DemoCont>
+        {/* <ReactHowler src={orderSong} playing={isPlaying} ref={player} /> */}
+        <PlayerWrapper>
+          <div style={{ position: "relative" }}>
+            <CoverArt
+              src={tracks[currTrack].imgSrc}
+              initial={{ opacity: 0, x: `${isNextTrack ? -150 : 150}` }}
+              animate={{ opacity: 1, x: 0 }}
+              key={tracks[currTrack].imgSrc}
+            />
+            <GlowingCoverArt src={tracks[currTrack].imgSrc} />
+          </div>
+          <SongTitle>{tracks[currTrack].title}</SongTitle>
+          <SongArtist>{tracks[currTrack].artist}</SongArtist>
 
-        <ProgressSlider value={(pos / sound?.duration()) * 100} seek={seek} />
-        <TrackControls>
-          <TrackControlBtn onClick={() => changeTrack(-1)}>
-            <IoPlaySkipBack color="white" />
-          </TrackControlBtn>
-          <PlayBtn>
-            {isPlaying ? (
-              <BsPauseCircleFill
-                onClick={() => {
-                  setIsPlaying(false);
-                }}
-                size="2em"
-                color="white"
-              />
-            ) : (
-              <BsPlayCircleFill
-                onClick={() => {
-                  setIsPlaying(true);
-                }}
-                size="2em"
-                color="white"
-              />
-            )}
-          </PlayBtn>
-          <TrackControlBtn onClick={() => changeTrack(1)}>
-            <IoPlaySkipForward color="white" />
-          </TrackControlBtn>
-        </TrackControls>
-      </PlayerWrapper>
-    </DemoCont>
+          <ProgressSlider value={(pos / sound?.duration()) * 100} seek={seek} />
+          <TrackControls>
+            <TrackControlBtn onClick={() => changeTrack(-1)}>
+              <IoPlaySkipBack color="white" />
+            </TrackControlBtn>
+            <PlayBtn>
+              {isPlaying ? (
+                <BsPauseCircleFill
+                  onClick={() => {
+                    setIsPlaying(false);
+                  }}
+                  size="2em"
+                  color="white"
+                />
+              ) : (
+                <BsPlayCircleFill
+                  onClick={() => {
+                    setIsPlaying(true);
+                  }}
+                  size="2em"
+                  color="white"
+                />
+              )}
+            </PlayBtn>
+            <TrackControlBtn onClick={() => changeTrack(1)}>
+              <IoPlaySkipForward color="white" />
+            </TrackControlBtn>
+          </TrackControls>
+        </PlayerWrapper>
+      </DemoCont>
+      <Codeblock lang="JS" code={code} />
+    </>
   );
 };
 
@@ -270,4 +274,104 @@ const StyledThumb = styled(SliderPrimitive.Thumb)`
   /* &:focus {
     box-shadow: 0 0 0 4px #f861b166;
   } */
+`;
+
+const code = `
+const tracks = [
+  {
+    title: "Order",
+    artist: "ComaStudio",
+    imgSrc: orderCoverArt,
+    soundSrc: orderSong,
+  },
+  {
+    title: "Abstract Design",
+    artist: "ComaStudio",
+    imgSrc: adCoverArt,
+    soundSrc: adSong,
+  },
+  {
+    title: "Lucid",
+    artist: "Nomyn",
+    imgSrc: lucidCoverArt,
+    soundSrc: lucidSong,
+  },
+];
+
+const MusicPlayer = () => {
+  const [currTrack, setCurrTrack] = useState(0);
+  const { play, stop, sound, pause } = useUiSound(
+    tracks[currTrack].soundSrc,
+    1
+  );
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [pos, setPos] = useState(0);
+
+  // regularly update the progress bar
+  useEffect(() => {
+    if (isPlaying) {
+      const intervalId = setInterval(() => {
+        if (sound?.seek() >= sound?.duration() - 0.5) {
+          sound?.seek(0);
+        } else setPos(sound?.seek());
+      }, 1);
+      return () => clearInterval(intervalId);
+    }
+  }, [isPlaying, sound]);
+
+  // seek a position on thre track based on click
+  const seek = (newVal) => {
+    sound?.seek((newVal / 100) * sound?.duration());
+    if (!isPlaying) {
+      setIsPlaying(true);
+    }
+  };
+
+  const changeTrack = (diff) => {
+    // no more tracks to go to
+    if (currTrack + diff < 0 || currTrack + diff >= tracks.length) {
+      // restart the current track
+      sound?.seek(0);
+      return;
+    }
+    setCurrTrack(currTrack + diff);
+  };
+
+  useEffect(() => {
+    if (isPlaying) {
+      play();
+    } else {
+      pause();
+    }
+  }, [play, pause, isPlaying]);
+
+  // stop sound when leaving the page
+  useEffect(() => {
+    return () => {
+      stop();
+    };
+  }, [stop]);
+
+  return (
+    <PlayerWrapper>
+      <CoverArt src={tracks[currTrack].imgSrc} />
+      <SongTitle>{tracks[currTrack].title}</SongTitle>
+      <SongArtist>{tracks[currTrack].artist}</SongArtist>
+      <ProgressSlider 
+        value={(pos / sound?.duration()) * 100} 
+        seek={seek} />
+      <TrackControls>
+        <PrevTrackBtn onClick={() => changeTrack(-1)}/>
+        <PlayBtn>
+          {isPlaying ? (
+            <BsPauseCircleFill onClick={() => {setIsPlaying(false);}}/>
+          ) : (
+            <BsPlayCircleFill onClick={() => {setIsPlaying(true);}}/>
+          )}
+        </PlayBtn>
+        <NextTrackBtn onClick={() => changeTrack(1)}/>
+      </TrackControls>
+    </PlayerWrapper>
+  );
+};
 `;
