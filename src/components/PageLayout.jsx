@@ -7,6 +7,7 @@ import { motion } from "framer-motion/dist/framer-motion";
 import bubbleClick from "../sounds/bubbleClick.mp3";
 import useUiSound from "../hooks/useUiSound";
 import MuteButton from "./MuteButton";
+import MusicPlayer from "../pages/MusicPlayer";
 
 function PageLayout({ children, title }) {
   const { play } = useUiSound(bubbleClick, 1);
@@ -28,8 +29,7 @@ function PageLayout({ children, title }) {
           </IconBtnLink>
           <h3>{title}</h3>
         </Breadcrumbs>
-
-        <MuteButton />
+        {/* {children === <MusicPlayer /> && <MuteButton />} */}
       </Header>
       <ContentsWrapper>{children}</ContentsWrapper>
     </motion.div>

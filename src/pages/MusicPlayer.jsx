@@ -1,65 +1,149 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import DemoCont from "../components/DemoCont";
 import useUiSound from "../hooks/useUiSound";
 import orderSong from "../sounds/order.mp3";
+import adSong from "../sounds/abstractDesign.mp3";
+import lucidSong from "../sounds/lucid.mp3";
 import { BsPauseCircleFill, BsPlayCircleFill } from "react-icons/bs";
 import styled from "styled-components";
 import ReactHowler from "react-howler";
+import orderCoverArt from "../images/orderCoverArt.jpg";
+import adCoverArt from "../images/adCoverArt.jpg";
+import lucidCoverArt from "../images/lucidCoverArt.jpg";
+import { Button } from "./StyledComponents";
+import * as SliderPrimitive from "@radix-ui/react-slider";
+import * as Slider from "@radix-ui/react-slider";
+import { IoPlaySkipBack, IoPlaySkipForward } from "react-icons/io5";
+import useKeyPress from "../hooks/useKeyPress";
+import { motion } from "framer-motion/dist/framer-motion";
 
-const progressBarLength = 400;
+const progressBarLength = 300; //px
+
+const tracks = [
+  {
+    title: "Order",
+    artist: "ComaStudio",
+    imgSrc: orderCoverArt,
+    soundSrc: orderSong,
+  },
+  {
+    title: "Abstract Design",
+    artist: "ComaStudio",
+    imgSrc: adCoverArt,
+    soundSrc: adSong,
+  },
+  {
+    title: "Lucid",
+    artist: "Nomyn",
+    imgSrc: lucidCoverArt,
+    soundSrc: lucidSong,
+  },
+];
 
 const MusicPlayer = () => {
-  // const { play, stop, sound, pause } = useUiSound(orderSong, 1);
-  const [isPlaying, setIsPlaying] = React.useState(false);
-  const player = useRef();
-  const [pos, setPos] = React.useState(0);
+  // const player = useRef();
+  const [currTrack, setCurrTrack] = useState(0);
+
+  const { play, stop, sound, pause } = useUiSound(
+    tracks[currTrack].soundSrc,
+    1
+  );
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [pos, setPos] = useState(0);
 
   useEffect(() => {
-    const intervalId = setInterval(() => setPos(player?.current?.seek()), 1);
-    if (!isPlaying) return () => clearInterval(intervalId);
-  }, [isPlaying]);
+    // regularly update the progress bar
+    if (isPlaying) {
+      const intervalId = setInterval(() => {
+        setPos(sound?.seek());
+      }, 1);
+      return () => clearInterval(intervalId);
+    }
+  }, [isPlaying, sound]);
 
-  const seek = (e) => {
-    var bar = e.target.getBoundingClientRect();
-    var x = e.clientX - bar.left;
-    player.current.seek(
-      parseInt((x / progressBarLength) * player?.current?.duration())
-    );
+  // seek a position on thre track based on click
+  const seek = (newVal) => {
+    sound.seek((newVal / 100) * sound?.duration());
+    if (!isPlaying) {
+      setIsPlaying(true);
+    }
   };
+
+  // stop sound when leaving the page
+  useEffect(() => {
+    return () => {
+      stop();
+    };
+  }, [stop]);
+
+  const [isNextTrack, setIsNextTrack] = React.useState(true);
+  const changeTrack = (diff) => {
+    if (currTrack + diff < 0 || currTrack + diff >= tracks.length) return;
+    setCurrTrack(currTrack + diff);
+    if (diff > 0) setIsNextTrack(true);
+    else setIsNextTrack(false);
+  };
+
+  useEffect(() => {
+    if (isPlaying) {
+      play();
+    } else {
+      pause();
+    }
+  }, [play, pause, isPlaying]);
+
+  const spacebarPress = useKeyPress(" ");
+  const rightArrPress = useKeyPress("ArrowRight");
+  const leftArrPress = useKeyPress("ArrowLeft");
+
+  useEffect(() => {
+    if (spacebarPress) setIsPlaying(!isPlaying);
+    if (rightArrPress) seek(pos + 5);
+    if (leftArrPress) seek(pos - 5);
+  }, [spacebarPress, rightArrPress, leftArrPress, pause]);
 
   return (
     <DemoCont>
-      <ReactHowler src={orderSong} playing={isPlaying} ref={player} />
+      {/* <ReactHowler src={orderSong} playing={isPlaying} ref={player} /> */}
       <PlayerWrapper>
-        <div
-          style={{ position: "relative", width: "100%", cursor: "pointer" }}
-          onClick={seek}
-        >
-          <ProgressBg />
-          <ProgressBar
-            progress={
-              player.current ? (pos / player?.current?.duration()) * 100 : 0
-            }
+        <div style={{ position: "relative" }}>
+          <CoverArt
+            src={tracks[currTrack].imgSrc}
+            initial={{ opacity: 0, x: `${isNextTrack ? -150 : 150}` }}
+            animate={{ opacity: 1, x: 0 }}
+            key={tracks[currTrack].imgSrc}
           />
+          <GlowingCoverArt src={tracks[currTrack].imgSrc} />
         </div>
+        <SongTitle>{tracks[currTrack].title}</SongTitle>
+        <SongArtist>{tracks[currTrack].artist}</SongArtist>
 
-        <PlayBtn>
-          {isPlaying ? (
-            <BsPauseCircleFill
-              onClick={() => {
-                setIsPlaying(false);
-              }}
-              size="2em"
-            />
-          ) : (
-            <BsPlayCircleFill
-              onClick={() => {
-                setIsPlaying(true);
-              }}
-              size="2em"
-            />
-          )}
-        </PlayBtn>
+        <ProgressSlider value={(pos / sound?.duration()) * 100} seek={seek} />
+        <TrackControls>
+          <TrackControlBtn onClick={() => changeTrack(-1)}>
+            <IoPlaySkipBack />
+          </TrackControlBtn>
+          <PlayBtn>
+            {isPlaying ? (
+              <BsPauseCircleFill
+                onClick={() => {
+                  setIsPlaying(false);
+                }}
+                size="2em"
+              />
+            ) : (
+              <BsPlayCircleFill
+                onClick={() => {
+                  setIsPlaying(true);
+                }}
+                size="2em"
+              />
+            )}
+          </PlayBtn>
+          <TrackControlBtn onClick={() => changeTrack(1)}>
+            <IoPlaySkipForward />
+          </TrackControlBtn>
+        </TrackControls>
       </PlayerWrapper>
     </DemoCont>
   );
@@ -94,4 +178,91 @@ const PlayerWrapper = styled.div`
   align-items: center;
   gap: 20px;
   width: ${progressBarLength}px;
+`;
+
+const CoverArt = styled(motion.img)`
+  width: 300px;
+  height: 300px;
+`;
+
+const GlowingCoverArt = styled(CoverArt)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: blur(40px);
+  z-index: -1;
+`;
+
+const SongTitle = styled.h2`
+  font-size: 1.6rem;
+  line-height: 0.5;
+  margin-bottom: 0px;
+  margin-top: 10px;
+`;
+
+const SongArtist = styled.h3`
+  font-size: 1.1rem;
+  color: grey;
+  font-weight: 500;
+  margin-top: 0px;
+`;
+
+const TrackControls = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+const TrackControlBtn = styled.button`
+  background: none;
+  border: none;
+`;
+
+const ProgressSlider = ({ value, seek }) => {
+  return (
+    <StyledSlider
+      value={[value]}
+      onValueChange={([newVal]) => seek(newVal)}
+      max={100}
+      step={1}
+      aria-label="Volume"
+    >
+      <StyledTrack>
+        <StyledRange />
+      </StyledTrack>
+      <StyledThumb />
+    </StyledSlider>
+  );
+};
+
+const StyledSlider = styled(SliderPrimitive.Root)`
+  height: 15px;
+  width: 300px;
+  position: relative;
+  display: flex;
+  align-items: center;
+`;
+const StyledTrack = styled(SliderPrimitive.Track)`
+  height: 6px;
+  background-color: #080a0c;
+  flex-grow: 1;
+  position: relative;
+  border-radius: 10px;
+`;
+const StyledRange = styled(SliderPrimitive.Range)`
+  position: absolute;
+  height: 100%;
+  background-color: deeppink;
+  border-radius: 10px;
+`;
+const StyledThumb = styled(SliderPrimitive.Thumb)`
+  all: unset;
+  width: 14px;
+  height: 14px;
+  background-color: #181819;
+  border-radius: 50%;
+  display: block;
+  border: 4px solid deeppink;
+  /* &:focus {
+    box-shadow: 0 0 0 4px #f861b166;
+  } */
 `;
