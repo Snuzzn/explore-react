@@ -22,6 +22,7 @@ import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import ListRendering from "./pages/ListRendering";
 import MusicPlayer from "./pages/MusicPlayer";
+import PomdoroTimer from "./pages/PomdoroTimer";
 
 function App() {
   const location = useLocation();
@@ -151,6 +152,15 @@ function App() {
                 path="/music-player"
                 element={
                   <PageLayout children={<MusicPlayer />} title="Music Player" />
+                }
+              />
+              <Route
+                path="/pomodoro-timer"
+                element={
+                  <PageLayout
+                    children={<PomdoroTimer />}
+                    title="Pomodoro Timer"
+                  />
                 }
               />
             </Routes>

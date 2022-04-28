@@ -13,6 +13,7 @@ function TodoList() {
   const [todos, setTodos] = React.useState([
     { task: "Check off this task", isCompleted: false },
     { task: "Add new task", isCompleted: false },
+    { task: "Look at code for this demo", isCompleted: false },
     { task: "Do stuff", isCompleted: false },
   ]);
 
@@ -100,6 +101,7 @@ const TodoCont = styled.div`
   flex-direction: column;
   gap: 10px;
   align-self: stretch;
+  min-height: 300px;
 `;
 
 const TodoWrapper = styled(motion.div)`

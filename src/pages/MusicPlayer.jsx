@@ -160,9 +160,10 @@ const MusicPlayer = () => {
 
 export default MusicPlayer;
 
-const PlayBtn = styled.button`
+export const PlayBtn = styled.button`
   border: none;
   background: none;
+  cursor: pointer;
 `;
 
 const ProgressBar = styled.div`
