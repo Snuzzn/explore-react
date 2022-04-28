@@ -41,9 +41,7 @@ const tracks = [
 ];
 
 const MusicPlayer = () => {
-  // const player = useRef();
   const [currTrack, setCurrTrack] = useState(0);
-
   const { play, stop, sound, pause } = useUiSound(
     tracks[currTrack].soundSrc,
     1
@@ -51,11 +49,13 @@ const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [pos, setPos] = useState(0);
 
+  // regularly update the progress bar
   useEffect(() => {
-    // regularly update the progress bar
     if (isPlaying) {
       const intervalId = setInterval(() => {
-        setPos(sound?.seek());
+        if (sound?.seek() >= sound?.duration() - 0.5) {
+          sound?.seek(0);
+        } else setPos(sound?.seek());
       }, 1);
       return () => clearInterval(intervalId);
     }
@@ -63,23 +63,22 @@ const MusicPlayer = () => {
 
   // seek a position on thre track based on click
   const seek = (newVal) => {
-    sound.seek((newVal / 100) * sound?.duration());
+    sound?.seek((newVal / 100) * sound?.duration());
     if (!isPlaying) {
       setIsPlaying(true);
     }
   };
 
-  // stop sound when leaving the page
-  useEffect(() => {
-    return () => {
-      stop();
-    };
-  }, [stop]);
-
   const [isNextTrack, setIsNextTrack] = React.useState(true);
   const changeTrack = (diff) => {
-    if (currTrack + diff < 0 || currTrack + diff >= tracks.length) return;
+    // no more tracks to go to
+    if (currTrack + diff < 0 || currTrack + diff >= tracks.length) {
+      // restart the current track
+      sound?.seek(0);
+      return;
+    }
     setCurrTrack(currTrack + diff);
+    // determine if the image should animate from left or right
     if (diff > 0) setIsNextTrack(true);
     else setIsNextTrack(false);
   };
@@ -92,15 +91,22 @@ const MusicPlayer = () => {
     }
   }, [play, pause, isPlaying]);
 
+  // keyboard shortcuts
   const spacebarPress = useKeyPress(" ");
   const rightArrPress = useKeyPress("ArrowRight");
   const leftArrPress = useKeyPress("ArrowLeft");
-
   useEffect(() => {
     if (spacebarPress) setIsPlaying(!isPlaying);
     if (rightArrPress) seek(pos + 5);
     if (leftArrPress) seek(pos - 5);
   }, [spacebarPress, rightArrPress, leftArrPress, pause]);
+
+  // stop sound when leaving the page
+  useEffect(() => {
+    return () => {
+      stop();
+    };
+  }, [stop]);
 
   return (
     <DemoCont>
