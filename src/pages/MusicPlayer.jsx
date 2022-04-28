@@ -121,7 +121,7 @@ const MusicPlayer = () => {
         <ProgressSlider value={(pos / sound?.duration()) * 100} seek={seek} />
         <TrackControls>
           <TrackControlBtn onClick={() => changeTrack(-1)}>
-            <IoPlaySkipBack />
+            <IoPlaySkipBack color="white" />
           </TrackControlBtn>
           <PlayBtn>
             {isPlaying ? (
@@ -130,6 +130,7 @@ const MusicPlayer = () => {
                   setIsPlaying(false);
                 }}
                 size="2em"
+                color="white"
               />
             ) : (
               <BsPlayCircleFill
@@ -137,11 +138,12 @@ const MusicPlayer = () => {
                   setIsPlaying(true);
                 }}
                 size="2em"
+                color="white"
               />
             )}
           </PlayBtn>
           <TrackControlBtn onClick={() => changeTrack(1)}>
-            <IoPlaySkipForward />
+            <IoPlaySkipForward color="white" />
           </TrackControlBtn>
         </TrackControls>
       </PlayerWrapper>
