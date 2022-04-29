@@ -8,8 +8,12 @@ import { HiStar } from "react-icons/hi";
 import ReviewCard from "./ReviewCard";
 import { IoEllipsisVerticalSharp } from "react-icons/io5";
 import InfoCard from "../../components/InfoCard";
+import Codeblock from "../../components/Codeblock";
+import Console from "../../components/Console";
+import useLogs from "../../hooks/useLogs";
 
 const useMemoDemo = () => {
+  const { logs, updateLogs } = useLogs();
   return (
     <>
       <DemoCont>
@@ -36,6 +40,8 @@ const useMemoDemo = () => {
         each time we enter a character into the input box. Thus, we memoise the
         rating.
       </InfoCard>
+      {/* <Console /> */}
+      <Codeblock lang="JS" code={code} />
     </>
   );
 };
@@ -74,15 +80,15 @@ const AvgRatingWrapper = styled.div`
 `;
 
 const AvgRatingWithoutMemo = () => {
-  const example = useInput();
-  let data = reviewData;
+  const name = useInput();
+  const [reviews, setReviews] = useState(reviewData);
   const average =
-    data.reduce((acc, review) => {
+    reviews.reduce((acc, review) => {
       for (let i = 0; i < 90000000; i += 1) {
         // artifically making this calculation take longer
       }
       return acc + review.rating;
-    }, 0) / data.length;
+    }, 0) / reviews.length;
 
   console.log(average);
 
@@ -91,7 +97,7 @@ const AvgRatingWithoutMemo = () => {
       <BorderText style={{ color: "#676c74" }}>without useMemo</BorderText>
       <Average average={average} />
       <Input
-        {...example}
+        {...name}
         placeholder="Enter your name"
         style={{ width: "250px" }}
       />
@@ -100,17 +106,17 @@ const AvgRatingWithoutMemo = () => {
 };
 
 const AvgRatingWithMemo = () => {
-  const example = useInput();
-  let data = reviewData;
+  const name = useInput();
+  const [reviews, setReviews] = useState(reviewData);
   const average = useMemo(
     () =>
-      data.reduce((acc, review) => {
+      reviews.reduce((acc, review) => {
         for (let i = 0; i < 10000000; i += 1) {
           // artifically making this calculation take longer
         }
         return acc + review.rating;
-      }, 0) / data.length,
-    [data]
+      }, 0) / reviews.length,
+    [reviews]
   );
 
   console.log(average);
@@ -120,7 +126,7 @@ const AvgRatingWithMemo = () => {
       <BorderText style={{ color: "#676c74" }}>with useMemo</BorderText>
       <Average average={average} />
       <Input
-        {...example}
+        {...name}
         placeholder="Enter your name"
         style={{ width: "250px" }}
       />
@@ -137,6 +143,43 @@ const Average = ({ average }) => {
     </AvgRatingWrapper>
   );
 };
+
+const code = `
+const AvgRatingWithoutMemo = () => {
+  const name = useInput();
+  const [reviews, setReviews] = useState(reviewData);
+
+  // expensive calculation
+  const average = reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length,
+  console.log(average);
+
+  return (
+    <>
+      <Average average={average} />
+      <Input {...name} placeholder="Enter your name" />
+    </>
+  );
+};
+
+const AvgRatingWithMemo = () => {
+  const name = useInput();
+  const [reviews, setReviews] = useState(reviewData);
+
+  // expensive calculation
+  const average = useMemo(
+    () => reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length,
+    [reviews]
+  );
+  console.log(average);
+
+  return (
+    <>
+      <Average average={average} />
+      <Input {...name} placeholder="Enter your name" />
+    </>
+  );
+};
+`;
 
 const WithUseEffectAndState = () => {
   const [result, setResult] = useState(0);
