@@ -196,46 +196,18 @@ const ManagingArrayState = () => {
   };
 
   return (
-    <>
-      <DemoCont>
-        <BlocksWrapper>
-          <AddBox>
-            <MdAddCircleOutline size="1.5em" onClick={() => addItem("start")} />
-          </AddBox>
-          {/* <AnimatePresence> */}
-          {blocks.map((bgColor, index) => (
-            <Block
-              key={bgColor}
-              style={{ "--bgColor": \`\${bgColor}\` }}
-              layout
-              {...animation}
-            >
-              <ControlBox>
-                <MdRefresh
-                  color="white"
-                  size="1.5em"
-                  onClick={() => updateItem(index)}
-                />
-                <MdDeleteOutline
-                  color="white"
-                  size="1.5em"
-                  onClick={() => deleteItem(index)}
-                />
-              </ControlBox>
-            </Block>
-          ))}
-          {/* </AnimatePresence> */}
-          <AddBox>
-            <MdAddCircleOutline size="1.5em" onClick={() => addItem("end")} />
-          </AddBox>
-        </BlocksWrapper>
-      </DemoCont>
-      <InfoCard>
-        State is immutable; it shouldn't be modified directly. When updating an
-        array, first make a copy, then modify it. Finally, set the state with
-        this copy.
-      </InfoCard>
-    </>
+    <BlocksWrapper>
+      <AddBtn onClick={() => addItem("start")} />
+      {blocks.map((bgColor, index) => (
+        <Block key={bgColor} style={{ "--bgColor": \`\${bgColor}\` }}>
+          <ControlBox>
+            <EditBtn onClick={() => updateItem(index)} />
+            <DeleteBtn onClick={() => deleteItem(index)} />
+          </ControlBox>
+        </Block>
+      ))}
+      <AddBtn onClick={() => addItem("end")} />
+    </BlocksWrapper>
   );
 };
 `;
