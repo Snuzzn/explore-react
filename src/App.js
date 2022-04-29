@@ -24,6 +24,7 @@ import ListRendering from "./pages/ListRendering";
 import MusicPlayer from "./pages/MusicPlayer";
 import CountdownTimer from "./pages/PomdoroTimer";
 import UseMemoDemo from "./pages/UseMemoDemo/useMemoDemo";
+import ManagingArrayState from "./pages/ManagingArrayState";
 
 function App() {
   const location = useLocation();
@@ -168,6 +169,15 @@ function App() {
                 path="/use-memo"
                 element={
                   <PageLayout children={<UseMemoDemo />} title="useMemo" />
+                }
+              />
+              <Route
+                path="/managing-array-state"
+                element={
+                  <PageLayout
+                    children={<ManagingArrayState />}
+                    title="Managing Array State"
+                  />
                 }
               />
             </Routes>

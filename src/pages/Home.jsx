@@ -14,9 +14,10 @@ const linkData = [
     features: [
       "useState",
       "useEffect",
+      "List Rendering",
+      "Managing Array State",
       "Passing State",
       "Conditional Rendering",
-      "List Rendering",
       "Styled Components",
     ],
   },

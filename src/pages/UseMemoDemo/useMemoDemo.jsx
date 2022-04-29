@@ -1,8 +1,7 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
-import DemoCont, { BorderText, DemoWrapper } from "../../components/DemoCont";
-import { Input, Star } from "../../components/styles/Styles";
-import useInput from "../../hooks/useInput";
+import DemoCont, { DemoWrapper } from "../../components/DemoCont";
+import { Star } from "../../components/styles/Styles";
 import reviewData from "./reviewData.json";
 import { HiStar } from "react-icons/hi";
 import ReviewCard from "./ReviewCard";
@@ -11,6 +10,11 @@ import InfoCard from "../../components/InfoCard";
 import Codeblock from "../../components/Codeblock";
 import Console from "../../components/Console";
 import useLogs from "../../hooks/useLogs";
+import AvgRatingWithoutMemo from "./AvgWithoutMemo";
+import AvgRatingWithMemo from "./AvgWithMemo";
+
+const WithoutMemo = lazy(() => import("./AvgWithoutMemo"));
+const WithMemo = lazy(() => import("./AvgWithMemo"));
 
 const useMemoDemo = () => {
   const { logs, updateLogs } = useLogs();
@@ -26,6 +30,9 @@ const useMemoDemo = () => {
           <IoEllipsisVerticalSharp color="#59576b" />
         </ReviewsWrapper>
         <DemosWrapper>
+          {/* <Suspense fallback={"Loading"}>
+            <WithMemo />
+          </Suspense> */}
           <AvgRatingWithoutMemo />
           <AvgRatingWithMemo />
         </DemosWrapper>
@@ -53,7 +60,7 @@ const DemosWrapper = styled.div`
   gap: 20px;
 `;
 
-const MiniDemoWrapper = styled(DemoWrapper)`
+export const MiniDemoWrapper = styled(DemoWrapper)`
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -72,69 +79,14 @@ const ReviewsWrapper = styled.div`
   align-items: center;
 `;
 
-const AvgRatingWrapper = styled.div`
+export const AvgRatingWrapper = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
   font-weight: 600;
 `;
 
-const AvgRatingWithoutMemo = () => {
-  const name = useInput();
-  const [reviews, setReviews] = useState(reviewData);
-  const average =
-    reviews.reduce((acc, review) => {
-      for (let i = 0; i < 90000000; i += 1) {
-        // artifically making this calculation take longer
-      }
-      return acc + review.rating;
-    }, 0) / reviews.length;
-
-  console.log(average);
-
-  return (
-    <MiniDemoWrapper>
-      <BorderText style={{ color: "#676c74" }}>without useMemo</BorderText>
-      <Average average={average} />
-      <Input
-        {...name}
-        placeholder="Enter your name"
-        style={{ width: "250px" }}
-      />
-    </MiniDemoWrapper>
-  );
-};
-
-const AvgRatingWithMemo = () => {
-  const name = useInput();
-  const [reviews, setReviews] = useState(reviewData);
-  const average = useMemo(
-    () =>
-      reviews.reduce((acc, review) => {
-        for (let i = 0; i < 10000000; i += 1) {
-          // artifically making this calculation take longer
-        }
-        return acc + review.rating;
-      }, 0) / reviews.length,
-    [reviews]
-  );
-
-  console.log(average);
-
-  return (
-    <MiniDemoWrapper>
-      <BorderText style={{ color: "#676c74" }}>with useMemo</BorderText>
-      <Average average={average} />
-      <Input
-        {...name}
-        placeholder="Enter your name"
-        style={{ width: "250px" }}
-      />
-    </MiniDemoWrapper>
-  );
-};
-
-const Average = ({ average }) => {
+export const Average = ({ average }) => {
   return (
     <AvgRatingWrapper>
       <span style={{ fontSize: "1.3rem" }}>Average:</span>
@@ -145,7 +97,7 @@ const Average = ({ average }) => {
 };
 
 const code = `
-const AvgRatingWithoutMemo = () => {
+const WithoutUseMemo = () => {
   const name = useInput();
   const [reviews, setReviews] = useState(reviewData);
 
@@ -161,7 +113,7 @@ const AvgRatingWithoutMemo = () => {
   );
 };
 
-const AvgRatingWithMemo = () => {
+const WithUseMemo = () => {
   const name = useInput();
   const [reviews, setReviews] = useState(reviewData);
 
