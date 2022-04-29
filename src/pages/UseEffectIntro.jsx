@@ -116,7 +116,7 @@ const codeblock = `function UseEffectDemo() {
   });
 
   React.useEffect(() => {
-    // runs every time the example state is updated
+    // runs every time the example1 state is updated
     console.log(\`example1: \${example1}\`);
   }, [example1]);
 
