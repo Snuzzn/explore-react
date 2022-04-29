@@ -25,6 +25,7 @@ import MusicPlayer from "./pages/MusicPlayer";
 import CountdownTimer from "./pages/PomdoroTimer";
 import UseMemoDemo from "./pages/UseMemoDemo/useMemoDemo";
 import ManagingArrayState from "./pages/ManagingArrayState";
+import ManagingObjectState from "./pages/ManagingObjectState";
 
 function App() {
   const location = useLocation();
@@ -177,6 +178,15 @@ function App() {
                   <PageLayout
                     children={<ManagingArrayState />}
                     title="Managing Array State"
+                  />
+                }
+              />
+              <Route
+                path="/managing-object-state"
+                element={
+                  <PageLayout
+                    children={<ManagingObjectState />}
+                    title="Managing Object State"
                   />
                 }
               />

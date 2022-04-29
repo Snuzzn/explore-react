@@ -161,6 +161,8 @@ const Flex = styled.div`
 `;
 
 const code = `
+import styled from "styled-components";
+
 const StyledComponents = () => {
   return (
     <>

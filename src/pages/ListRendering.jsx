@@ -51,7 +51,7 @@ const ListRendering = () => {
       <InfoCard>
         We use the <InlineCode>map</InlineCode> array method to render a list.
         Make sure to include a unique key for each item, to give it a stable
-        identity. This is especially important if the array is mutated.
+        identity. This is especially important if the array is updated.
       </InfoCard>
       <Codeblock code={code} lang="JS" />
     </>
