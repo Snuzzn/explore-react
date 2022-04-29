@@ -1,6 +1,7 @@
 import styled, { css, keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 import { ImSpinner2 } from "react-icons/im";
+import { HiStar } from "react-icons/hi";
 
 export const Layout = styled.div`
   display: flex;
@@ -137,4 +138,12 @@ export const InlineCode = styled.code`
   border-radius: 4px;
   outline: 1px solid #323944;
   font-family: "Fira Mono", monospace;
+`;
+
+export const Star = styled(HiStar)`
+  color: gold;
+  background: none;
+  width: 3rem;
+  height: 3rem;
+  filter: drop-shadow(0px 0px 4px gold);
 `;

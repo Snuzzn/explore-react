@@ -25,6 +25,7 @@ const linkData = [
     features: [
       "Fetch with Skeleton",
       "useInput",
+      "useMemo",
       "Recursive Menu",
       "Search Debounce",
       "Search Filter",
@@ -37,7 +38,7 @@ const linkData = [
       "Todo List",
       "Pokemon Redux",
       "Music Player",
-      "Pomodoro Timer",
+      "Countdown Timer",
     ],
   },
 ];

@@ -8,8 +8,9 @@ import startSfx from "../sounds/confirmation_001.ogg";
 import pauseSfx from "../sounds/bong_001.ogg";
 import endSfx from "../sounds/confirmation_002.ogg";
 import useKeyPress from "../hooks/useKeyPress";
+import Codeblock from "../components/Codeblock";
 
-const PomdoroTimer = () => {
+const CountdownTimer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [totalTime, setTotalTime] = useState(5);
@@ -67,85 +68,92 @@ const PomdoroTimer = () => {
   }, [spacebarPress]);
 
   return (
-    <DemoCont>
-      <div style={{ position: "relative" }}>
-        <CircleCont viewBox="2 -2 28 36" xmlns="http://www.w3.org/2000/svg">
-          <CircleBg r="16" cx="16" cy="16"></CircleBg>
-          <CircleProgress
-            r="16"
-            cx="16"
-            cy="16"
-            style={{
-              "stroke-dashoffset": `${100 - (timeRemaining / totalTime) * 100}`,
-            }}
-          ></CircleProgress>
-          <GlowingProgress
-            r="16"
-            cx="16"
-            cy="16"
-            style={{
-              "stroke-dashoffset": `${100 - (timeRemaining / totalTime) * 100}`,
-            }}
-          ></GlowingProgress>
-        </CircleCont>
-      </div>
-      <CenterCont>
-        {!isEditing ? (
-          <Time
-            onClick={() => {
-              setIsEditing(true);
-              setIsPlaying(false);
-            }}
-          >
-            {formattedTime}
-          </Time>
-        ) : (
-          <EditTimeForm
-            onSubmit={(e) => {
-              e.preventDefault();
-              setIsPlaying(true);
-              setIsEditing(false);
-            }}
-          >
-            <EditTimeInput
-              type="number"
-              onChange={(e) => {
-                let val = e.target.value;
-                if (val === "") setTotalTime("");
-                if (isNaN(val)) return;
-                setTotalTime(val * 60);
+    <>
+      <DemoCont>
+        <div style={{ position: "relative" }}>
+          <CircleCont viewBox="2 -2 28 36" xmlns="http://www.w3.org/2000/svg">
+            <CircleBg r="16" cx="16" cy="16"></CircleBg>
+            <CircleProgress
+              r="16"
+              cx="16"
+              cy="16"
+              style={{
+                "stroke-dashoffset": `${
+                  100 - (timeRemaining / totalTime) * 100
+                }`,
               }}
-            />
-            minutes
-          </EditTimeForm>
-        )}
-
-        <PlayBtn>
-          {isPlaying ? (
-            <BsPauseCircleFill
+            ></CircleProgress>
+            <GlowingProgress
+              r="16"
+              cx="16"
+              cy="16"
+              style={{
+                "stroke-dashoffset": `${
+                  100 - (timeRemaining / totalTime) * 100
+                }`,
+              }}
+            ></GlowingProgress>
+          </CircleCont>
+        </div>
+        <CenterCont>
+          {!isEditing ? (
+            <Time
               onClick={() => {
+                setIsEditing(true);
                 setIsPlaying(false);
               }}
-              size="2em"
-              color="white"
-            />
+            >
+              {formattedTime}
+            </Time>
           ) : (
-            <BsPlayCircleFill
-              onClick={() => {
+            <EditTimeForm
+              onSubmit={(e) => {
+                e.preventDefault();
                 setIsPlaying(true);
                 setIsEditing(false);
               }}
-              size="2em"
-              color="white"
-            />
+            >
+              <EditTimeInput
+                type="number"
+                onChange={(e) => {
+                  let val = e.target.value;
+                  if (val === "") setTotalTime("");
+                  if (isNaN(val)) return;
+                  setTotalTime(val * 60);
+                }}
+              />
+              minutes
+            </EditTimeForm>
           )}
-        </PlayBtn>
-      </CenterCont>
-    </DemoCont>
+
+          <PlayBtn>
+            {isPlaying ? (
+              <BsPauseCircleFill
+                onClick={() => {
+                  setIsPlaying(false);
+                }}
+                size="2em"
+                color="white"
+              />
+            ) : (
+              <BsPlayCircleFill
+                onClick={() => {
+                  setIsPlaying(true);
+                  setIsEditing(false);
+                }}
+                size="2em"
+                color="white"
+              />
+            )}
+          </PlayBtn>
+        </CenterCont>
+      </DemoCont>
+      <Codeblock code={code} lang="JS" />
+    </>
   );
 };
 
-export default PomdoroTimer;
+export default CountdownTimer;
 
 const EditTimeForm = styled.form`
   display: flex;
@@ -199,7 +207,7 @@ const GlowingProgress = styled(CircleProgress)`
 const Time = styled.h2`
   line-height: 0;
   font-size: 3.4rem;
-  cursor: edit;
+  cursor: pointer;
 `;
 
 const CenterCont = styled.div`
@@ -209,4 +217,94 @@ const CenterCont = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
+`;
+
+const code = `
+const Timer = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [totalTime, setTotalTime] = useState(5);
+  const [timeRemaining, setTimeRemaining] = useState(totalTime);
+  const hours = Math.floor(timeRemaining / 3600);
+  const formattedTime = new Date(timeRemaining * 1000)
+    .toISOString()
+    .substring(hours > 0 ? 11 : 14, 19);
+
+  useEffect(() => {
+    if (isPlaying) {
+      const timerId = setInterval(() => {
+        setTimeRemaining((timeRemaining) => timeRemaining - 1);
+      }, 1000);
+      return () => {
+        clearInterval(timerId);
+      };
+    }
+  }, [isPlaying]);
+
+  useEffect(() => {
+    if (timeRemaining === 0) {
+      setIsPlaying(false);
+      setTimeout(() => setTimeRemaining(totalTime), 1000);
+    }
+  }, [timeRemaining]);
+
+  useEffect(() => {
+    setTimeRemaining(totalTime);
+  }, [totalTime]);
+
+  return (
+    <>
+      <CircleProgress progress={timeRemaining/totalTime * 100}/>
+      {!isEditing ? (
+        <Time
+          onClick={() => {
+            setIsEditing(true);
+            setIsPlaying(false);
+          }}
+        >
+          {formattedTime}
+        </Time>
+      ) : (
+        <EditTimeForm
+          onSubmit={(e) => {
+            e.preventDefault();
+            setIsPlaying(true);
+            setIsEditing(false);
+          }}
+        >
+          <EditTimeInput
+            type="number"
+            onChange={(e) => {
+              let val = e.target.value;
+              if (val === "") setTotalTime("");
+              if (isNaN(val)) return;
+              setTotalTime(val * 60);
+            }}
+          />
+          minutes
+        </EditTimeForm>
+      )}
+      <PlayBtn>
+        {isPlaying ? (
+          <BsPauseCircleFill
+            onClick={() => {
+              setIsPlaying(false);
+            }}
+            size="2em"
+            color="white"
+          />
+        ) : (
+          <BsPlayCircleFill
+            onClick={() => {
+              setIsPlaying(true);
+              setIsEditing(false);
+            }}
+            size="2em"
+            color="white"
+          />
+        )}
+      </PlayBtn>
+    </>
+  );
+}; 
 `;

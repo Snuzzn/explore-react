@@ -4,16 +4,16 @@ import { motion } from "framer-motion/dist/framer-motion";
 
 function DemoCont({ children }) {
   return (
-    <Wrapper>
+    <DemoWrapper>
       <BorderText>DEMO</BorderText>
       {children}
-    </Wrapper>
+    </DemoWrapper>
   );
 }
 
 export default DemoCont;
 
-export const Wrapper = styled(motion.div)`
+export const DemoWrapper = styled(motion.div)`
   width: 700px;
   box-sizing: border-box;
   border: 1px solid #313944;

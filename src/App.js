@@ -22,7 +22,8 @@ import { useContext, useEffect } from "react";
 import styled from "styled-components";
 import ListRendering from "./pages/ListRendering";
 import MusicPlayer from "./pages/MusicPlayer";
-import PomdoroTimer from "./pages/PomdoroTimer";
+import CountdownTimer from "./pages/PomdoroTimer";
+import UseMemoDemo from "./pages/UseMemoDemo/useMemoDemo";
 
 function App() {
   const location = useLocation();
@@ -155,12 +156,18 @@ function App() {
                 }
               />
               <Route
-                path="/pomodoro-timer"
+                path="/countdown-timer"
                 element={
                   <PageLayout
-                    children={<PomdoroTimer />}
-                    title="Pomodoro Timer"
+                    children={<CountdownTimer />}
+                    title="Countdown Timer"
                   />
+                }
+              />
+              <Route
+                path="/use-memo"
+                element={
+                  <PageLayout children={<UseMemoDemo />} title="useMemo" />
                 }
               />
             </Routes>

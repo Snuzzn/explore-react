@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Timon",
+    "desc": "A good spot to rustle up some grub!",
+    "rating": 4
+  },
+  {
+    "name": "Pumbaa",
+    "desc": "Slimy and satisfying!",
+    "rating": 5
+  },
+  {
+    "name": "Timon",
+    "desc": "It was ok. Nothing groundbreaking.",
+    "rating": 3
+  },
+  {
+    "name": "Timon",
+    "desc": "It was ok. Nothing groundbreaking.",
+    "rating": 2
+  },
+  {
+    "name": "Timon",
+    "desc": "It was ok. Nothing groundbreaking.",
+    "rating": 5
+  },
+  {
+    "name": "Timon",
+    "desc": "It was ok. Nothing groundbreaking.",
+    "rating": 3
+  }
+]

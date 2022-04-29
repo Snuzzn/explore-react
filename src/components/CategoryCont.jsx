@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { BorderText, Wrapper } from "./DemoCont";
+import { BorderText, DemoWrapper } from "./DemoCont";
 
 const CategoryCont = ({ children, borderText, id }) => {
   return (
@@ -13,7 +13,7 @@ const CategoryCont = ({ children, borderText, id }) => {
 
 export default CategoryCont;
 
-const CategoryWrapper = styled(Wrapper)`
+const CategoryWrapper = styled(DemoWrapper)`
   padding: 50px 30px;
 `;
 
