@@ -5,9 +5,16 @@ import { MdRefresh, MdAddCircleOutline, MdDeleteOutline } from "react-icons/md";
 import { motion, AnimatePresence } from "framer-motion/dist/framer-motion";
 import InfoCard from "../components/InfoCard";
 import Codeblock from "../components/Codeblock";
+import increaseSfx from "../sounds/increase.ogg";
+import decreaseSfx from "../sounds/decrease.ogg";
+import updateSfx from "../sounds/select_006.ogg";
+import useUiSound from "../hooks/useUiSound";
 
 const ManagingArrayState = () => {
   const [blocks, setBlocks] = useState(["#3B82F6", "#1D4ED8", "#6366F1"]);
+  const { play: playUp } = useUiSound(increaseSfx, 1);
+  const { play: playDown } = useUiSound(decreaseSfx, 1);
+  const { play: playUpdate } = useUiSound(updateSfx, 1);
 
   // find a colour that doesn't already exist in the array
   const getUnusedBlockColor = () => {
@@ -16,6 +23,7 @@ const ManagingArrayState = () => {
 
   const addItem = (pos) => {
     if (blocks.length > 4) return; // limit number of blocks
+    playUp();
     // copy array
     const newBlocks = [...blocks];
     // add new block to beginning
@@ -26,6 +34,7 @@ const ManagingArrayState = () => {
   };
 
   const updateItem = (index) => {
+    playUpdate();
     // copy array
     const newBlocks = [...blocks];
     // edit existing block
@@ -35,6 +44,7 @@ const ManagingArrayState = () => {
 
   const deleteItem = (index) => {
     if (blocks.length === 1) return; // at least one block must exist
+    playDown();
     // filter out the block with the selected index
     const newBlocks = blocks.filter((block, i) => i !== index);
     setBlocks(newBlocks);
@@ -44,7 +54,7 @@ const ManagingArrayState = () => {
     <>
       <DemoCont>
         <BlocksWrapper>
-          <AddBox>
+          <AddBox layout>
             <MdAddCircleOutline size="1.5em" onClick={() => addItem("start")} />
           </AddBox>
           {/* <AnimatePresence> */}
@@ -70,7 +80,7 @@ const ManagingArrayState = () => {
             </Block>
           ))}
           {/* </AnimatePresence> */}
-          <AddBox>
+          <AddBox layout>
             <MdAddCircleOutline size="1.5em" onClick={() => addItem("end")} />
           </AddBox>
         </BlocksWrapper>
@@ -102,12 +112,12 @@ const possibleColors = [
   "#BE185D",
 ];
 
-const AddBox = styled.div`
+const AddBox = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  opacity: 0;
+  opacity: 0.1;
   transition: opacity 0.2s ease-out;
   &:hover {
     opacity: 1;
