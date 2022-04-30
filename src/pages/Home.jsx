@@ -57,7 +57,7 @@ function Home() {
       transition={{ duration: 0.3, type: "tween" }}
     >
       <ContentsWrapper>
-        <HeaderBar id="fundamentals">
+        <HeaderBar>
           <Title>Explore React</Title>
           <MuteButton />
         </HeaderBar>

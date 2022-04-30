@@ -14,6 +14,9 @@ export function OverviewItem({ category, activeCategory, setActiveCategory }) {
       duration={700}
       key={category.title}
       onSetActive={(e) => setActiveCategory(e)}
+      onSetInactive={(e) => {
+        if (e === "fundamentals") setActiveCategory("");
+      }}
     >
       {activeCategory === toKebabCase(category.title) && (
         <TocVertRule layout layoutId="vertrule" />
