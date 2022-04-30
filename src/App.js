@@ -27,6 +27,7 @@ import UseMemoDemo from "./pages/UseMemoDemo/useMemoDemo";
 import ManagingArrayState from "./pages/ManagingArrayState";
 import ManagingObjectState from "./pages/ManagingObjectState";
 import ManagingBooleanState from "./pages/ManagingBooleanState";
+import ManagingIntervalWithUseRef from "./pages/ManagingIntervalWithUseRef";
 
 function App() {
   const location = useLocation();
@@ -197,6 +198,15 @@ function App() {
                   <PageLayout
                     children={<ManagingBooleanState />}
                     title="Managing Boolean State"
+                  />
+                }
+              />
+              <Route
+                path="/managing-interval-with-use-ref"
+                element={
+                  <PageLayout
+                    children={<ManagingIntervalWithUseRef />}
+                    title="Managing Interval with useRef"
                   />
                 }
               />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BsPauseCircleFill, BsPlayCircleFill } from "react-icons/bs";
 import styled from "styled-components";
 import DemoCont from "../components/DemoCont";
@@ -24,13 +24,14 @@ const CountdownTimer = () => {
   const { play: playPause } = useUiSound(pauseSfx, 1);
   const { play: playEnd } = useUiSound(endSfx, 1);
 
+  const timer = useRef();
   useEffect(() => {
     if (isPlaying) {
-      const timerId = setInterval(() => {
+      timer.current = setInterval(() => {
         setTimeRemaining((timeRemaining) => timeRemaining - 1);
       }, 1000);
       return () => {
-        clearInterval(timerId);
+        clearInterval(timer.current);
       };
     }
   }, [isPlaying]);
@@ -230,13 +231,14 @@ const Timer = () => {
     .toISOString()
     .substring(hours > 0 ? 11 : 14, 19);
 
+  const timer = useRef();
   useEffect(() => {
     if (isPlaying) {
-      const timerId = setInterval(() => {
+      timer.current = setInterval(() => {
         setTimeRemaining((timeRemaining) => timeRemaining - 1);
       }, 1000);
       return () => {
-        clearInterval(timerId);
+        clearInterval(timer.current);
       };
     }
   }, [isPlaying]);
