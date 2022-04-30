@@ -22,7 +22,7 @@ import Bird from "../images/character/Bird-Default.png";
 import { motion, AnimatePresence } from "framer-motion/dist/framer-motion";
 import InfoCard from "../components/InfoCard";
 import Codeblock from "../components/Codeblock";
-import SwitchSfx from "../sounds/switch25.ogg";
+import SwitchSfx from "../sounds/click3.ogg";
 import useUiSound from "../hooks/useUiSound";
 
 const hairs = [BlHair1, BlHair2, BlHair3, BrHair1, BrHair2, BrHair3];
