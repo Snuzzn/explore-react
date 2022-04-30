@@ -2,6 +2,7 @@ import styled, { css, keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 import { ImSpinner2 } from "react-icons/im";
 import { HiStar } from "react-icons/hi";
+import { motion } from "framer-motion/dist/framer-motion";
 
 export const Layout = styled.div`
   display: flex;
@@ -110,15 +111,26 @@ export const Spinner = styled(ImSpinner2)`
   animation: ${spin} 1.5s linear infinite;
 `;
 
-export const ResultsCont = styled.div`
+export const ResultsCont = styled(motion.div)`
   background-color: #2a2e33;
   padding: 10px;
   border-radius: 10px;
   box-sizing: border-box;
   width: 100%;
+  max-height: 300px;
+  overflow: auto;
+  transition: all 200ms ease-out;
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #3e55cb;
+    border-radius: 5px;
+  }
 `;
 
-export const Result = styled.a`
+export const Result = styled(motion.a)`
   max-width: 580px;
   text-decoration: none;
   color: white;
@@ -129,7 +141,20 @@ export const Result = styled.a`
   &:hover {
     background-color: #202327;
   }
+  &:focus {
+    outline: 2px solid #5773ff;
+  }
 `;
+
+export const fadeInOutAnimation = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+  exit: { opacity: 0 },
+};
 
 export const InlineCode = styled.code`
   background-color: #1d2024;

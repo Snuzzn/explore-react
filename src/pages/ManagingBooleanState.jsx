@@ -1,10 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import DemoCont from "../components/DemoCont";
-import {
-  motion,
-  AnimatePresence,
-  useDragControls,
-} from "framer-motion/dist/framer-motion";
+import { motion, useDragControls } from "framer-motion/dist/framer-motion";
 import styled from "styled-components";
 import switchImg from "../images/switch.svg";
 import useUiSound from "../hooks/useUiSound";

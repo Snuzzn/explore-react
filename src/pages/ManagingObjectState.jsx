@@ -119,10 +119,11 @@ export default ManagingObjectState;
 
 const CharacterCustomiser = styled.div`
   display: flex;
-  gap: 45px;
+  gap: 55px;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-bottom: -15px;
 `;
 
 const InventoryWrapper = styled.div`
@@ -133,7 +134,7 @@ const InventoryWrapper = styled.div`
 const CategoryTitle = styled.h2`
   text-align: center;
   font-size: 1.6rem;
-  margin-top: 0px;
+  margin-top: -20px;
   margin-bottom: 20px;
 `;
 
