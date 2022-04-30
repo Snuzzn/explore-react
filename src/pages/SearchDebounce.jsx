@@ -8,6 +8,7 @@ import {
   fadeInOutAnimation,
   Result,
   ResultsCont,
+  SearchWrapper,
 } from "../components/styles/Styles";
 import { AnimatePresence } from "framer-motion/dist/framer-motion";
 
@@ -15,10 +16,8 @@ function SearchDebounce() {
   const [results, setResults] = React.useState([]);
 
   const handleChange = async (val) => {
-    if (val === "") {
-      setResults([]);
-      return;
-    }
+    if (val === "") return setResults([]);
+    // search meal db
     const res = await fetch(
       `https://www.themealdb.com/api/json/v1/1/search.php?s=${val}`
     );
@@ -47,7 +46,7 @@ function SearchDebounce() {
   return (
     <>
       <DemoCont>
-        <DebounceDemoWrapper>
+        <SearchWrapper>
           <SearchBar
             onChange={(e) => {
               optimisedFunc(e.target.value);
@@ -76,7 +75,7 @@ function SearchDebounce() {
               </ResultsCont>
             )}
           </>
-        </DebounceDemoWrapper>
+        </SearchWrapper>
       </DemoCont>
 
       <InfoCard>
@@ -93,24 +92,15 @@ function SearchDebounce() {
 
 export default SearchDebounce;
 
-const DebounceDemoWrapper = styled.div`
-  min-height: 370px;
-  display: flex;
-  flex-direction: column;
-  align-self: stretch;
-  gap: 10px;
-`;
-
 const codeblock = `function SearchDebounce() {
   const [results, setResults] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(false);
 
   const handleChange = async (val) => {
     if (val === "") {
       setResults([]);
-      setIsLoading(false);
       return;
     }
+    // search meal db
     const res = await fetch(
       \`https://www.themealdb.com/api/json/v1/1/search.php?s=\${val}\`
     );
@@ -120,58 +110,49 @@ const codeblock = `function SearchDebounce() {
       const meals = mealObjs.map((meal) => meal.strMeal);
       setResults(meals);
     } else setResults([]);
-    setIsLoading(false);
   };
 
   const debounce = (func) => {
     let timer;
     return function (...args) {
-      setIsLoading(true);
-      setResults([]);
-
       const context = this;
       if (timer) clearTimeout(timer);
       timer = setTimeout(() => {
         timer = null;
         func.apply(context, args);
-      }, 200);
+      }, 300);
     };
   };
 
   const optimisedFunc = React.useCallback(debounce(handleChange), []);
 
   return (
-    <>
+    <SearchWrapper>
       <SearchBar
         onChange={(e) => {
           optimisedFunc(e.target.value);
         }}
         placeholder="Search for a recipe..."
       />
-      <TextCont>
-        {isLoading && (
+      <>
+        {results.length !== 0 && (
           <ResultsCont>
-            <Result>
-              <Spinner />
-              Loading
-            </Result>
+            <>
+              {results.map((meal) => (
+                <Result
+                  key={meal}
+                  href={\`https://www.google.com/search?q=\${meal}\`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {meal}
+                </Result>
+              ))}
+            </>
           </ResultsCont>
         )}
-        {results.length > 0 && (
-          <ResultsCont>
-            {results.map((meal) => (
-              <Result
-                href={\`https://www.google.com/search?q=\${meal}\`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {meal}
-              </Result>
-            ))}
-          </ResultsCont>
-        )}
-      </TextCont>
-    </>
+      </>
+    </SearchWrapper>
   );
 }
 `;

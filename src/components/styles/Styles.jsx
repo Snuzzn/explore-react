@@ -111,6 +111,14 @@ export const Spinner = styled(ImSpinner2)`
   animation: ${spin} 1.5s linear infinite;
 `;
 
+export const SearchWrapper = styled.div`
+  min-height: 370px;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  gap: 10px;
+`;
+
 export const ResultsCont = styled(motion.div)`
   background-color: #2a2e33;
   padding: 10px;

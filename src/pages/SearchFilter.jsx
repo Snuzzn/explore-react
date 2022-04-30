@@ -2,7 +2,11 @@ import React from "react";
 import Codeblock from "../components/Codeblock";
 import DemoCont from "../components/DemoCont";
 import SearchBar from "../components/SearchBar";
-import { Result, ResultsCont } from "../components/styles/Styles";
+import {
+  Result,
+  ResultsCont,
+  SearchWrapper,
+} from "../components/styles/Styles";
 
 function SearchFilter() {
   const [results, setResults] = React.useState([]);
@@ -31,34 +35,37 @@ function SearchFilter() {
   return (
     <>
       <DemoCont>
-        <SearchBar
-          value={query}
-          placeholder="Search for a todo"
-          onChange={handleSearch}
-        />
-        {results.length > 0 && query !== "" && (
-          <ResultsCont>
-            {results.map((result) => {
-              const todo = result.todo;
-              if (query === "") return <Result key={result.id}>{todo}</Result>;
-              else {
-                // bold the matching text
-                const qLen = query.length;
-                const firstPos = todo.search(new RegExp(query, "i"));
-                const pre = todo.substring(0, firstPos);
-                const match = todo.substring(firstPos, firstPos + qLen);
-                const post = todo.substring(firstPos + qLen, todo.length);
-                return (
-                  <Result key={result.id}>
-                    <span style={{ whiteSpace: "pre-wrap" }}>{pre}</span>
-                    <b style={{ whiteSpace: "pre-wrap" }}>{match}</b>
-                    <span style={{ whiteSpace: "pre-wrap" }}>{post}</span>
-                  </Result>
-                );
-              }
-            })}
-          </ResultsCont>
-        )}
+        <SearchWrapper>
+          <SearchBar
+            value={query}
+            placeholder="Search for a todo"
+            onChange={handleSearch}
+          />
+          {results.length > 0 && query !== "" && (
+            <ResultsCont>
+              {results.map((result) => {
+                const todo = result.todo;
+                if (query === "")
+                  return <Result key={result.id}>{todo}</Result>;
+                else {
+                  // bold the matching text
+                  const qLen = query.length;
+                  const firstPos = todo.search(new RegExp(query, "i"));
+                  const pre = todo.substring(0, firstPos);
+                  const match = todo.substring(firstPos, firstPos + qLen);
+                  const post = todo.substring(firstPos + qLen, todo.length);
+                  return (
+                    <Result key={result.id}>
+                      <span style={{ whiteSpace: "pre-wrap" }}>{pre}</span>
+                      <b style={{ whiteSpace: "pre-wrap" }}>{match}</b>
+                      <span style={{ whiteSpace: "pre-wrap" }}>{post}</span>
+                    </Result>
+                  );
+                }
+              })}
+            </ResultsCont>
+          )}
+        </SearchWrapper>
       </DemoCont>
       <Codeblock code={code} lang="JS" />
     </>
