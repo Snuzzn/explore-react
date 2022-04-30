@@ -87,8 +87,8 @@ const ManagingArrayState = () => {
       </DemoCont>
       <InfoCard>
         State is immutable; it shouldn't be modified directly. When updating an
-        array, first make a copy, then modify it. Finally, set the state with
-        this copy.
+        array, first make a shallow copy with the spread operator, then modify
+        it. Finally, set the state with this copy.
       </InfoCard>
       <Codeblock code={code} lang="JS" />
     </>
