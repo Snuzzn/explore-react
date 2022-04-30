@@ -26,7 +26,7 @@ const linkData = [
   {
     title: "Common features",
     features: [
-      "Fetch with Skeleton",
+      "Fetch with Loading State",
       "useInput",
       "useMemo",
       "Recursive Menu",

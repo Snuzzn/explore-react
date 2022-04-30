@@ -69,11 +69,11 @@ function App() {
                 }
               />
               <Route
-                path="/fetch-with-skeleton"
+                path="/fetch-with-loading-state"
                 element={
                   <PageLayout
                     children={<LoadingSkeleton />}
-                    title="Fetch with Skeleton"
+                    title="Fetch with Loading State"
                   />
                 }
               />
