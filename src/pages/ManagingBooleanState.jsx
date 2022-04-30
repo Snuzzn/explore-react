@@ -19,6 +19,11 @@ const ManagingBooleanState = () => {
 
   const handleDrag = (event, info) => {
     console.log(info.point.y);
+    if (info.point.y < 635) {
+      dragControls.componentControls.forEach((entry) => {
+        entry.stop(event, info);
+      });
+    }
     if (info.point.y >= 830) {
       if (!isLampOn) playOn();
       else playOff();
@@ -90,7 +95,7 @@ const UnstyledBtn = styled(motion.button)`
 
 const Chain = styled.div`
   top: 0;
-  height: 200px;
+  height: 180px;
   width: 5px;
   background-color: #323944;
   position: absolute;
