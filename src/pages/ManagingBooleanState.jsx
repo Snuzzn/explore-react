@@ -10,6 +10,9 @@ import switchImg from "../images/switch.svg";
 import useUiSound from "../hooks/useUiSound";
 import switchOnSfx from "../sounds/switchOn.ogg";
 import switchOffSfx from "../sounds/switchOff.ogg";
+import { Hint, InlineCode } from "../components/styles/Styles";
+import InfoCard from "../components/InfoCard";
+import Codeblock from "../components/Codeblock";
 
 const ManagingBooleanState = () => {
   const [isLampOn, setIsLampOn] = React.useState(false);
@@ -18,15 +21,15 @@ const ManagingBooleanState = () => {
   const { play: playOff } = useUiSound(switchOffSfx);
 
   const handleDrag = (event, info) => {
-    console.log(info.point.y);
     if (info.point.y < 635) {
       dragControls.componentControls.forEach((entry) => {
         entry.stop(event, info);
       });
     }
-    if (info.point.y >= 830) {
+    if (info.point.y >= 800) {
       if (!isLampOn) playOn();
       else playOff();
+      // toggle light
       setIsLampOn(!isLampOn);
       dragControls.componentControls.forEach((entry) => {
         entry.stop(event, info);
@@ -37,27 +40,40 @@ const ManagingBooleanState = () => {
   const dragControls = useDragControls();
 
   return (
-    <DemoCont>
-      <LampSwitchWrapper>
-        <div style={{ position: "relative" }}>
-          <Lamp isLampOn={isLampOn} />
-          <GlowingLamp isLampOn={isLampOn} />
-        </div>
-        <ChainWrapper style={{ height: "100px", width: "100px" }}>
-          <Chain />
-        </ChainWrapper>
-        <UnstyledBtn>
-          <SwitchChain
-            src={switchImg}
-            drag="y"
-            dragConstraints={{ left: 0, top: 0, right: 0, bottom: 0 }}
-            onDrag={handleDrag}
-            dragControls={dragControls}
-            dragElastic={0.2}
-          />
-        </UnstyledBtn>
-      </LampSwitchWrapper>
-    </DemoCont>
+    <>
+      <DemoCont>
+        <LampSwitchWrapper>
+          <div style={{ position: "relative" }}>
+            <Lamp isLampOn={isLampOn} />
+            <GlowingLamp isLampOn={isLampOn} />
+            <Hint style={{ bottom: "-180px", left: "-115px" }}>
+              Drag me down!
+            </Hint>
+          </div>
+          <ChainWrapper style={{ height: "100px", width: "100px" }}>
+            <Chain />
+          </ChainWrapper>
+          <UnstyledBtn>
+            <Switch
+              src={switchImg}
+              drag="y"
+              dragConstraints={{ left: 0, top: 0, right: 0, bottom: 0 }}
+              onDrag={handleDrag}
+              dragControls={dragControls}
+              dragElastic={0.2}
+            />
+          </UnstyledBtn>
+        </LampSwitchWrapper>
+      </DemoCont>
+      <InfoCard>
+        State is immutable; it shouldn't be modified directly. When updating a
+        boolean, we can use the setter function to set a
+        <InlineCode>True</InlineCode> or <InlineCode>False</InlineCode> value.
+        Alternatively, we can use the <InlineCode>!</InlineCode> (not) operator
+        to toggle between them.
+      </InfoCard>
+      <Codeblock code={code} lang="JS" />
+    </>
   );
 };
 
@@ -82,7 +98,7 @@ const GlowingLamp = styled(Lamp)`
   left: 0;
 `;
 
-const SwitchChain = styled(motion.img)`
+const Switch = styled(motion.img)`
   height: 100px;
   touch-action: none;
 `;
@@ -115,3 +131,21 @@ const ChainWrapper = styled.div`
   justify-content: center;
   position: relative;
 `;
+
+const code = `
+const ManagingBooleanState = () => {
+  const [isLampOn, setIsLampOn] = React.useState(false);
+
+  const handleDrag = () => {
+    // toggle light
+    setIsLampOn(!isLampOn);
+  };
+
+  return (
+    <LampDemoWrapper>
+      <Lamp isLampOn={isLampOn}/>
+      <Chain />
+      <Switch src={switchImg} onDrag={handleDrag} />
+    </LampDemoWrapper>
+  );
+};`;

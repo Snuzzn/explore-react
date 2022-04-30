@@ -147,3 +147,9 @@ export const Star = styled(HiStar)`
   height: 3rem;
   filter: drop-shadow(0px 0px 4px gold);
 `;
+
+export const Hint = styled.div`
+  font-family: Indie Flower;
+  font-size: 2rem;
+  position: absolute;
+`;
