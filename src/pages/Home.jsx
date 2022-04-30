@@ -15,6 +15,7 @@ const linkData = [
       "useState",
       "useEffect",
       "List Rendering",
+      "Managing Boolean State",
       "Managing Array State",
       "Managing Object State",
       "Passing State",

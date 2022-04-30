@@ -26,6 +26,7 @@ import CountdownTimer from "./pages/PomdoroTimer";
 import UseMemoDemo from "./pages/UseMemoDemo/useMemoDemo";
 import ManagingArrayState from "./pages/ManagingArrayState";
 import ManagingObjectState from "./pages/ManagingObjectState";
+import ManagingBooleanState from "./pages/ManagingBooleanState";
 
 function App() {
   const location = useLocation();
@@ -187,6 +188,15 @@ function App() {
                   <PageLayout
                     children={<ManagingObjectState />}
                     title="Managing Object State"
+                  />
+                }
+              />
+              <Route
+                path="/managing-boolean-state"
+                element={
+                  <PageLayout
+                    children={<ManagingBooleanState />}
+                    title="Managing Boolean State"
                   />
                 }
               />
