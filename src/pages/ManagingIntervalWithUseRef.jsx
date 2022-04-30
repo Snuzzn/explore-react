@@ -5,11 +5,14 @@ import styled from "styled-components";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { motion, AnimatePresence } from "framer-motion/dist/framer-motion";
 import { fadeInOutAnimation } from "../components/styles/Styles";
+import confirmationSfx from "../sounds/confirmation_004.ogg";
+import useUiSound from "../hooks/useUiSound";
 
 const ManagingIntervalWithUseRef = () => {
   const [progress, setProgress] = React.useState(13);
-
   const [isMouseDown, setIsMouseDown] = useState(false);
+
+  const { play } = useUiSound(confirmationSfx);
 
   const timerRef = useRef();
 
@@ -29,7 +32,12 @@ const ManagingIntervalWithUseRef = () => {
         });
       }, 100);
     } else {
-      setProgress((progress) => (progress >= 100 ? 100 : 0));
+      setProgress((progress) => {
+        if (progress >= 100) {
+          play();
+          return 100;
+        } else return 0;
+      });
       clearInterval(timerRef.current);
     }
 

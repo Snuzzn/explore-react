@@ -11,7 +11,7 @@ const AvgRatingWithMemo = () => {
   const average = useMemo(
     () =>
       reviews.reduce((acc, review) => {
-        for (let i = 0; i < 400000000; i += 1) {
+        for (let i = 0; i < 40000000; i += 1) {
           // artifically making this calculation take longer
         }
         return acc + review.rating;
