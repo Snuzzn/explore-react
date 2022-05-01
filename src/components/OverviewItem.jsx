@@ -14,13 +14,10 @@ export function OverviewItem({ category, activeCategory, setActiveCategory }) {
       duration={700}
       key={category.title}
       onSetActive={(e) => setActiveCategory(e)}
-      onSetInactive={(e) => {
-        if (e === "fundamentals") setActiveCategory("");
-      }}
     >
-      {activeCategory === toKebabCase(category.title) && (
+      {/* {activeCategory === toKebabCase(category.title) && (
         <TocVertRule layout layoutId="vertrule" />
-      )}
+      )} */}
       <div>{category.title}</div>
     </TocItem>
   );
@@ -32,7 +29,7 @@ const TocItem = styled(Link)`
   font-size: 1.2rem;
   color: #82878f;
 
-  padding-left: 18px;
+  /* padding-left: 18px; */
   gap: 20px;
   &.active {
     border-radius: 5px;
