@@ -24,7 +24,7 @@ const linkData = [
     ],
   },
   {
-    title: "Intermediate Features",
+    title: "Intermediate",
     features: [
       "Fetch with Loading State",
       "useInput",
@@ -44,6 +44,7 @@ const linkData = [
       "Pokemon Redux",
       "Music Player",
       "Countdown Timer",
+      "Crowdfunder",
     ],
   },
 ];

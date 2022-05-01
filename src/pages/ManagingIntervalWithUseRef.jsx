@@ -13,7 +13,7 @@ const ManagingIntervalWithUseRef = () => {
   const [progress, setProgress] = React.useState(0);
   const [isMouseDown, setIsMouseDown] = useState(false);
 
-  const { play } = useUiSound(confirmationSfx);
+  const { play } = useUiSound(confirmationSfx, { volume: 0.3 });
 
   const timerRef = useRef();
 
@@ -31,6 +31,7 @@ const ManagingIntervalWithUseRef = () => {
     } else {
       // keep the bar full if progress is at 100
       setProgress((progress) => (progress >= 100 ? 100 : 0));
+      // clear timer if progress didn't hit 100
       clearInterval(timerRef.current);
     }
 
@@ -146,6 +147,7 @@ const ManagingIntervalWithUseRef = () => {
     } else {
       // keep the bar full if progress is at 100
       setProgress((progress) => (progress >= 100 ? 100 : 0));
+      // clear timer if progress didn't hit 100
       clearInterval(timerRef.current);
     }
 

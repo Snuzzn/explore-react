@@ -56,7 +56,7 @@ const COLORS = {
 };
 
 // core options are provided via props
-export const Button = ({ variant, color, children }) => {
+export const Button = ({ variant, color, children, ...htmlAttr }) => {
   let styles = COLORS[color];
   if (!styles) styles = COLORS["blue"];
 
@@ -67,10 +67,15 @@ export const Button = ({ variant, color, children }) => {
   else if (variant === "ghost") Component = GhostBtn;
   else Component = BaseBtn;
 
-  return <Component style={styles}>{children}</Component>;
+  return (
+    <Component style={styles} {...htmlAttr}>
+      {children}
+    </Component>
+  );
 };
 
 const BaseBtn = styled.button`
+  width: 100%;
   background-color: var(--defaultColor);
   padding: 10px 20px;
   border-radius: 10px;

@@ -40,7 +40,9 @@ const tracks = [
 
 const MusicPlayer = () => {
   const [currTrack, setCurrTrack] = useState(0);
-  const { play, stop, sound, pause } = useUiSound(tracks[currTrack].soundSrc);
+  const { play, stop, sound, pause } = useUiSound(tracks[currTrack].soundSrc, {
+    volume: 0.3,
+  });
   const [isPlaying, setIsPlaying] = useState(false);
   const [pos, setPos] = useState(0);
 

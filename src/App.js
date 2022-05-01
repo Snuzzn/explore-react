@@ -29,6 +29,7 @@ import ManagingObjectState from "./pages/ManagingObjectState";
 import ManagingBooleanState from "./pages/ManagingBooleanState";
 import ManagingIntervalWithUseRef from "./pages/ManagingIntervalWithUseRef";
 import StorePreviousStateUseRef from "./pages/StorePreviousStateUseRef";
+import Crowdfunder from "./pages/Crowdfunder";
 
 function App() {
   const location = useLocation();
@@ -218,6 +219,12 @@ function App() {
                     children={<StorePreviousStateUseRef />}
                     title="Storing previous state with useRef"
                   />
+                }
+              />
+              <Route
+                path="/crowdfunder"
+                element={
+                  <PageLayout children={<Crowdfunder />} title="Crowdfunder" />
                 }
               />
             </Routes>

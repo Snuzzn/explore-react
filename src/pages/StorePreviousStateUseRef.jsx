@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import DemoCont from "../components/DemoCont";
 import pokeBall from "../images/pokeball.png";
@@ -11,23 +11,26 @@ import Codeblock from "../components/Codeblock";
 
 const StorePreviousStateUseRef = () => {
   const [currPokemon, setCurrPokemon] = useState(null);
-  const [rand, setRand] = useState(151);
   const pokeHistory = useRef([]);
   const { play } = useUiSound(pokeballSfx, { volume: 0.5 });
 
-  useEffect(() => {
-    const fetchRandomPokemon = async () => {
-      const resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${rand}`);
+  const fetchPokemon = useCallback(
+    async (id) => {
+      const num = id || Math.floor(Math.random() * 300) + 1;
+      const resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${num}`);
       const data = await resp.json();
       setCurrPokemon({
         img: data.sprites.other["official-artwork"].front_default,
         name: data.name,
       });
       play();
-    };
+    },
+    [play]
+  );
 
-    fetchRandomPokemon();
-  }, [rand]);
+  useEffect(() => {
+    fetchPokemon(7);
+  }, []);
 
   useEffect(() => {
     // add the current pokemon to array stored in the ref
@@ -59,9 +62,7 @@ const StorePreviousStateUseRef = () => {
             </AnimatePresence>
           )}
         </MainPokemon>
-        <UnstyledBtn
-          onClick={() => setRand(Math.floor(Math.random() * 300) + 1)}
-        >
+        <UnstyledBtn onClick={() => fetchPokemon()}>
           <img src={pokeBall} width="60px" />
         </UnstyledBtn>
         <History>
@@ -127,21 +128,24 @@ const MiniPokemon = styled(MainPokemon)`
 const code = `
 const StorePreviousStateUseRef = () => {
   const [currPokemon, setCurrPokemon] = useState(null);
-  const [rand, setRand] = useState(151);
   const pokeHistory = useRef([]);
 
-  useEffect(() => {
-    const fetchRandomPokemon = async () => {
-      const resp = await fetch(\`https://pokeapi.co/api/v2/pokemon/\${rand}\`);
+  const fetchPokemon = useCallback(
+    async (id) => {
+      const num = id || Math.floor(Math.random() * 300) + 1;
+      const resp = await fetch(\`https://pokeapi.co/api/v2/pokemon/\${num}\`);
       const data = await resp.json();
       setCurrPokemon({
         img: data.sprites.other["official-artwork"].front_default,
         name: data.name,
       });
-    };
+    },
+    []
+  );
 
-    fetchRandomPokemon();
-  }, [rand]);
+  useEffect(() => {
+    fetchPokemon(151);
+  }, []);
 
   useEffect(() => {
     // add the current pokemon to array stored in the ref
@@ -167,7 +171,7 @@ const StorePreviousStateUseRef = () => {
           </>
         )}
       </MainPokemon>
-      <PokeballBtn onClick={() => setRand(Math.floor(Math.random() * 480) + 1)}>
+      <PokeballBtn onClick={() => fetchPokemon()}>
         <img src={pokeBall} />
       </PokeballBtn>
       <History>

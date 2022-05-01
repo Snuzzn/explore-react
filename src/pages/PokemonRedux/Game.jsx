@@ -12,7 +12,7 @@ import battleMusicSfx from "../../sounds/battleMusic.mp3";
 function Game() {
   const dispatch = useDispatch();
 
-  const { play, stop, sound } = useUiSound(battleMusicSfx);
+  const { play, stop, sound } = useUiSound(battleMusicSfx, { volume: 0.3 });
 
   useEffect(() => {
     if (sound) sound._loop = true;

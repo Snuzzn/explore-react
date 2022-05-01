@@ -15,9 +15,11 @@ function Counter({ updateLogs }) {
 
   const { play: playIncrease } = useUiSound(increaseSfx, {
     rate: increaseRate,
+    volume: 0.3,
   });
   const { play: playDecrease } = useUiSound(decreaseSfx, {
     rate: decreaseRate,
+    volume: 0.3,
   });
 
   const decrementCount = () => {

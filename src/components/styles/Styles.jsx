@@ -44,6 +44,7 @@ export const IconButton = styled.button`
 `;
 
 export const Input = styled.input`
+  width: 100%;
   padding: 15px;
   background-color: #363540;
   border: none;
