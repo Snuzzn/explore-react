@@ -4,7 +4,7 @@ import DemoCont from "../components/DemoCont";
 import pokeBall from "../images/pokeball.png";
 import { motion, AnimatePresence } from "framer-motion/dist/framer-motion";
 import { fadeInOutAnimation } from "../components/styles/Styles";
-import pokeballSfx from "../sounds/pokeballOpening.mp3";
+import pokeballSfx from "../sounds/intuition.mp3";
 import useUiSound from "../hooks/useUiSound";
 import InfoCard from "../components/InfoCard";
 import Codeblock from "../components/Codeblock";
@@ -13,7 +13,7 @@ const StorePreviousStateUseRef = () => {
   const [currPokemon, setCurrPokemon] = useState(null);
   const [rand, setRand] = useState(151);
   const pokeHistory = useRef([]);
-  const { play } = useUiSound(pokeballSfx, { volume: 0.03 });
+  const { play } = useUiSound(pokeballSfx, { volume: 0.5 });
 
   useEffect(() => {
     const fetchRandomPokemon = async () => {
