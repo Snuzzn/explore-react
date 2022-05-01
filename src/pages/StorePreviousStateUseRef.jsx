@@ -6,71 +6,82 @@ import { motion, AnimatePresence } from "framer-motion/dist/framer-motion";
 import { fadeInOutAnimation } from "../components/styles/Styles";
 import pokeballSfx from "../sounds/pokeballOpening.mp3";
 import useUiSound from "../hooks/useUiSound";
+import InfoCard from "../components/InfoCard";
+import Codeblock from "../components/Codeblock";
 
 const StorePreviousStateUseRef = () => {
-  const [currPokemon, setCurrPokemon] = useState({ img: null, name: "" });
+  const [currPokemon, setCurrPokemon] = useState(null);
+  const [rand, setRand] = useState(151);
   const pokeHistory = useRef([]);
   const { play } = useUiSound(pokeballSfx, { volume: 0.03 });
 
-  const fetchRandomPokemon = async () => {
-    const rand = Math.floor(Math.random() * 480) + 1;
-    const resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${rand}`);
-    const data = await resp.json();
-    console.log(data);
-    setCurrPokemon({
-      img: data.sprites.other["official-artwork"].front_default,
-      name: data.name,
-    });
-    play();
-  };
-
   useEffect(() => {
+    const fetchRandomPokemon = async () => {
+      const resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${rand}`);
+      const data = await resp.json();
+      setCurrPokemon({
+        img: data.sprites.other["official-artwork"].front_default,
+        name: data.name,
+      });
+      play();
+    };
+
     fetchRandomPokemon();
-  }, []);
+  }, [rand]);
 
   useEffect(() => {
+    // add the current pokemon to array stored in the ref
     pokeHistory.current.unshift(currPokemon);
+    // only allow 3 items in this 'history' array
     if (pokeHistory.current.length > 3) {
       pokeHistory.current.pop();
     }
-    console.log(pokeHistory.current);
+    // note that the ref object will include the current pokemon
+    // but since it doesn't cause rerender, it won't show up
   }, [currPokemon]);
 
   return (
     <>
       <DemoCont>
         <MainPokemon>
-          <AnimatePresence exitBeforeEnter>
-            <motion.img
-              key={currPokemon.img}
-              src={currPokemon.img}
-              width="180px"
-              {...fadeInOutAnimation}
-            />
-            <PokemonName {...fadeInOutAnimation} key={currPokemon.name}>
-              {currPokemon.name.charAt(0).toUpperCase() +
-                currPokemon.name.slice(1)}
-            </PokemonName>
-          </AnimatePresence>
+          {currPokemon && (
+            <AnimatePresence exitBeforeEnter>
+              <motion.img
+                key={currPokemon.img}
+                src={currPokemon.img}
+                width="180px"
+                {...fadeInOutAnimation}
+              />
+              <PokemonName {...fadeInOutAnimation} key={currPokemon.name}>
+                {currPokemon.name.charAt(0).toUpperCase() +
+                  currPokemon.name.slice(1)}
+              </PokemonName>
+            </AnimatePresence>
+          )}
         </MainPokemon>
-        <UnstyledBtn onClick={fetchRandomPokemon}>
+        <UnstyledBtn
+          onClick={() => setRand(Math.floor(Math.random() * 300) + 1)}
+        >
           <img src={pokeBall} width="60px" />
         </UnstyledBtn>
         <History>
-          {[...Array(3).keys()].map((key) => {
-            console.log(key);
-            return (
-              <MiniPokemon>
-                <motion.img
-                  src={pokeHistory.current[key]?.img}
-                  key={pokeHistory.current[key]?.img}
-                  {...fadeInOutAnimation}
-                />
-              </MiniPokemon>
-            );
-          })}
+          {[...Array(3).keys()].map((key) => (
+            <MiniPokemon>
+              <motion.img
+                src={pokeHistory.current[key]?.img}
+                key={pokeHistory.current[key]?.img}
+                {...fadeInOutAnimation}
+              />
+            </MiniPokemon>
+          ))}
         </History>
       </DemoCont>
+      <InfoCard>
+        The useRef hook gives us a mutable ref object that lasts the full
+        lifetime of the component but never causes a rerender. In this use case,
+        we store the previous pokemon state/s without having to rerender.
+      </InfoCard>
+      <Codeblock code={code} lang="JS" />
     </>
   );
 };
@@ -109,4 +120,64 @@ const History = styled.div`
 const MiniPokemon = styled(MainPokemon)`
   width: 80px;
   height: 80px;
+  padding: 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 5px;
+`;
+
+const code = `
+const StorePreviousStateUseRef = () => {
+  const [currPokemon, setCurrPokemon] = useState(null);
+  const [rand, setRand] = useState(151);
+  const pokeHistory = useRef([]);
+
+  useEffect(() => {
+    const fetchRandomPokemon = async () => {
+      const resp = await fetch(\`https://pokeapi.co/api/v2/pokemon/\${rand}\`);
+      const data = await resp.json();
+      setCurrPokemon({
+        img: data.sprites.other["official-artwork"].front_default,
+        name: data.name,
+      });
+    };
+
+    fetchRandomPokemon();
+  }, [rand]);
+
+  useEffect(() => {
+    // add the current pokemon to array stored in the ref
+    pokeHistory.current.unshift(currPokemon);
+    // only allow 3 items in this 'history' array
+    if (pokeHistory.current.length > 3) {
+      pokeHistory.current.pop();
+    }
+    // note that the ref object will include the current pokemon
+    // but since it doesn't cause rerender, it won't show up
+  }, [currPokemon]);
+
+  return (
+    <>
+      <MainPokemon>
+        {currPokemon && (
+          <>
+            <img src={currPokemon.img} />
+            <PokemonName>
+              {currPokemon.name.charAt(0).toUpperCase() +
+                currPokemon.name.slice(1)}
+            </PokemonName>
+          </>
+        )}
+      </MainPokemon>
+      <PokeballBtn onClick={() => setRand(Math.floor(Math.random() * 480) + 1)}>
+        <img src={pokeBall} />
+      </PokeballBtn>
+      <History>
+        {[...Array(3).keys()].map((key) => (
+          <MiniPokemon>
+            <img src={pokeHistory.current[key]?.img} />
+          </MiniPokemon>
+        ))}
+      </History>
+    </>
+  );
+};
 `;
