@@ -12,9 +12,9 @@ import useUiSound from "../hooks/useUiSound";
 
 const ManagingArrayState = () => {
   const [blocks, setBlocks] = useState(["#3B82F6", "#1D4ED8", "#6366F1"]);
-  const { play: playUp } = useUiSound(increaseSfx, 1);
-  const { play: playDown } = useUiSound(decreaseSfx, 1);
-  const { play: playUpdate } = useUiSound(updateSfx, 1);
+  const { play: playUp } = useUiSound(increaseSfx);
+  const { play: playDown } = useUiSound(decreaseSfx);
+  const { play: playUpdate } = useUiSound(updateSfx);
 
   // find a colour that doesn't already exist in the array
   const getUnusedBlockColor = () => {

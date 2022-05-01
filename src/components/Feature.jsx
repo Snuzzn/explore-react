@@ -7,7 +7,7 @@ import { ThemeContext } from "../ThemeProvider";
 import useUiSound from "../hooks/useUiSound";
 
 function Feature({ title, route }) {
-  const { play } = useUiSound(bubbleClick, 1);
+  const { play } = useUiSound(bubbleClick);
 
   return (
     <Container to={`/${route}`} onClick={() => play()}>

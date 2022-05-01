@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion/dist/framer-motion";
 import { fadeInOutAnimation } from "../components/styles/Styles";
 import confirmationSfx from "../sounds/confirmation_004.ogg";
 import useUiSound from "../hooks/useUiSound";
+import InfoCard from "../components/InfoCard";
 
 const ManagingIntervalWithUseRef = () => {
   const [progress, setProgress] = React.useState(13);
@@ -18,26 +19,16 @@ const ManagingIntervalWithUseRef = () => {
 
   useEffect(() => {
     if (isMouseDown) {
-      if (progress === 100) {
-        setProgress(0);
-        return;
-      }
-
-      let acc = 0;
+      let i = 0;
       timerRef.current = setInterval(() => {
-        acc += 3;
+        i += 3;
         setProgress((progress) => {
-          if (progress + acc >= 100) return 100;
-          else return progress + acc;
+          if (progress + i >= 100) return 100;
+          else return progress + i;
         });
       }, 100);
     } else {
-      setProgress((progress) => {
-        if (progress >= 100) {
-          play();
-          return 100;
-        } else return 0;
-      });
+      setProgress((progress) => (progress >= 100 ? 100 : 0));
       clearInterval(timerRef.current);
     }
 
@@ -45,6 +36,14 @@ const ManagingIntervalWithUseRef = () => {
       clearInterval(timerRef.current);
     };
   }, [isMouseDown]);
+
+  useEffect(() => {
+    if (isMouseDown && progress === 100) setProgress(0);
+  }, [isMouseDown]);
+
+  useEffect(() => {
+    if (progress === 100) play();
+  }, [progress, play]);
 
   return (
     <>
@@ -68,6 +67,12 @@ const ManagingIntervalWithUseRef = () => {
           </ProgressText>
         </StyledProgress>
       </DemoCont>
+      <InfoCard>
+        setInterval (and setTimeout) is a side effect, so it shouldn't be tied
+        to a component's render method. Instead, it should be in a useEffect. If
+        we want to clear it with an event handler, we can access the interval
+        with useRef.
+      </InfoCard>
     </>
   );
 };

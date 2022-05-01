@@ -9,7 +9,7 @@ import useUiSound from "../../hooks/useUiSound";
 function PlayerDialog() {
   const dispatch = useDispatch();
   const { game } = useSelector((state) => state);
-  const { play } = useUiSound(scratchSfx, 1);
+  const { play } = useUiSound(scratchSfx);
 
   return (
     <>

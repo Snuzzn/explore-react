@@ -40,10 +40,7 @@ const tracks = [
 
 const MusicPlayer = () => {
   const [currTrack, setCurrTrack] = useState(0);
-  const { play, stop, sound, pause } = useUiSound(
-    tracks[currTrack].soundSrc,
-    1
-  );
+  const { play, stop, sound, pause } = useUiSound(tracks[currTrack].soundSrc);
   const [isPlaying, setIsPlaying] = useState(false);
   const [pos, setPos] = useState(0);
 
@@ -301,10 +298,8 @@ const tracks = [
 
 const MusicPlayer = () => {
   const [currTrack, setCurrTrack] = useState(0);
-  const { play, stop, sound, pause } = useUiSound(
-    tracks[currTrack].soundSrc,
-    1
-  );
+  const { play, stop, sound, pause } = useSound(
+    tracks[currTrack].soundSrc);
   const [isPlaying, setIsPlaying] = useState(false);
   const [pos, setPos] = useState(0);
 

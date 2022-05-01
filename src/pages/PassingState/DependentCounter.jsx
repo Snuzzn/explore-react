@@ -9,7 +9,7 @@ import useUiSound from "../../hooks/useUiSound";
 import plup from "../../sounds/plup.mp3";
 
 function DependentCounter({ count, setCount }) {
-  const { play } = useUiSound(plup, 1);
+  const { play } = useUiSound(plup);
 
   const decrementCount = () => {
     if (count - 1 >= 0) {

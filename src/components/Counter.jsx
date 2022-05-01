@@ -13,8 +13,12 @@ function Counter({ updateLogs }) {
   const [increaseRate, setIncreaseRate] = React.useState(0.75);
   const [decreaseRate, setDecreaseRate] = React.useState(0.75);
 
-  const { play: playIncrease } = useUiSound(increaseSfx, increaseRate);
-  const { play: playDecrease } = useUiSound(decreaseSfx, decreaseRate);
+  const { play: playIncrease } = useUiSound(increaseSfx, {
+    rate: increaseRate,
+  });
+  const { play: playDecrease } = useUiSound(decreaseSfx, {
+    rate: decreaseRate,
+  });
 
   const decrementCount = () => {
     if (count > 0) {

@@ -20,9 +20,9 @@ const CountdownTimer = () => {
     .toISOString()
     .substring(hours > 0 ? 11 : 14, 19);
 
-  const { play: playStart } = useUiSound(startSfx, 1);
-  const { play: playPause } = useUiSound(pauseSfx, 1);
-  const { play: playEnd } = useUiSound(endSfx, 1);
+  const { play: playStart } = useUiSound(startSfx);
+  const { play: playPause } = useUiSound(pauseSfx);
+  const { play: playEnd } = useUiSound(endSfx);
 
   const timer = useRef();
   useEffect(() => {

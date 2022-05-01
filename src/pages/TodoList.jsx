@@ -18,7 +18,7 @@ function TodoList() {
   ]);
 
   const [newTodo, setNewTodo] = React.useState("");
-  const { play } = useUiSound(bubbleSfx, 1);
+  const { play } = useUiSound(bubbleSfx);
 
   const addNewTodo = (e) => {
     e.preventDefault();

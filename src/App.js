@@ -28,6 +28,7 @@ import ManagingArrayState from "./pages/ManagingArrayState";
 import ManagingObjectState from "./pages/ManagingObjectState";
 import ManagingBooleanState from "./pages/ManagingBooleanState";
 import ManagingIntervalWithUseRef from "./pages/ManagingIntervalWithUseRef";
+import StorePreviousStateUseRef from "./pages/StorePreviousStateUseRef";
 
 function App() {
   const location = useLocation();
@@ -207,6 +208,15 @@ function App() {
                   <PageLayout
                     children={<ManagingIntervalWithUseRef />}
                     title="Managing Interval with useRef"
+                  />
+                }
+              />
+              <Route
+                path="/storing-previous-state-with-use-ref"
+                element={
+                  <PageLayout
+                    children={<StorePreviousStateUseRef />}
+                    title="Storing previous state with useRef"
                   />
                 }
               />

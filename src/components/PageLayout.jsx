@@ -10,7 +10,7 @@ import MuteButton from "./MuteButton";
 import MusicPlayer from "../pages/MusicPlayer";
 
 function PageLayout({ children, title }) {
-  const { play } = useUiSound(bubbleClick, 1);
+  const { play } = useUiSound(bubbleClick);
 
   return (
     <motion.div

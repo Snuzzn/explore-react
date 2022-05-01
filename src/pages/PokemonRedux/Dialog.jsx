@@ -12,7 +12,7 @@ function Dialog() {
   const { game } = useSelector((state) => state);
   const { playerMove, enemyMove, player } = game;
 
-  const { play } = useUiSound(scratchSfx, 1);
+  const { play } = useUiSound(scratchSfx);
 
   const renderDialog = () => {
     switch (game.playerTurn) {
