@@ -4,13 +4,13 @@ import * as ProgressPrimitive from "@radix-ui/react-progress";
 import styled from "styled-components";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { motion, AnimatePresence } from "framer-motion/dist/framer-motion";
-import { fadeInOutAnimation } from "../components/styles/Styles";
 import confirmationSfx from "../sounds/confirmation_004.ogg";
 import useUiSound from "../hooks/useUiSound";
 import InfoCard from "../components/InfoCard";
+import Codeblock from "../components/Codeblock";
 
 const ManagingIntervalWithUseRef = () => {
-  const [progress, setProgress] = React.useState(13);
+  const [progress, setProgress] = React.useState(0);
   const [isMouseDown, setIsMouseDown] = useState(false);
 
   const { play } = useUiSound(confirmationSfx);
@@ -19,6 +19,7 @@ const ManagingIntervalWithUseRef = () => {
 
   useEffect(() => {
     if (isMouseDown) {
+      // cumulatively increase progress every 100ms
       let i = 0;
       timerRef.current = setInterval(() => {
         i += 3;
@@ -28,15 +29,18 @@ const ManagingIntervalWithUseRef = () => {
         });
       }, 100);
     } else {
+      // keep the bar full if progress is at 100
       setProgress((progress) => (progress >= 100 ? 100 : 0));
       clearInterval(timerRef.current);
     }
 
+    // clean-up timer on unmount
     return () => {
       clearInterval(timerRef.current);
     };
   }, [isMouseDown]);
 
+  // reset the button
   useEffect(() => {
     if (isMouseDown && progress === 100) setProgress(0);
   }, [isMouseDown]);
@@ -49,7 +53,6 @@ const ManagingIntervalWithUseRef = () => {
     <>
       <DemoCont>
         <StyledProgress
-          value={66}
           onMouseDown={() => setIsMouseDown(true)}
           onMouseUp={() => setIsMouseDown(false)}
         >
@@ -73,6 +76,7 @@ const ManagingIntervalWithUseRef = () => {
         we want to clear it with an event handler, we can access the interval
         with useRef.
       </InfoCard>
+      <Codeblock lang="JS" code={code} />
     </>
   );
 };
@@ -108,8 +112,6 @@ const ProgressText = styled.div`
   justify-content: center;
 `;
 
-const IconWrapper = styled(motion.div)``;
-
 const animation = {
   initial: {
     opacity: 0,
@@ -122,3 +124,59 @@ const animation = {
     scale: 1,
   },
 };
+
+const code = `
+const ManagingIntervalWithUseRef = () => {
+  const [progress, setProgress] = React.useState(0);
+  const [isMouseDown, setIsMouseDown] = useState(false);
+
+  const timerRef = useRef();
+
+  useEffect(() => {
+    if (isMouseDown) {
+      // cumulatively increase progress every 100ms
+      let i = 0;
+      timerRef.current = setInterval(() => {
+        i += 3;
+        setProgress((progress) => {
+          if (progress + i >= 100) return 100;
+          else return progress + i;
+        });
+      }, 100);
+    } else {
+      // keep the bar full if progress is at 100
+      setProgress((progress) => (progress >= 100 ? 100 : 0));
+      clearInterval(timerRef.current);
+    }
+
+    // clean-up timer on unmount
+    return () => {
+      clearInterval(timerRef.current);
+    };
+  }, [isMouseDown]);
+
+  // reset the button
+  useEffect(() => {
+    if (isMouseDown && progress === 100) setProgress(0);
+  }, [isMouseDown]);
+
+  return (
+    <>
+      <Progress
+        onMouseDown={() => setIsMouseDown(true)}
+        onMouseUp={() => setIsMouseDown(false)}
+      >
+        <Indicator
+          style={{ transform: \`translateX(-\${100 - progress}%)\` }}
+        />
+        <ProgressText>
+          {progress === 100 ? (
+            <CheckIcon/>
+          ) : (
+            <>Hold to Confirm</>
+          )}
+        </ProgressText>
+      </Progress>
+    </>
+  );
+}; `;
