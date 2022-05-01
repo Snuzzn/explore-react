@@ -17,12 +17,14 @@ const ManagingBooleanState = () => {
   const { play: playOff } = useUiSound(switchOffSfx);
 
   const handleDrag = (event, info) => {
-    if (info.point.y < 635) {
+    if (info.point.y < 580) {
       dragControls.componentControls.forEach((entry) => {
         entry.stop(event, info);
       });
     }
-    if (info.point.y >= 800) {
+
+    console.log(info.point.y);
+    if (info.point.y >= 730) {
       if (!isLampOn) playOn();
       else playOff();
       // toggle light
@@ -42,7 +44,7 @@ const ManagingBooleanState = () => {
           <div style={{ position: "relative" }}>
             <Lamp isLampOn={isLampOn} />
             <GlowingLamp isLampOn={isLampOn} />
-            <Hint style={{ bottom: "-180px", left: "-115px" }}>
+            <Hint style={{ bottom: "-180px", left: "-135px" }}>
               Drag me down!
             </Hint>
           </div>
@@ -76,8 +78,8 @@ const ManagingBooleanState = () => {
 export default ManagingBooleanState;
 
 const Lamp = styled.div`
-  height: 300px;
-  width: 300px;
+  height: 260px;
+  width: 260px;
   transition: all 300ms ease-out;
   background-color: ${(p) => (p.isLampOn ? "transparent" : "#363540")};
   border-radius: 50%;
