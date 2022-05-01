@@ -24,7 +24,7 @@ const linkData = [
     ],
   },
   {
-    title: "Common features",
+    title: "Intermediate Features",
     features: [
       "Fetch with Loading State",
       "useInput",
