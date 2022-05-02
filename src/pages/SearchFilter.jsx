@@ -67,13 +67,14 @@ function SearchFilter() {
           )}
         </SearchWrapper>
       </DemoCont>
-      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
+      <Codeblock
+        codeFiles={[{ code: code, name: "SearchFilter", lang: "jsx" }]}
+      />
     </>
   );
 }
 
-const code = `
-function SearchFilter() {
+const code = `function SearchFilter() {
   const [results, setResults] = React.useState([]);
   const [origResults, setOrigResults] = React.useState([]);
   const [query, setQuery] = React.useState("");

@@ -11,7 +11,7 @@ const BackProject = ({ handlePay }) => {
     <>
       <Button
         onClick={() => {
-          if (isBacking) handlePay(null, backingAmount.input, setIsBacking);
+          if (isBacking) handlePay(null, backingAmount, setIsBacking);
           else setIsBacking(true);
         }}
       >
@@ -20,7 +20,9 @@ const BackProject = ({ handlePay }) => {
       {isBacking && (
         <form
           style={{ marginTop: "20px" }}
-          onSubmit={(e) => handlePay(e, backingAmount.input, setIsBacking)}
+          onSubmit={(e) => {
+            handlePay(e, backingAmount, setIsBacking);
+          }}
         >
           <Input
             {...backingAmount}

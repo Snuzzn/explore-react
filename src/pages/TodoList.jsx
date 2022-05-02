@@ -85,7 +85,7 @@ function TodoList() {
         </TodoCont>
       </DemoCont>
 
-      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
+      <Codeblock codeFiles={[{ code: code, name: "TodoList", lang: "jsx" }]} />
     </>
   );
 }
@@ -139,8 +139,7 @@ const AddTodoIcon = styled(BsPlusLg)`
   }
 `;
 
-const code = `
-function TodoList() {
+const code = `function TodoList() {
   const [todos, setTodos] = React.useState([
     { task: "Check off this task", isCompleted: false },
     { task: "Add new task", isCompleted: false },

@@ -77,7 +77,9 @@ const ManagingIntervalWithUseRef = () => {
         we want to clear it with an event handler, we can access the interval
         with useRef.
       </InfoCard>
-      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
+      <Codeblock
+        codeFiles={[{ code: code, name: "HoldToConfirm", lang: "jsx" }]}
+      />
     </>
   );
 };
@@ -126,8 +128,7 @@ const animation = {
   },
 };
 
-const code = `
-const ManagingIntervalWithUseRef = () => {
+const code = `const ManagingIntervalWithUseRef = () => {
   const [progress, setProgress] = React.useState(0);
   const [isMouseDown, setIsMouseDown] = useState(false);
 

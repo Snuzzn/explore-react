@@ -34,7 +34,9 @@ function PassingState() {
         parent to begin with, then pass the state to the children so they can
         both access it.
       </InfoCard>
-      <Codeblock codeFiles={[{ code: codeblock, name: "useEffectDemo" }]} />
+      <Codeblock
+        codeFiles={[{ code: codeblock, name: "PassingState", lang: "jsx" }]}
+      />
     </>
   );
 }

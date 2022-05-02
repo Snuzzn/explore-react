@@ -149,7 +149,9 @@ const CountdownTimer = () => {
           </PlayBtn>
         </CenterCont>
       </DemoCont>
-      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
+      <Codeblock
+        codeFiles={[{ code: code, name: "CountdownTimer", lang: "jsx" }]}
+      />
     </>
   );
 };
@@ -220,8 +222,7 @@ const CenterCont = styled.div`
   gap: 10px;
 `;
 
-const code = `
-const Timer = () => {
+const code = `const Timer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [totalTime, setTotalTime] = useState(5);

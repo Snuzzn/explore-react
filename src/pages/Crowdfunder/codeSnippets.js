@@ -1,22 +1,23 @@
 export const codeSnippets = [
   {
     code: `const Crowdfunder = () => {
-      return (
-        <>
-          <Post
-            title="Genie's Lamp"
-            content="An oil lamp that holds a genie. Once 
-              released, you will be granted 3 wishes!"
-            raisedSoFar={400}
-            target={1000}
-            img={LampImg}
-          />
-        </>
-      );
-    };
+  return (
+    <>
+      <Post
+        title="Genie's Lamp"
+        content="An oil lamp that holds a genie. Once 
+          released, you will be granted 3 wishes!"
+        raisedSoFar={400}
+        target={1000}
+        img={LampImg}
+      />
+    </>
+  );
+};
 
 export default Crowdfunder;`,
     name: "Crowdfunder",
+    lang: "jsx",
   },
   {
     code: `const Post = ({ title, content, raisedSoFar, target, img }) => {
@@ -50,6 +51,7 @@ export default Crowdfunder;`,
 export default Post;
 `,
     name: "Post",
+    lang: "jsx",
   },
   {
     code: `const ProgressStats = ({ currRaised, target }) => {
@@ -78,6 +80,7 @@ export default Post;
 export default ProgressStats;
 `,
     name: "ProgressStats",
+    lang: "jsx",
   },
   {
     code: `const BackProject = ({ handlePay }) => {
@@ -114,5 +117,6 @@ export default ProgressStats;
 export default BackProject;
 `,
     name: "BackProject",
+    lang: "jsx",
   },
 ];

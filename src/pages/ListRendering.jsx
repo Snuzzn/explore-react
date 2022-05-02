@@ -53,7 +53,9 @@ const ListRendering = () => {
         Make sure to include a unique key for each item, to give it a stable
         identity. This is especially important if the array is updated.
       </InfoCard>
-      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
+      <Codeblock
+        codeFiles={[{ code: code, name: "ListRendering", lang: "jsx" }]}
+      />
     </>
   );
 };
@@ -90,8 +92,7 @@ const PostTitle = styled.h3`
   line-height: 1;
 `;
 
-const code = `
-const popularPosts = [
+const code = `const popularPosts = [
   {
     title: "The untold history of podiums",
     img: "https://images.pexels.com/photos/7897470/pexels-photo-7897470.jpeg",

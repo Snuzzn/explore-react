@@ -84,7 +84,9 @@ function SearchDebounce() {
         character entered. Instead, we make the call after the user finishes
         typing (currently set to 200ms).
       </InfoCard>
-      <Codeblock codeFiles={[{ code: codeblock, name: "useEffectDemo" }]} />
+      <Codeblock
+        codeFiles={[{ code: codeblock, name: "SearchDebounce", lang: "jsx" }]}
+      />
     </>
   );
 }

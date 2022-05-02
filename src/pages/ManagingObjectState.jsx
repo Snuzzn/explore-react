@@ -110,7 +110,9 @@ const ManagingObjectState = () => {
         object, make a shallow copy with the spread operator, and add the new
         key-value pair. Finally, set the state with this copy.
       </InfoCard>
-      <Codeblock codeFiles={[{ code: code, name: "Managing Object State" }]} />
+      <Codeblock
+        codeFiles={[{ code: code, name: "CharacterCustomiser", lang: "jsx" }]}
+      />
     </>
   );
 };
@@ -185,8 +187,7 @@ const animation = {
   exit: { opacity: 0 },
 };
 
-const code = `
-const hairs = [BlHair1, BlHair2, BlHair3, BrHair1, BrHair2, BrHair3];
+const code = `const hairs = [BlHair1, BlHair2, BlHair3, BrHair1, BrHair2, BrHair3];
 const faces = [HumanMale, HumanFemale, Skeleton, Minotaur, Wolf, Bird];
 const accessories = [PirateHat, Bandana, Cap, Mask, Goggles, FaceMask];
 

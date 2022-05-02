@@ -33,7 +33,9 @@ const StyledComponents = () => {
         Each component has a unique class name, eliminating duplication and
         overlap issues. It also removes unused styles.
       </InfoCard>
-      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
+      <Codeblock
+        codeFiles={[{ code: code, name: "StyledComponents", lang: "jsx" }]}
+      />
     </>
   );
 };
@@ -165,8 +167,7 @@ const Flex = styled.div`
   gap: 15px;
 `;
 
-const code = `
-import styled from "styled-components";
+const code = `import styled from "styled-components";
 
 const StyledComponents = () => {
   return (

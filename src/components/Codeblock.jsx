@@ -5,10 +5,13 @@ import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion/dist/framer-motion";
 import { device } from "./styles/Styles";
 
-function Codeblock({ codeFiles }) {
+function Codeblock({ codeFiles, naturalHeight }) {
   const [curr, setCurr] = useState(0);
   // let currCode = codeList;
   // if (typeof code === "object") currCode = code[0]?.code;
+  let isNaturalHeight = true;
+  if (codeFiles.length > 1) isNaturalHeight = false;
+  if (naturalHeight) isNaturalHeight = true;
 
   return (
     <Wrapper>
@@ -16,7 +19,7 @@ function Codeblock({ codeFiles }) {
         {codeFiles.map((file, ind) => (
           <div style={{ position: "relative" }}>
             <HeaderItem isSelected={curr === ind} onClick={() => setCurr(ind)}>
-              {file.name}
+              {file.name}.{codeFiles[curr].lang}
             </HeaderItem>
             {curr === ind && <CurrTabLine layoutId="currFile" />}
           </div>
@@ -24,8 +27,9 @@ function Codeblock({ codeFiles }) {
       </Header>
       {/* <motion.div layout> */}
       <CodeWrapper
-        language={"jsx"}
+        language={codeFiles[curr].lang}
         style={{ ...draculaTheme, height: "600px !important" }}
+        isNaturalHeight={isNaturalHeight}
       >
         {codeFiles[curr].code}
       </CodeWrapper>
@@ -67,15 +71,15 @@ const CodeWrapper = styled(SyntaxHighlighter)`
   margin-top: 0 !important;
 
   @media ${device.laptop} {
-    height: 500px;
+    height: ${(p) => !p.isNaturalHeight && "500px"};
   }
 
   @media ${device.laptopL} {
-    height: 600px;
+    height: ${(p) => !p.isNaturalHeight && "600px"};
   }
 
   @media ${device.desktop} {
-    height: 700px;
+    height: ${(p) => !p.isNaturalHeight && "700px"};
   }
 
   // Scrollbar
@@ -108,11 +112,6 @@ const HeaderItem = styled.div`
   /* border-bottom: ${(p) => (p.isSelected ? "2px solid #6180fa" : "none")}; */
   cursor: pointer;
   position: relative;
-  /* &:hover {
-    background-color: #2d3144;
-  } */
-  /* border-bottom: 1px solid; */
-  /* outline: 1px solid blue; */
 `;
 
 const CurrTabLine = styled(motion.hr)`

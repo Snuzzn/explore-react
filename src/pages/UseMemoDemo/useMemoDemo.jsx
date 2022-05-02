@@ -48,7 +48,10 @@ const useMemoDemo = () => {
         rating.
       </InfoCard>
       {/* <Console /> */}
-      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
+      <Codeblock
+        codeFiles={[codeWithoutMemo, codeWithMemo]}
+        naturalHeight={true}
+      />
     </>
   );
 };
@@ -96,8 +99,10 @@ export const Average = ({ average }) => {
   );
 };
 
-const code = `
-const WithoutUseMemo = () => {
+const codeWithoutMemo = {
+  name: "WithoutMemo",
+  lang: "jsx",
+  code: `const WithoutUseMemo = () => {
   const name = useInput();
   const [reviews, setReviews] = useState(reviewData);
 
@@ -113,7 +118,13 @@ const WithoutUseMemo = () => {
   );
 };
 
-const WithUseMemo = () => {
+export default WithoutUseMemo;`,
+};
+
+const codeWithMemo = {
+  name: "WithUseMemo",
+  lang: "jsx",
+  code: `const WithUseMemo = () => {
   const name = useInput();
   const [reviews, setReviews] = useState(reviewData);
 
@@ -131,7 +142,8 @@ const WithUseMemo = () => {
     </>
   );
 };
-`;
+`,
+};
 
 const WithUseEffectAndState = () => {
   const [result, setResult] = useState(0);

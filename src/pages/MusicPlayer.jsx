@@ -152,7 +152,9 @@ const MusicPlayer = () => {
           </TrackControls>
         </PlayerWrapper>
       </DemoCont>
-      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
+      <Codeblock
+        codeFiles={[{ code: code, name: "MusicPlayer", lang: "jsx" }]}
+      />
     </>
   );
 };
@@ -276,8 +278,7 @@ const StyledThumb = styled(SliderPrimitive.Thumb)`
   } */
 `;
 
-const code = `
-const tracks = [
+const code = `const tracks = [
   {
     title: "Order",
     artist: "ComaStudio",

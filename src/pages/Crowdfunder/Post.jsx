@@ -11,11 +11,14 @@ const Post = ({ title, content, raisedSoFar, target, img }) => {
   const { play } = useUiSound(paySfx, { volume: 0.1 });
 
   const handlePay = (e, backingAmount, setIsBacking) => {
+    const val = backingAmount.input;
     e?.preventDefault();
-    if (isNaN(backingAmount)) return;
-    if (backingAmount < 0) return;
-    setCurrRaised(currRaised + parseInt(backingAmount));
+    if (isNaN(val)) return;
+    if (val === "" || val === "0") return;
+    if (val < 0) return;
+    setCurrRaised(currRaised + parseInt(val));
     setIsBacking(false);
+    backingAmount.reset();
     play();
   };
 

@@ -7,9 +7,14 @@ const useInput = () => {
     setInput(e.target.value);
   };
 
+  const reset = () => {
+    setInput("");
+  };
+
   return {
     input,
     onChange: handleChange,
+    reset: reset,
   };
 };
 

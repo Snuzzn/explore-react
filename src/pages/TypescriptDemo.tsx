@@ -132,7 +132,10 @@ function TypescriptDemo() {
           />
         </form>
       </DemoCont>
-      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
+      <Codeblock
+        codeFiles={[{ code: code, name: "SearchMovieDB", lang: "tsx" }]}
+        naturalHeight={false}
+      />
     </>
   );
 }

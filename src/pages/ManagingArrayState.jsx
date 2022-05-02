@@ -90,7 +90,9 @@ const ManagingArrayState = () => {
         array, first make a shallow copy with the spread operator, then modify
         it. Finally, set the state with this copy.
       </InfoCard>
-      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
+      <Codeblock
+        codeFiles={[{ code: code, name: "ManagingArrayState", lang: "jsx" }]}
+      />
     </>
   );
 };
@@ -170,8 +172,7 @@ const animation = {
   exit: { opacity: 0 },
 };
 
-const code = `
-const ManagingArrayState = () => {
+const code = `const ManagingArrayState = () => {
   const [blocks, setBlocks] = useState(["#3B82F6", "#1D4ED8", "#6366F1"]);
 
   // find a colour that doesn't already exist in the array

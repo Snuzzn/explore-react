@@ -55,7 +55,9 @@ function LoadingSkeleton() {
         refreshing or throttling the network in your browser's DevTools.
       </InfoCard>
 
-      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
+      <Codeblock
+        codeFiles={[{ code: code, name: "FetchWithLoadingState", lang: "jsx" }]}
+      />
     </>
   );
 }

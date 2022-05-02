@@ -35,7 +35,9 @@ function ConditionalRendering() {
         )}
       </DemoCont>
 
-      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
+      <Codeblock
+        codeFiles={[{ code: code, name: "ConditionalRendering", lang: "jsx" }]}
+      />
     </>
   );
 }

@@ -70,7 +70,9 @@ const ManagingBooleanState = () => {
         Alternatively, we can use the <InlineCode>!</InlineCode> (not) operator
         to toggle between them.
       </InfoCard>
-      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
+      <Codeblock
+        codeFiles={[{ code: code, name: "ManagingBooleanState", lang: "jsx" }]}
+      />
     </>
   );
 };
@@ -130,8 +132,7 @@ const ChainWrapper = styled.div`
   position: relative;
 `;
 
-const code = `
-const ManagingBooleanState = () => {
+const code = `const ManagingBooleanState = () => {
   const [isLampOn, setIsLampOn] = React.useState(false);
 
   const handleDrag = () => {
