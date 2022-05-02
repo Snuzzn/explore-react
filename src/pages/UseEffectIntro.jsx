@@ -90,7 +90,7 @@ function UseEffectIntro() {
         </p>
       </InfoCard>
       <Codeblock
-        codeFiles={[{ code: codeblock, name: "useEffectDemo", lang: "jsx" }]}
+        codeFiles={[{ code: codeblock, name: "UseEffectDemo", lang: "jsx" }]}
       />
     </>
   );

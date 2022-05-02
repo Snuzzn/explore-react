@@ -21,7 +21,7 @@ function UseStateIntro() {
         as well as all its children components are re-rendered.
       </InfoCard>
       <Codeblock
-        codeFiles={[{ code: codeblock, name: "useState", lang: "jsx" }]}
+        codeFiles={[{ code: codeblock, name: "UseState", lang: "jsx" }]}
         lang="JS"
       />
       <InfoCard>

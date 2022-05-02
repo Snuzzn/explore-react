@@ -13,7 +13,6 @@ const UseInputDemo = () => {
 
   const { logs, updateLogs } = useLogs();
   useEffect(() => {
-    // console.log(name.input);
     updateLogs(`name: "${name.input}"`);
   }, [name.input, updateLogs]);
 
@@ -28,7 +27,11 @@ const UseInputDemo = () => {
         This is particuarly useful when building long forms.
       </InfoCard>
       <Codeblock
-        codeFiles={[{ code: code, name: "useInputDemo", lang: "jsx" }]}
+        codeFiles={[
+          { code: codeHook, name: "useInput", lang: "jsx" },
+          { code: codeDemo, name: "UseInputDemo", lang: "jsx" },
+        ]}
+        naturalHeight={true}
       />
     </>
   );
@@ -36,27 +39,30 @@ const UseInputDemo = () => {
 
 export default UseInputDemo;
 
-const code = `// useInputDemo.jsx
-const UseInputDemo = () => {
-  const name = useInput("");
-  console.log(\`name: \"\${name.input}\"\`);
-  return (
-    <Input placeholder="Enter your name..." {...name} />
-  );
-};
-
-// useInput.js
-const useInput = () => {
+const codeHook = `const useInput = () => {
   const [input, setInput] = React.useState("");
 
   const handleChange = (e) => {
     setInput(e.target.value);
   };
 
+  const reset = () => {
+    setInput("");
+  };
+
   return {
     input,
     onChange: handleChange,
+    reset: reset,
   };
 };
 
 export default useInput;`;
+
+const codeDemo = `const UseInputDemo = () => {
+  const name = useInput("");
+  console.log(\`name: \"\${name.input}\"\`);
+  return (
+    <Input placeholder="Enter your name..." {...name} />
+  );
+};`;
