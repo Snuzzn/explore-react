@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Codeblock from "../../components/Codeblock";
 import DemoCont from "../../components/DemoCont";
 import LampImg from "../../images/genieLamp.jpg";
-import { codeSnippets } from "./codeSnippets";
+import { codeSnippets, testingCodeSnippets } from "./codeSnippets";
 import Post from "./Post";
 
 const Crowdfunder = () => {
@@ -19,6 +19,7 @@ const Crowdfunder = () => {
         />
       </DemoCont>
       <Codeblock codeFiles={codeSnippets} />
+      <Codeblock codeFiles={testingCodeSnippets} />
     </>
   );
 };

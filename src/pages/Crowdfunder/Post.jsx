@@ -13,9 +13,11 @@ const Post = ({ title, content, raisedSoFar, target, img }) => {
   const handlePay = (e, backingAmount, setIsBacking) => {
     const val = backingAmount.input;
     e?.preventDefault();
-    if (isNaN(val)) return;
-    if (val === "" || val === "0") return;
-    if (val < 0) return;
+    if (isNaN(val) || val < 0) return;
+    if (val === "") {
+      setIsBacking(false);
+      return;
+    }
     setCurrRaised(currRaised + parseInt(val));
     setIsBacking(false);
     backingAmount.reset();

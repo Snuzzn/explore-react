@@ -24,30 +24,31 @@ export default Crowdfunder;`,
   const [currRaised, setCurrRaised] = useState(raisedSoFar);
 
   const handlePay = (e, backingAmount, setIsBacking) => {
+    const val = backingAmount.input;
     e?.preventDefault();
-    if (isNaN(backingAmount)) return;
-    if (backingAmount < 0) return;
-    setCurrRaised(currRaised + parseInt(backingAmount));
+    if (isNaN(val) || val < 0) return;
+    if (val === "") {
+      setIsBacking(false);
+      return;
+    }
+    setCurrRaised(currRaised + parseInt(val));
     setIsBacking(false);
+    backingAmount.reset();
   };
 
   return (
     <PostWrapper>
-      <div style={{ position: "relative" }}>
-        <PostImage src={img} />
-        {/* <Backers>4 backers</Backers> */}
-      </div>
+      <PostImage src={img} />
       <PostDetails>
         <PostTitle>{title}</PostTitle>
         <PostText>{content}</PostText>
-
         <ProgressStats currRaised={currRaised} target={target} />
         <BackProject handlePay={handlePay} />
       </PostDetails>
     </PostWrapper>
   );
 };
-
+  
 export default Post;
 `,
     name: "Post",
@@ -91,7 +92,7 @@ export default ProgressStats;
     <>
       <Button
         onClick={() => {
-          if (isBacking) handlePay(null, backingAmount.input, setIsBacking);
+          if (isBacking) handlePay(null, backingAmount, setIsBacking);
           else setIsBacking(true);
         }}
       >
@@ -99,8 +100,9 @@ export default ProgressStats;
       </Button>
       {isBacking && (
         <form
-          style={{ marginTop: "20px" }}
-          onSubmit={(e) => handlePay(e, backingAmount.input, setIsBacking)}
+          onSubmit={(e) => {
+            handlePay(e, backingAmount, setIsBacking);
+          }}
         >
           <Input
             {...backingAmount}
@@ -118,5 +120,132 @@ export default BackProject;
 `,
     name: "BackProject",
     lang: "jsx",
+  },
+];
+
+export const testingCodeSnippets = [
+  {
+    name: "Post.test",
+    lang: "js",
+    code: `// Roles: https://www.w3.org/TR/html-aria/#docconformance
+import { fireEvent, render, screen } from "@testing-library/react";
+import Crowdfunder from "../Crowdfunder";
+import BackProject from "../BackProject";
+import ProgressStats from "../ProgressStats";
+import Post from "../Post";
+import img from "../../../images/genieLamp.jpg";
+
+const postProps = {
+  title: "Mini Yggdrasil",
+  content: "A miniature plant based on the world tree",
+  raisedSoFar: 300,
+  target: 1000,
+  img: img,
+};
+
+describe("Post", () => {
+  it("renders crowdfunder post details", () => {
+    render(<Post {...postProps} />);
+    const title = screen.getByRole("heading", { name: "Mini Yggdrasil" });
+    const content = screen.getByText(
+      "A miniature plant based on the world tree"
+    );
+    const image = screen.getByRole("img");
+    expect(title).toBeInTheDocument();
+    expect(content).toBeInTheDocument();
+    expect(image).toBeInTheDocument();
+    expect(image).toHaveAttribute("src", img);
+  });
+
+  // integration test
+  it("backs project by amount", () => {
+    render(<Post {...postProps} />);
+
+    // progress is initially at 30%
+    const indicator = screen.getByTitle("progressIndicator");
+    expect(indicator.style.transform).toBe("translateX(-70%)");
+
+    // back project by $100
+    fireEvent.click(screen.getByRole("button"));
+    const backingInput = screen.getByRole("spinbutton");
+    fireEvent.change(backingInput, { target: { value: "100" } });
+    expect(backingInput.value).toBe("100");
+    fireEvent.click(screen.getByRole("button"));
+
+    // progress is now at 45%
+    expect(indicator.style.transform).toBe("translateX(-60%)");
+  });
+});
+`,
+  },
+  {
+    name: "ProgressStats.test",
+    lang: "js",
+    code: `import { render, screen } from "@testing-library/react";
+import ProgressStats from "../ProgressStats";
+
+describe("ProgressStats", () => {
+  it("renders progress stats", () => {
+    render(<ProgressStats currRaised={300} target={1000} />);
+    const currRaised = screen.getByText("$300 raised");
+    const progress = screen.getByText("30.0%");
+    expect(currRaised).toBeInTheDocument();
+    expect(progress).toBeInTheDocument();
+  });
+
+  it("renders progress bar", () => {
+    render(<ProgressStats currRaised={300} target={1000} />);
+    const bar = screen.getByRole("progressbar");
+    const indicator = screen.getByTitle("progressIndicator");
+    expect(bar).toBeInTheDocument();
+    expect(indicator).toBeInTheDocument();
+  });
+
+  it("renders accurate progress indicator", () => {
+    render(<ProgressStats currRaised={300} target={1000} />);
+    const indicator = screen.getByTitle("progressIndicator");
+    // 30% progress
+    expect(indicator.style.transform).toBe("translateX(-70%)");
+  });
+
+  it("doesn't push indicator past 100", () => {
+    render(<ProgressStats currRaised={1300} target={1000} />);
+    const indicator = screen.getByTitle("progressIndicator");
+    const currRaised = screen.getByText("$1300 raised");
+    expect(currRaised).toBeInTheDocument();
+    // progress is at 130% but the indicator bar maxes out at 100
+    expect(indicator.style.transform).toBe("translateX(-0%)");
+  });
+});
+`,
+  },
+  {
+    name: "BackingProject.test",
+    lang: "js",
+    code: `import { fireEvent, render, screen } from "@testing-library/react";
+import Crowdfunder from "../Crowdfunder";
+import BackProject from "../BackProject";
+import ProgressStats from "../ProgressStats";
+import Post from "../Post";
+
+const mockedHandlePay = jest.fn();
+
+describe("BackProject", () => {
+  it("renders button to back project", () => {
+    render(<BackProject handlePay={mockedHandlePay} />);
+    const button = screen.getByRole("button", { name: /back this project/i });
+    expect(button).toBeInTheDocument();
+  });
+
+  it("renders input to back project", () => {
+    render(<BackProject handlePay={mockedHandlePay} />);
+    let backingInput = screen.queryByRole("spinbutton");
+    expect(backingInput).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button"));
+    backingInput = screen.getByRole("spinbutton");
+    expect(backingInput).toBeInTheDocument();
+  });
+});
+`,
   },
 ];

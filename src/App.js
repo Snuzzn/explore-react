@@ -222,9 +222,12 @@ function App() {
                 }
               />
               <Route
-                path="/crowdfunder"
+                path="/react-testing-library"
                 element={
-                  <PageLayout children={<Crowdfunder />} title="Crowdfunder" />
+                  <PageLayout
+                    children={<Crowdfunder />}
+                    title="React Testing Library"
+                  />
                 }
               />
             </Routes>
