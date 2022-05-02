@@ -278,28 +278,7 @@ const StyledThumb = styled(SliderPrimitive.Thumb)`
   } */
 `;
 
-const code = `const tracks = [
-  {
-    title: "Order",
-    artist: "ComaStudio",
-    imgSrc: orderCoverArt,
-    soundSrc: orderSong,
-  },
-  {
-    title: "Abstract Design",
-    artist: "ComaStudio",
-    imgSrc: adCoverArt,
-    soundSrc: adSong,
-  },
-  {
-    title: "Lucid",
-    artist: "Nomyn",
-    imgSrc: lucidCoverArt,
-    soundSrc: lucidSong,
-  },
-];
-
-const MusicPlayer = () => {
+const code = `const MusicPlayer = () => {
   const [currTrack, setCurrTrack] = useState(0);
   const { play, stop, sound, pause } = useSound(
     tracks[currTrack].soundSrc);
@@ -373,4 +352,25 @@ const MusicPlayer = () => {
     </PlayerWrapper>
   );
 };
+
+const tracks = [
+  {
+    title: "Order",
+    artist: "ComaStudio",
+    imgSrc: orderCoverArt,
+    soundSrc: orderSong,
+  },
+  {
+    title: "Abstract Design",
+    artist: "ComaStudio",
+    imgSrc: adCoverArt,
+    soundSrc: adSong,
+  },
+  {
+    title: "Lucid",
+    artist: "Nomyn",
+    imgSrc: lucidCoverArt,
+    soundSrc: lucidSong,
+  },
+];
 `;

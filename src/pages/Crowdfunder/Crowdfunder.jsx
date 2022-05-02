@@ -5,6 +5,7 @@ import DemoCont from "../../components/DemoCont";
 import LampImg from "../../images/genieLamp.jpg";
 import { codeSnippets, testingCodeSnippets } from "./codeSnippets";
 import Post from "./Post";
+import { LayoutGroup } from "framer-motion/dist/framer-motion";
 
 const Crowdfunder = () => {
   return (
@@ -18,8 +19,12 @@ const Crowdfunder = () => {
           img={LampImg}
         />
       </DemoCont>
-      <Codeblock codeFiles={codeSnippets} />
-      <Codeblock codeFiles={testingCodeSnippets} />
+      <LayoutGroup id="codeblock1">
+        <Codeblock codeFiles={codeSnippets} />
+      </LayoutGroup>
+      <LayoutGroup id="codeblock2">
+        <Codeblock codeFiles={testingCodeSnippets} />
+      </LayoutGroup>
     </>
   );
 };
