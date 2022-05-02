@@ -11,7 +11,7 @@ function Codeblock({ codeFiles, naturalHeight }) {
   // if (typeof code === "object") currCode = code[0]?.code;
   let isNaturalHeight = true;
   if (codeFiles.length > 1) isNaturalHeight = false;
-  if (naturalHeight) isNaturalHeight = true;
+  if (naturalHeight !== null) isNaturalHeight = naturalHeight;
 
   return (
     <Wrapper>

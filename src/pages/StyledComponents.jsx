@@ -35,6 +35,7 @@ const StyledComponents = () => {
       </InfoCard>
       <Codeblock
         codeFiles={[{ code: code, name: "StyledComponents", lang: "jsx" }]}
+        naturalHeight={false}
       />
     </>
   );
