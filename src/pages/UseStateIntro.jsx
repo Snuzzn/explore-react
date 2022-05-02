@@ -6,6 +6,7 @@ import Codeblock from "../components/Codeblock";
 import DemoCont from "../components/DemoCont";
 import Console from "../components/Console";
 import useLogs from "../hooks/useLogs";
+import WarningCard from "../components/WarningCard";
 
 function UseStateIntro() {
   const { logs, updateLogs } = useLogs();
@@ -24,6 +25,10 @@ function UseStateIntro() {
         codeFiles={[{ code: codeblock, name: "UseStateDemo", lang: "jsx" }]}
         lang="JS"
       />
+      <WarningCard>
+        State is immutable. It shouldn't be modified directly. Always use the
+        setter function to modify the state.
+      </WarningCard>
       <InfoCard>
         If you need the previous value to update the state, you should pass a
         function that receives the previous value and returns the new value.

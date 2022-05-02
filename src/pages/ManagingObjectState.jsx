@@ -106,9 +106,8 @@ const ManagingObjectState = () => {
         </CharacterCustomiser>
       </DemoCont>
       <InfoCard>
-        State is immutable; it shouldn't be modified directly. When updating a
-        object, make a shallow copy with the spread operator, and add the new
-        key-value pair. Finally, set the state with this copy.
+        When updating a object, make a shallow copy with the spread operator,
+        and add the new key-value pair. Finally, set the state with this copy.
       </InfoCard>
       <Codeblock
         codeFiles={[{ code: code, name: "CharacterCustomiser", lang: "jsx" }]}
@@ -197,7 +196,7 @@ const types = {
   accessory: accessories,
 };
 
-const ManagingObjectState = () => {
+const CharacterCustomiser = () => {
   const [character, setCharacter] = React.useState({
     face: HumanMale,
   });

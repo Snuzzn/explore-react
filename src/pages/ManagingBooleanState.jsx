@@ -64,14 +64,13 @@ const ManagingBooleanState = () => {
         </LampSwitchWrapper>
       </DemoCont>
       <InfoCard>
-        State is immutable; it shouldn't be modified directly. When updating a
-        boolean, we can use the setter function to set a
+        When updating a boolean, we can use the setter function to set a
         <InlineCode>True</InlineCode> or <InlineCode>False</InlineCode> value.
         Alternatively, we can use the <InlineCode>!</InlineCode> (not) operator
         to toggle between them.
       </InfoCard>
       <Codeblock
-        codeFiles={[{ code: code, name: "ManagingBooleanState", lang: "jsx" }]}
+        codeFiles={[{ code: code, name: "ToggleLamp", lang: "jsx" }]}
       />
     </>
   );
@@ -132,7 +131,7 @@ const ChainWrapper = styled.div`
   position: relative;
 `;
 
-const code = `const ManagingBooleanState = () => {
+const code = `const ToggleLamp = () => {
   const [isLampOn, setIsLampOn] = React.useState(false);
 
   const handleDrag = () => {

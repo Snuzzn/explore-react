@@ -4,16 +4,16 @@ import { AiFillInfoCircle } from "react-icons/ai";
 
 function InfoCard({ children }) {
   return (
-    <Container>
+    <CardContainer>
       <Icon color="#5773FF" size="2em" />
       {children}
-    </Container>
+    </CardContainer>
   );
 }
 
 export default InfoCard;
 
-const Container = styled.div`
+export const CardContainer = styled.div`
   font-size: 14pt;
   margin-top: 10px;
   padding: 25px;

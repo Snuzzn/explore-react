@@ -79,10 +79,9 @@ function SearchDebounce() {
       </DemoCont>
 
       <InfoCard>
-        With debouncing, the goal is to only run the desired function once per
-        use case. In this demo, we want to avoid making an API call per
-        character entered. Instead, we make the call after the user finishes
-        typing (currently set to 200ms).
+        The debounce strategey is to wait for some time before triggering an
+        event. Here, we want to avoid making an API call per character entered.
+        Instead, we make the call after the user finishes typing.
       </InfoCard>
       <Codeblock
         codeFiles={[{ code: codeblock, name: "SearchDebounce", lang: "jsx" }]}
