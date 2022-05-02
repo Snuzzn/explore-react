@@ -1,5 +1,5 @@
 /**
- * Dracula Theme originally by Zeno Rocha [@zenorocha]
+ * Based on Dracula Theme originally by Zeno Rocha [@zenorocha]
  * https://draculatheme.com/
  *
  * Ported for PrismJS by Albert Vallverdu [@byverdu]
@@ -100,7 +100,7 @@ export default {
     color: "#4FF6FA", // html attributes
   },
   string: {
-    color: "#50fa7b",
+    color: "#78E6FF",
   },
   char: {
     color: "#50fa7b",

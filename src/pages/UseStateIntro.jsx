@@ -49,7 +49,7 @@ const codeblock = `function Counter() {
 
   return (
     <>
-      <MinusBtn  onClick={decrementCount} />
+      <MinusBtn onClick={decrementCount} />
       <div>{count}</div>
       <PlusBtn onClick={() => {
           setCount(count => count + 1);
