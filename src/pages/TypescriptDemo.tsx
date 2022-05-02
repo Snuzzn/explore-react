@@ -133,7 +133,10 @@ function TypescriptDemo() {
         </form>
       </DemoCont>
       <Codeblock
-        codeFiles={[{ code: code, name: "SearchMovieDB", lang: "tsx" }]}
+        codeFiles={[
+          { code: codeTSDemo, name: "SearchMovieDB", lang: "tsx" },
+          { code: codeSearchBar, name: "SearchBar", lang: "tsx" },
+        ]}
         naturalHeight={false}
       />
     </>
@@ -209,8 +212,7 @@ const ErrorCont = styled.div`
   justify-content: center;
 `;
 
-const code = `// TypescriptDemo.tsx
-interface Movie {
+const codeTSDemo = `interface Movie {
   title: string;
   year: string;
   poster: string;
@@ -336,11 +338,9 @@ const searchMovie = async (query: string) => {
   );
   const data = await res.json();
   return data;
-};
+};`;
 
-
-// SearchBar.tsx
-interface SearchProps {
+const codeSearchBar = `interface SearchProps {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
@@ -357,4 +357,7 @@ const SearchBar: FC<SearchProps> = ({ value, onChange, placeholder }) => {
       />
     </Wrapper>
   );
-};`;
+};
+
+export default Searchbar
+`;

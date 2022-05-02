@@ -21,7 +21,7 @@ function UseStateIntro() {
         as well as all its children components are re-rendered.
       </InfoCard>
       <Codeblock
-        codeFiles={[{ code: codeblock, name: "UseState", lang: "jsx" }]}
+        codeFiles={[{ code: codeblock, name: "UseStateDemo", lang: "jsx" }]}
         lang="JS"
       />
       <InfoCard>
@@ -34,7 +34,7 @@ function UseStateIntro() {
 
 export default UseStateIntro;
 
-const codeblock = `function CounterDemo() {
+const codeblock = `function Counter() {
   const [count, setCount] = React.useState(0);  
   console.log(\`New count: \${count}\`)
 
@@ -52,4 +52,6 @@ const codeblock = `function CounterDemo() {
       />
     </>
   );
-};`;
+};
+
+export default Counter;`;

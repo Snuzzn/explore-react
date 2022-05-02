@@ -65,4 +65,6 @@ const codeDemo = `const UseInputDemo = () => {
   return (
     <Input placeholder="Enter your name..." {...name} />
   );
-};`;
+};
+
+export default UseInputDemo;`;
