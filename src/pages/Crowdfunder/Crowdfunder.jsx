@@ -6,6 +6,8 @@ import LampImg from "../../images/genieLamp.jpg";
 import { codeSnippets, testingCodeSnippets } from "./codeSnippets";
 import Post from "./Post";
 import { LayoutGroup } from "framer-motion/dist/framer-motion";
+import InfoCard from "../../components/InfoCard";
+import WarningCard from "../../components/WarningCard";
 
 const Crowdfunder = () => {
   return (
@@ -19,9 +21,18 @@ const Crowdfunder = () => {
           img={LampImg}
         />
       </DemoCont>
+
       <LayoutGroup id="codeblock1">
         <Codeblock codeFiles={codeSnippets} />
       </LayoutGroup>
+      <InfoCard>
+        Writing unit and integrations tests are important to catch bugs and
+        increase confidence in the application.
+      </InfoCard>
+      <WarningCard>
+        With React Testing Library, avoid including implementation details of
+        the component e.g. state. Instead, test for changes in the UI.
+      </WarningCard>
       <LayoutGroup id="codeblock2">
         <Codeblock codeFiles={testingCodeSnippets} />
       </LayoutGroup>
