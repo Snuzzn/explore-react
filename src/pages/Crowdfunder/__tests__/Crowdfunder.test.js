@@ -11,33 +11,36 @@ const postProps = {
   img: img,
 };
 
-// unit test
-it("renders crowdfunder post details", () => {
-  render(<Post {...postProps} />);
-  const title = screen.getByRole("heading", { name: "Mini Yggdrasil" });
-  const content = screen.getByText("A miniature plant based on the world tree");
-  const image = screen.getByRole("img");
-  expect(title).toBeInTheDocument();
-  expect(content).toBeInTheDocument();
-  expect(image).toBeInTheDocument();
-  expect(image).toHaveAttribute("src", img);
-});
+describe("Crowdfunder", () => {
+  it("renders crowdfunder post details", () => {
+    render(<Post {...postProps} />);
+    const title = screen.getByRole("heading", { name: "Mini Yggdrasil" });
+    const content = screen.getByText(
+      "A miniature plant based on the world tree"
+    );
+    const image = screen.getByRole("img");
+    expect(title).toBeInTheDocument();
+    expect(content).toBeInTheDocument();
+    expect(image).toBeInTheDocument();
+    expect(image).toHaveAttribute("src", img);
+  });
 
-// integration test
-it("backs project by amount", () => {
-  render(<Post {...postProps} />);
+  // integration test
+  it("backs project by amount", () => {
+    render(<Post {...postProps} />);
 
-  // progress is initially at 30%
-  const indicator = screen.getByTitle("progressIndicator");
-  expect(indicator.style.transform).toBe("translateX(-70%)");
+    // progress is initially at 30%
+    const indicator = screen.getByTitle("progressIndicator");
+    expect(indicator.style.transform).toBe("translateX(-70%)");
 
-  // back project by $100
-  fireEvent.click(screen.getByRole("button"));
-  const backingInput = screen.getByRole("spinbutton");
-  fireEvent.change(backingInput, { target: { value: "100" } });
-  expect(backingInput.value).toBe("100");
-  fireEvent.click(screen.getByRole("button"));
+    // back project by $100
+    fireEvent.click(screen.getByRole("button"));
+    const backingInput = screen.getByRole("spinbutton");
+    fireEvent.change(backingInput, { target: { value: "100" } });
+    expect(backingInput.value).toBe("100");
+    fireEvent.click(screen.getByRole("button"));
 
-  // progress is now at 45%
-  expect(indicator.style.transform).toBe("translateX(-60%)");
+    // progress is now at 45%
+    expect(indicator.style.transform).toBe("translateX(-60%)");
+  });
 });
