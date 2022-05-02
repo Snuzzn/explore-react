@@ -29,7 +29,7 @@ import ManagingObjectState from "./pages/ManagingObjectState";
 import ManagingBooleanState from "./pages/ManagingBooleanState";
 import ManagingIntervalWithUseRef from "./pages/ManagingIntervalWithUseRef";
 import StorePreviousStateUseRef from "./pages/StorePreviousStateUseRef";
-import Crowdfunder from "./pages/Crowdfunder";
+import Crowdfunder from "./pages/Crowdfunder/Crowdfunder";
 
 function App() {
   const location = useLocation();
