@@ -3,7 +3,7 @@ import useSound from "use-sound";
 import { ThemeContext } from "../ThemeProvider";
 
 const useUiSound = (soundFile, options) => {
-  const { isSoundEnabled } = useContext(ThemeContext);
+  const { isSoundEnabled } = useContext(ThemeContext) || {};
 
   const { rate, volume } = options || {};
 

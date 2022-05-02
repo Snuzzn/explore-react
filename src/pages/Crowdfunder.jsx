@@ -27,11 +27,11 @@ const Crowdfunder = () => {
     play();
   };
 
-  const backingInputRef = useRef();
+  // const backingInputRef = useRef();
 
-  useEffect(() => {
-    if (isBacking) backingInputRef.current.focus();
-  }, [isBacking]);
+  // useEffect(() => {
+  //   if (isBacking) backingInputRef.current.focus();
+  // }, [isBacking]);
 
   const currProgress = (currRaised / target) * 100;
 
@@ -46,8 +46,8 @@ const Crowdfunder = () => {
           <PostDetails>
             <PostTitle>Genie's Lamp</PostTitle>
             <PostText>
-              An oil lamp that contains a genie trapped inside. It will release
-              the genie, who will then grant you 3 wishes!
+              An oil lamp that holds a genie. Once released, you will be granted
+              3 wishes!
             </PostText>
             <ProgressDetails>
               <div>${currRaised} raised</div>
@@ -76,7 +76,8 @@ const Crowdfunder = () => {
                 <Input
                   {...backingAmount}
                   placeholder="Enter amount in dollars"
-                  ref={backingInputRef}
+                  // ref={backingInputRef}
+                  autoFocus
                 />
               </form>
             )}

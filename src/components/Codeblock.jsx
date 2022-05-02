@@ -1,6 +1,6 @@
 import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
+import draculaTheme from "../helper/draculaTheme";
 import styled from "styled-components";
 
 function Codeblock({ code, lang }) {
@@ -8,7 +8,7 @@ function Codeblock({ code, lang }) {
     <Wrapper>
       <CodeWrapper
         language={lang === "JS" ? "jsx" : "tsx"}
-        style={{ ...dracula, height: "600px !important" }}
+        style={{ ...draculaTheme, height: "600px !important" }}
       >
         {code}
       </CodeWrapper>
