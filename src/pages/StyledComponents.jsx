@@ -33,7 +33,7 @@ const StyledComponents = () => {
         Each component has a unique class name, eliminating duplication and
         overlap issues. It also removes unused styles.
       </InfoCard>
-      <Codeblock lang="JS" code={code} />
+      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
     </>
   );
 };

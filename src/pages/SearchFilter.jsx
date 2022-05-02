@@ -67,7 +67,7 @@ function SearchFilter() {
           )}
         </SearchWrapper>
       </DemoCont>
-      <Codeblock code={code} lang="JS" />
+      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
     </>
   );
 }
@@ -129,7 +129,6 @@ function SearchFilter() {
           </ResultsCont>
         )}
       </DemoCont>
-      <Codeblock lang="JS" />
     </div>
   );
 }

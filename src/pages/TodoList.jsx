@@ -85,7 +85,7 @@ function TodoList() {
         </TodoCont>
       </DemoCont>
 
-      <Codeblock lang="JS" code={code} />
+      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
     </>
   );
 }

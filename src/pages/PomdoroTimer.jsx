@@ -149,7 +149,7 @@ const CountdownTimer = () => {
           </PlayBtn>
         </CenterCont>
       </DemoCont>
-      <Codeblock code={code} lang="JS" />
+      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
     </>
   );
 };

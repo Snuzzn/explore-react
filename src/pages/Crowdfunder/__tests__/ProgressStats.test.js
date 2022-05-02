@@ -1,6 +1,6 @@
 // Roles: https://www.w3.org/TR/html-aria/#docconformance
 import { render, screen } from "@testing-library/react";
-import { ProgressStats } from "../Crowdfunder";
+import ProgressStats from "../ProgressStats";
 
 describe("ProgressStats", () => {
   it("renders progress stats", () => {

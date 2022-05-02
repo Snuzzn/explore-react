@@ -97,7 +97,7 @@ export default {
     color: "#50fa7b",
   },
   "attr-name": {
-    color: "#50fa7b",
+    color: "#4FF6FA", // html attributes
   },
   string: {
     color: "#50fa7b",
@@ -134,16 +134,16 @@ export default {
     color: "#f1fa8c",
   },
   "attr-value": {
-    color: "#f1fa8c",
+    color: "#B8CCFD", //  react attribute
   },
   function: {
-    color: "#f1fa8c",
+    color: "#9C65EA", // name of function
   },
   "class-name": {
-    color: "#f1fa8c",
+    color: "#618DFB", // styled component
   },
   keyword: {
-    color: "#8be9fd",
+    color: "#FF58B2", // e.g. const, return
   },
   regex: {
     color: "#ffb86c",

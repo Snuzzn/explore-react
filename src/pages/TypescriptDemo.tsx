@@ -132,7 +132,7 @@ function TypescriptDemo() {
           />
         </form>
       </DemoCont>
-      <Codeblock code={codeblock} lang="TS" />
+      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
     </>
   );
 }
@@ -206,7 +206,7 @@ const ErrorCont = styled.div`
   justify-content: center;
 `;
 
-const codeblock = `// TypescriptDemo.tsx
+const code = `// TypescriptDemo.tsx
 interface Movie {
   title: string;
   year: string;

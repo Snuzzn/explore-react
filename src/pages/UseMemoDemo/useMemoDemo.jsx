@@ -48,7 +48,7 @@ const useMemoDemo = () => {
         rating.
       </InfoCard>
       {/* <Console /> */}
-      <Codeblock lang="JS" code={code} />
+      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
     </>
   );
 };

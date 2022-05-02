@@ -1,6 +1,9 @@
 // Roles: https://www.w3.org/TR/html-aria/#docconformance
 import { fireEvent, render, screen } from "@testing-library/react";
-import Crowdfunder, { BackProject, Post, ProgressStats } from "../Crowdfunder";
+import Crowdfunder from "../Crowdfunder";
+import BackProject from "../BackProject";
+import ProgressStats from "../ProgressStats";
+import Post from "../Post";
 import img from "../../../images/genieLamp.jpg";
 
 const postProps = {
@@ -11,7 +14,7 @@ const postProps = {
   img: img,
 };
 
-describe("Crowdfunder", () => {
+describe("Post", () => {
   it("renders crowdfunder post details", () => {
     render(<Post {...postProps} />);
     const title = screen.getByRole("heading", { name: "Mini Yggdrasil" });

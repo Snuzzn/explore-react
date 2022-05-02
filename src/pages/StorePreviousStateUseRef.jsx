@@ -82,7 +82,7 @@ const StorePreviousStateUseRef = () => {
         lifetime of the component but never causes a rerender. In this use case,
         we store the previous pokemon state/s without having to rerender.
       </InfoCard>
-      <Codeblock code={code} lang="JS" />
+      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
     </>
   );
 };

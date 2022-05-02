@@ -77,7 +77,7 @@ const ManagingIntervalWithUseRef = () => {
         we want to clear it with an event handler, we can access the interval
         with useRef.
       </InfoCard>
-      <Codeblock lang="JS" code={code} />
+      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
     </>
   );
 };

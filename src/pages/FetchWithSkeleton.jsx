@@ -55,7 +55,7 @@ function LoadingSkeleton() {
         refreshing or throttling the network in your browser's DevTools.
       </InfoCard>
 
-      <Codeblock code={codeblock} lang="JS" />
+      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
     </>
   );
 }
@@ -122,7 +122,7 @@ const SkeletonText = styled.div`
   height: 110px;
 `;
 
-const codeblock = `function LoadingSkeletonDemo() {
+const code = `function LoadingSkeletonDemo() {
   // PREREQ: Conditional Rendering
 
   const [comment, setComment] = React.useState(null);

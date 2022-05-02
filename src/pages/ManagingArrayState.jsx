@@ -90,7 +90,7 @@ const ManagingArrayState = () => {
         array, first make a shallow copy with the spread operator, then modify
         it. Finally, set the state with this copy.
       </InfoCard>
-      <Codeblock code={code} lang="JS" />
+      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
     </>
   );
 };

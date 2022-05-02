@@ -110,7 +110,7 @@ const ManagingObjectState = () => {
         object, make a shallow copy with the spread operator, and add the new
         key-value pair. Finally, set the state with this copy.
       </InfoCard>
-      <Codeblock code={code} lang="JS" />
+      <Codeblock codeFiles={[{ code: code, name: "Managing Object State" }]} />
     </>
   );
 };

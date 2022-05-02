@@ -70,7 +70,7 @@ const ManagingBooleanState = () => {
         Alternatively, we can use the <InlineCode>!</InlineCode> (not) operator
         to toggle between them.
       </InfoCard>
-      <Codeblock code={code} lang="JS" />
+      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
     </>
   );
 };

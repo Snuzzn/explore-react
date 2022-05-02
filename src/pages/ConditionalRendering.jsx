@@ -35,7 +35,7 @@ function ConditionalRendering() {
         )}
       </DemoCont>
 
-      <Codeblock code={codeblock} lang="JS" />
+      <Codeblock codeFiles={[{ code: code, name: "useEffectDemo" }]} />
     </>
   );
 }
@@ -48,7 +48,7 @@ const LoadingCont = styled.div`
   gap: 10px;
 `;
 
-const codeblock = `function ConditionalRenderingDemo() {
+const code = `function ConditionalRenderingDemo() {
   const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {

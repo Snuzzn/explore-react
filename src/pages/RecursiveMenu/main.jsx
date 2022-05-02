@@ -9,7 +9,7 @@ function RecursiveMenu() {
       <DemoCont>
         <Menu items={entries} />
       </DemoCont>
-      <Codeblock code={codeblock} lang="JS" />
+      <Codeblock codeFiles={[{ code: codeblock, name: "useEffectDemo" }]} />
     </>
   );
 }

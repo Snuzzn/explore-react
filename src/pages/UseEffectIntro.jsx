@@ -89,7 +89,7 @@ function UseEffectIntro() {
           dependency array is empty).
         </p>
       </InfoCard>
-      <Codeblock code={codeblock} lang="JS" />
+      <Codeblock codeFiles={[{ code: codeblock, name: "useEffectDemo" }]} />
     </>
   );
 }
