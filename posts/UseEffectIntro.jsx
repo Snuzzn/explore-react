@@ -15,8 +15,8 @@ import useLogs from "../hooks/useLogs";
 // Note: useEffect runs after rendering.
 
 function UseEffectIntro() {
-  const [example1, setExample1] = React.useState("");
-  const [example2, setExample2] = React.useState("");
+  const [name, setName] = React.useState("");
+  const [address, setAddress] = React.useState("");
 
   const { logs, updateLogs } = useLogs();
 
@@ -33,26 +33,26 @@ function UseEffectIntro() {
 
   React.useEffect(() => {
     updateLogs("component updated");
-  }, [example2]);
+  }, [name]);
 
   React.useEffect(() => {
     // runs every time the example state is updated
-    updateLogs(`example1 :  "${example1}"`);
+    updateLogs(`Your address :  "${address}"`);
     updateLogs("component updated");
-  }, [example1]);
+  }, [address]);
 
   return (
     <>
       <DemoCont>
         <Input
-          placeholder="Example 1..."
-          value={example1}
-          onChange={(e) => setExample1(e.target.value)}
+          placeholder="Enter name..."
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
         <Input
-          placeholder="Example 2..."
-          value={example2}
-          onChange={(e) => setExample2(e.target.value)}
+          placeholder="Enter address..."
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
         />
       </DemoCont>
       <Console logs={logs} />
@@ -80,8 +80,8 @@ function UseEffectIntro() {
           </ListItem>
         </List>
         <p>
-          Open your browser's console to study the behaviour of useEffect in
-          these different stages.
+          Use to console above to understand the behaviour of useEffect in these
+          different stages.
         </p>
         <p>
           The useEffect hook's callback will always run <strong>after</strong>{" "}
@@ -99,8 +99,8 @@ function UseEffectIntro() {
 export default UseEffectIntro;
 
 const codeblock = `function UseEffectDemo() {
-  const [example1, setExample1] = React.useState("");
-  const [example2, setExample2] = React.useState("");
+  const [name, setName] = React.useState("");
+  const [address, setAddress] = React.useState("");
 
   React.useEffect(() => {
     // only happens once (commonly used to fetch data)
@@ -119,20 +119,20 @@ const codeblock = `function UseEffectDemo() {
 
   React.useEffect(() => {
     // runs every time the example1 state is updated
-    console.log(\`example1: \${example1}\`);
-  }, [example1]);
+    console.log(\`Your address: \${address}\`);
+  }, [address]);
 
   return (
     <>
       <Input
-        placeholder="Example 1..."
-        value={example1}
-        onChange={(e) => setExample1(e.target.value)}
+        placeholder="Enter name..."
+        value={name}
+        onChange={(e) => setName(e.target.value)}
       />
       <Input
-        placeholder="Example 2..."
-        value={example2}
-        onChange={(e) => setExample2(e.target.value)}
+        placeholder="Enter address..."
+        value={address}
+        onChange={(e) => setAddress(e.target.value)}
       />
     </>
   );
