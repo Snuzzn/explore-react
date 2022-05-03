@@ -1,0 +1,15 @@
+export const bubbleClick = "/sounds/bubbleClick.mp3";
+export const increaseSfx = "/sounds/increase.ogg";
+export const decreaseSfx = "/sounds/decrease.ogg";
+export const updateSfx = "/sounds/select_006.ogg";
+export const switchOnSfx = "/sounds/switchOn.ogg";
+export const switchOffSfx = "/sounds/switchOff.ogg";
+export const SwitchSfx = "/sounds/click3.ogg";
+export const plupSfx = "/sounds/plup.mp3";
+export const confirmationSfx = "/sounds/confirmation_004.ogg";
+export const satisfyingClickSfx = "/sounds/intuition.mp3";
+export const paySfx = "/sounds/cashConfirm.ogg";
+export const bubble = "/sounds/bubble.mp3";
+export const startSfx = "/sounds/confirmation_001.ogg";
+export const endSfx = "/sounds/confirmation_002.ogg";
+export const pauseSfx = "/sounds/bong_001.ogg";
