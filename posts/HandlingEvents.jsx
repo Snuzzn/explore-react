@@ -5,7 +5,12 @@ import { keyframes } from "styled-components";
 import Codeblock from "../components/Codeblock";
 import Console from "../components/Console";
 import DemoCont from "../components/DemoCont";
-import { fadeInOutAnimation, Hint } from "../components/styles/Styles";
+import InfoCard from "../components/InfoCard";
+import {
+  fadeInOutAnimation,
+  Hint,
+  InlineCode,
+} from "../components/styles/Styles";
 import useLogs from "../hooks/useLogs";
 
 const HandlingEvents = () => {
@@ -46,7 +51,6 @@ const HandlingEvents = () => {
             onDragEnd={handleDragEnd}
             ref={circleRef}
             drag
-            // dragConstraints={{ left: 100, right: 100, top: 100, bottom: 100 }}
             dragSnapToOrigin={true}
             initial={{ y: 0 }}
             animate={{ y: -30 }}
@@ -66,6 +70,12 @@ const HandlingEvents = () => {
         </AnimatePresence>
       </DemoCont>
       <Console logs={logs} />
+      <InfoCard>
+        Some commonly used event handlers include{" "}
+        <InlineCode>onClick</InlineCode> for buttons,{" "}
+        <InlineCode>onChange</InlineCode> for form inputs and{" "}
+        <InlineCode>onSubmit</InlineCode> for form submissions.
+      </InfoCard>
       <Codeblock codeFiles={codeSnippets} />
     </>
   );
