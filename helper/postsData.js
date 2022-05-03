@@ -21,6 +21,7 @@ import TodoList from "../posts/TodoList";
 import MusicPlayer from "../posts/MusicPlayer";
 import CountdownTimer from "../posts/PomdoroTimer";
 import PokemonRedux from "../posts/PokemonRedux/main";
+import HandlingEvents from "../posts/HandlingEvents";
 
 // Each post must be in sentence case.
 // If you want a custom casing, include a title attribute in the object
@@ -29,6 +30,9 @@ export const postsData = {
   fundamentals: {
     "List rendering": {
       component: <ListRendering />,
+    },
+    "Handling events": {
+      component: <HandlingEvents />,
     },
     "Use state hook": {
       component: <UseStateIntro />,
@@ -109,15 +113,4 @@ export const postsData = {
       component: <PokemonRedux />,
     },
   },
-
-  // {
-  //   title: "Mini Projects",
-  //   features: [
-  //     "Typescript IMDB",
-  //     "Todo List",
-  //     "Pokemon Redux",
-  //     "Music Player",
-  //     "Countdown Timer",
-  //   ],
-  // },
 };
