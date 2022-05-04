@@ -92,8 +92,8 @@ function UseEffectIntro() {
           </ListItem>
         </List>
         <p>
-          Use to console above to understand the behaviour of useEffect in these
-          different stages.
+          See the console above to understand the behaviour of useEffect in
+          these different stages.
         </p>
         <p>
           The useEffect hook's callback will always run <strong>after</strong>{" "}

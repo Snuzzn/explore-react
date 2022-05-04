@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { Suspense } from "react";
 import styled from "styled-components";
 import ThemeProvider from "../context/ThemeProvider";
 import "../styles/globals.css";

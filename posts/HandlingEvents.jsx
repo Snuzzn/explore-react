@@ -24,16 +24,16 @@ const HandlingEvents = () => {
   const { play: playClick } = useUiSound(doubleClickSfx);
 
   const handleDragStart = () => {
-    circleRef.current.style.width = "150px";
-    circleRef.current.style.height = "150px";
+    // circleRef.current.style.width = "150px";
+    // circleRef.current.style.height = "150px";
     playIncr();
     setIsHintOn(false);
     updateLogs("Started dragging!");
   };
 
   const handleDragEnd = () => {
-    circleRef.current.style.width = "100px";
-    circleRef.current.style.height = "100px";
+    // circleRef.current.style.width = "100px";
+    // circleRef.current.style.height = "100px";
     playDecr();
     updateLogs("Finished dragging!");
     setIsHintOn(true);
@@ -63,10 +63,14 @@ const HandlingEvents = () => {
             dragSnapToOrigin={true}
             initial={{ y: 0 }}
             animate={{ y: -30 }}
-            transition={{
-              repeat: Infinity,
-              repeatType: "reverse",
-              duration: 2,
+            whileDrag={{ scale: 1.6 }}
+            whileTap={{ scale: 0.3 }}
+            rest={{
+              transition: {
+                repeat: Infinity,
+                repeatType: "reverse",
+                duration: 2,
+              },
             }}
           />
         </DraggingCont>
