@@ -5,7 +5,11 @@ export const codeSnippets = [
 
   return (
     <DemoWrapper>
-      {data && <Post {...data}/>}
+      {data ? (
+        <Post {...data} />
+      ) : (
+        <SkeletonPost/>
+      )}
     </DemoWrapper>
   );
 };
