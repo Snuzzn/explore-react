@@ -25,7 +25,7 @@ export default SearchBar;
 
 const Wrapper = styled.div`
   padding: 15px;
-  background-color: #4e4d59;
+  background-color: #2c2e33;
   border-radius: 20px;
   box-sizing: border-box;
   display: flex;
@@ -40,7 +40,7 @@ const SearchIcon = styled(BsSearch)<{ value: String }>`
 `;
 
 const SearchInput = styled.input`
-  background-color: #4e4d59;
+  background-color: #2c2e33;
   border: none;
   border-radius: 8px;
   color: white;

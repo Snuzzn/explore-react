@@ -65,18 +65,26 @@ export const IconButton = styled.button`
   ${baseIconBtn}
 `;
 
+export const Label = styled.label`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 1.4rem;
+`;
+
 export const Input = styled.input`
   width: 100%;
   padding: 15px;
-  background-color: #363540;
-  border: none;
-  border-radius: 8px;
+  background-color: #2c2e33;
+  border-radius: 12px;
   color: white;
   font-size: 16pt;
   box-sizing: border-box;
+  /* border: 1px solid #444e5e; */
   border: 2px solid transparent;
   ::placeholder {
-    color: #8e8d9b;
+    color: #7d899c;
   }
   &:focus {
     border: 2px solid #3e55cb;

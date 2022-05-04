@@ -4,7 +4,13 @@ import Codeblock from "../components/Codeblock";
 import Console from "../components/Console";
 import DemoCont from "../components/DemoCont";
 import InfoCard from "../components/InfoCard";
-import { Input, List, ListItem, ListNumber } from "../components/styles/Styles";
+import {
+  Input,
+  List,
+  ListItem,
+  ListNumber,
+  Label,
+} from "../components/styles/Styles";
 import useLogs from "../hooks/useLogs";
 
 // === COMPONENT LIFECYCLE ===
@@ -44,16 +50,22 @@ function UseEffectIntro() {
   return (
     <>
       <DemoCont>
-        <Input
-          placeholder="Enter name..."
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <Input
-          placeholder="Enter address..."
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-        />
+        <Label>
+          Name
+          <Input
+            placeholder="Enter your name..."
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </Label>
+        <Label>
+          Address
+          <Input
+            placeholder="Enter your address..."
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+          />
+        </Label>
       </DemoCont>
       <Console logs={logs} />
       <InfoCard>
@@ -123,17 +135,23 @@ const codeblock = `function UseEffectDemo() {
   }, [address]);
 
   return (
-    <>
-      <Input
-        placeholder="Enter name..."
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <Input
-        placeholder="Enter address..."
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
-      />
-    </>
+    <form>
+      <Label>
+        Name
+        <Input
+          placeholder="Enter your name..."
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </Label>
+      <Label>
+        Address
+        <Input
+          placeholder="Enter your address..."
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+        />
+      </Label>
+    </form>
   );
 }`;

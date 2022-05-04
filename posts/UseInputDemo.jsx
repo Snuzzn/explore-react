@@ -3,7 +3,7 @@ import Codeblock from "../components/Codeblock";
 import Console from "../components/Console";
 import DemoCont from "../components/DemoCont";
 import InfoCard from "../components/InfoCard";
-import { Input } from "../components/styles/Styles";
+import { Input, Label } from "../components/styles/Styles";
 import useInput from "../hooks/useInput";
 import useLogs from "../hooks/useLogs";
 
@@ -19,7 +19,10 @@ const UseInputDemo = () => {
   return (
     <>
       <DemoCont>
-        <Input placeholder="Enter your name..." {...name} />
+        <Label>
+          Name
+          <Input placeholder="Enter your name..." {...name} />
+        </Label>
       </DemoCont>
       <Console logs={logs} />
       <InfoCard>
