@@ -52,7 +52,7 @@ function LoadingSkeleton() {
 
       <InfoCard>
         If this loads too quickly for you to see the loading skeleton, try
-        refreshing or throttling the network in your browser's DevTools.
+        refreshing or throttling the network in your browser&apos;s DevTools.
       </InfoCard>
 
       <Codeblock
@@ -64,7 +64,7 @@ function LoadingSkeleton() {
 
 export default LoadingSkeleton;
 
-const loadSkeleton = keyframes`
+export const loadSkeleton = keyframes`
   0% {
     background-color: #3a4249;
   }

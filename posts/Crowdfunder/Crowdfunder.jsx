@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Codeblock from "../../components/Codeblock";
 import DemoCont from "../../components/DemoCont";
 import { codeSnippets, testingCodeSnippets } from "./codeSnippets";
@@ -13,6 +13,7 @@ import {
   Hyperlink,
   openInNewTab,
 } from "../../components/styles/Styles";
+
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const Crowdfunder = () => {
@@ -20,7 +21,18 @@ const Crowdfunder = () => {
 
   return (
     <>
-      <DemoCont>{data && <Post {...data} />}</DemoCont>
+      <DemoCont>
+        {data ? (
+          <Post {...data} />
+        ) : (
+          <SkeletonPost>
+            <SkeletonImg />
+            <SkeletonBox height={"60px"} width={"80%"} />
+            <SkeletonBox height={"60px"} width={"80%"} />
+            <SkeletonBox height={"60px"} width={"80%"} />
+          </SkeletonPost>
+        )}
+      </DemoCont>
 
       <LayoutGroup id="codeblock1">
         <Codeblock codeFiles={codeSnippets} />
@@ -49,3 +61,36 @@ const Crowdfunder = () => {
   );
 };
 export default Crowdfunder;
+
+const SkeletonPost = styled.div`
+  border: 2px solid #313944;
+  width: 350px;
+  height: 490px;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+`;
+
+const loadSkeleton = keyframes`
+  0% {
+    background-color: #3a4249;
+  }
+  100% {
+    background-color: #181819;
+  }
+`;
+
+const SkeletonImg = styled.div`
+  width: 100%;
+  height: 200px;
+  border-radius: 40px 40px 0 0;
+  animation: ${loadSkeleton} 1s linear infinite alternate;
+`;
+
+const SkeletonBox = styled.div`
+  height: ${(p) => p.height};
+  animation: ${loadSkeleton} 1s linear infinite alternate;
+  width: ${(p) => p.width};
+`;
