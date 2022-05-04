@@ -90,11 +90,11 @@ export const postsData = {
     "Search filter": {
       component: <SearchFilter />,
     },
-    "React testing library": {
-      component: <Crowdfunder />,
-    },
   },
   "mini projects": {
+    "Crowdfunder with testing": {
+      component: <Crowdfunder />,
+    },
     "Typescript imdb": {
       component: <TypescriptDemo />,
       title: "Typescript IMDB",

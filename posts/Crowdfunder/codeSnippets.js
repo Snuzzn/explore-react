@@ -1,17 +1,12 @@
 export const codeSnippets = [
   {
     code: `const Crowdfunder = () => {
+  const { data, error } = useSWR("/api/crowdfunder", fetcher);
+
   return (
-    <>
-      <Post
-        title="Genie's Lamp"
-        content="An oil lamp that holds a genie. Once 
-          released, you will be granted 3 wishes!"
-        raisedSoFar={400}
-        target={1000}
-        img={LampImg}
-      />
-    </>
+    <DemoWrapper>
+      {data && <Post {...data}/>}
+    </DemoWrapper>
   );
 };
 
@@ -21,17 +16,27 @@ export default Crowdfunder;`,
   },
   {
     code: `const Post = ({ title, content, raisedSoFar, target, img }) => {
-  const [currRaised, setCurrRaised] = useState(raisedSoFar);
-
-  const handlePay = (e, backingAmount, setIsBacking) => {
+  
+  const { mutate } = useSWRConfig();
+  
+  const handlePay = async (e, backingAmount, setIsBacking) => {
     const val = backingAmount.input;
     e?.preventDefault();
     if (isNaN(val) || val < 0) return;
-    if (val === "") {
-      setIsBacking(false);
-      return;
+
+    try {
+      await fetch("/api/crowdfunder", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ backingAmount: parseInt(val) }),
+      });
+    } catch {
+      console.error("Could not back this project");
     }
-    setCurrRaised(currRaised + parseInt(val));
+    mutate("/api/crowdfunder");
+
     setIsBacking(false);
     backingAmount.reset();
   };
@@ -42,7 +47,7 @@ export default Crowdfunder;`,
       <PostDetails>
         <PostTitle>{title}</PostTitle>
         <PostText>{content}</PostText>
-        <ProgressStats currRaised={currRaised} target={target} />
+        <ProgressStats currRaised={raisedSoFar} target={target} />
         <BackProject handlePay={handlePay} />
       </PostDetails>
     </PostWrapper>
@@ -157,24 +162,6 @@ describe("Post", () => {
     expect(image).toHaveAttribute("src", img);
   });
 
-  // integration test
-  it("backs project by amount", () => {
-    render(<Post {...postProps} />);
-
-    // progress is initially at 30%
-    const indicator = screen.getByTitle("progressIndicator");
-    expect(indicator.style.transform).toBe("translateX(-70%)");
-
-    // back project by $100
-    fireEvent.click(screen.getByRole("button"));
-    const backingInput = screen.getByRole("spinbutton");
-    fireEvent.change(backingInput, { target: { value: "100" } });
-    expect(backingInput.value).toBe("100");
-    fireEvent.click(screen.getByRole("button"));
-
-    // progress is now at 45%
-    expect(indicator.style.transform).toBe("translateX(-60%)");
-  });
 });
 `,
   },
@@ -247,5 +234,51 @@ describe("BackProject", () => {
   });
 });
 `,
+  },
+  {
+    name: "Crowdfunder.test",
+    lang: "js",
+    code: `import { setupServer } from "msw/node";
+import { rest } from "msw";
+import Crowdfunder from "../Crowdfunder";
+import { screen, render, fireEvent, waitFor } from "@testing-library/react";
+
+const mockServer = setupServer(
+  rest.get("/api/crowdfunder", (req, res, ctx) => {
+    return res(
+      ctx.json(
+        JSON.parse(
+          \`{"title":"Genie's lamp","content":"An oil lamp that holds a genie. Once released, you will be granted 3 wishes!","raisedSoFar":300,"target":1000,"img":"/images/genieLamp.jpg"}\`
+        )
+      )
+    );
+  })
+);
+
+beforeAll(() => mockServer.listen());
+afterAll(() => mockServer.close());
+afterEach(() => mockServer.resetHandlers());
+
+// integration test with mock request
+it("backs project by amount", async () => {
+  render(<Crowdfunder />);
+  // progress is initially at 30%
+  let indicator = await screen.findByTitle("progressIndicator");
+  expect(indicator.style.transform).toBe("translateX(-70%)");
+
+  // back project by $100
+  fireEvent.click(screen.getByRole("button"));
+  const backingInput = screen.getByRole("spinbutton");
+  fireEvent.change(backingInput, { target: { value: "100" } });
+  expect(backingInput.value).toBe("100");
+  fireEvent.click(screen.getByRole("button"));
+
+  // progress is now at 40%
+  indicator = await screen.findByTitle("progressIndicator");
+  waitFor(() => {
+    expect(indicator.style.transform).toBe("translateX(-60%)");
+  });
+});
+    `,
   },
 ];

@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useUiSound from "../../hooks/useUiSound";
 import BackProject from "./BackProject";
 import ProgressStats from "./ProgressStats";
 import styled from "styled-components";
 import { paySfx } from "../../helper/sounds";
+import useSwr from "swr";
+import { useSWRConfig } from "swr";
 
 const Post = ({ title, content, raisedSoFar, target, img }) => {
-  const [currRaised, setCurrRaised] = useState(raisedSoFar);
-
   const { play } = useUiSound(paySfx, { volume: 0.1 });
 
-  const handlePay = (e, backingAmount, setIsBacking) => {
+  const { mutate } = useSWRConfig();
+  const handlePay = async (e, backingAmount, setIsBacking) => {
     const val = backingAmount.input;
     e?.preventDefault();
     if (isNaN(val) || val < 0) return;
@@ -18,7 +19,20 @@ const Post = ({ title, content, raisedSoFar, target, img }) => {
       setIsBacking(false);
       return;
     }
-    setCurrRaised(currRaised + parseInt(val));
+    try {
+      await fetch("/api/crowdfunder", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ backingAmount: parseInt(val) }),
+      });
+    } catch {
+      console.error("Could not back this project");
+    }
+
+    mutate("/api/crowdfunder");
+
     setIsBacking(false);
     backingAmount.reset();
     play();
@@ -34,7 +48,7 @@ const Post = ({ title, content, raisedSoFar, target, img }) => {
         <PostTitle>{title}</PostTitle>
         <PostText>{content}</PostText>
 
-        <ProgressStats currRaised={currRaised} target={target} />
+        <ProgressStats currRaised={raisedSoFar} target={target} />
         <BackProject handlePay={handlePay} />
       </PostDetails>
     </PostWrapper>

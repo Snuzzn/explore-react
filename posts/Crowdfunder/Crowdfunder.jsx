@@ -7,19 +7,20 @@ import Post from "./Post";
 import { LayoutGroup } from "framer-motion";
 import InfoCard from "../../components/InfoCard";
 import WarningCard from "../../components/WarningCard";
+import useSWR from "swr";
+import {
+  InlineCode,
+  Hyperlink,
+  openInNewTab,
+} from "../../components/styles/Styles";
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const Crowdfunder = () => {
+  const { data, error } = useSWR("/api/crowdfunder", fetcher);
+
   return (
     <>
-      <DemoCont>
-        <Post
-          title="Genie's Lamp"
-          content="An oil lamp that holds a genie. Once released, you will be granted 3 wishes!"
-          raisedSoFar={400}
-          target={1000}
-          img={"/images/genieLamp.jpg"}
-        />
-      </DemoCont>
+      <DemoCont>{data && <Post {...data} />}</DemoCont>
 
       <LayoutGroup id="codeblock1">
         <Codeblock codeFiles={codeSnippets} />
@@ -35,14 +36,16 @@ const Crowdfunder = () => {
       <LayoutGroup id="codeblock2">
         <Codeblock codeFiles={testingCodeSnippets} />
       </LayoutGroup>
+      <InfoCard>
+        Notice in <InlineCode>Crowdfunder.test.js</InlineCode> that we mock the
+        server using the
+        <Hyperlink href="https://mswjs.io/" {...openInNewTab}>
+          Mock Service Worker
+        </Hyperlink>
+        library. Using our actual API is not ideal as requests are slow, costly
+        and can be unreliable since errors may not come from the frontend.
+      </InfoCard>
     </>
   );
 };
 export default Crowdfunder;
-
-const Backers = styled.div`
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 1.3rem;
-`;

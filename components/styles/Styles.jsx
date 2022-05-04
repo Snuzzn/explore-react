@@ -194,7 +194,25 @@ export const InlineCode = styled.code`
   border-radius: 4px;
   outline: 1px solid #323944;
   font-family: "Fira Mono", monospace;
+  font-size: 1.1rem;
 `;
+
+export const Hyperlink = styled.a`
+  /* background-color: #1d2024; */
+  padding: 0px 7px;
+  margin: 0 1px;
+  color: #5773ff;
+  transition: all 200ms ease-out;
+  text-decoration: none;
+  text-underline-offset: 3px;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+  }
+`;
+
+export const openInNewTab = { target: "_blank", rel: "noopener noreferrer" };
 
 export const Star = styled(HiStar)`
   color: gold;

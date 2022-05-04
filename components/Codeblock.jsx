@@ -29,7 +29,7 @@ function Codeblock({ codeFiles, naturalHeight }) {
       <CodeWrapper
         language={codeFiles[curr].lang}
         style={{ ...draculaTheme, height: "600px !important" }}
-        isNaturalHeight={isNaturalHeight}
+        isnaturalheight={isNaturalHeight}
       >
         {codeFiles[curr].code}
       </CodeWrapper>
@@ -71,15 +71,15 @@ const CodeWrapper = styled(SyntaxHighlighter)`
   margin-top: 0 !important;
 
   @media ${device.laptop} {
-    height: ${(p) => !p.isNaturalHeight && "500px"};
+    height: ${(p) => !p.isnaturalheight && "500px"};
   }
 
   @media ${device.laptopL} {
-    height: ${(p) => !p.isNaturalHeight && "600px"};
+    height: ${(p) => !p.isnaturalheight && "600px"};
   }
 
   @media ${device.desktop} {
-    height: ${(p) => !p.isNaturalHeight && "700px"};
+    height: ${(p) => !p.isnaturalheight && "700px"};
   }
 
   // Scrollbar
