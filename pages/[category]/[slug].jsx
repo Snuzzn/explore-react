@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { toSentenceCase } from "../../helper/general";
 import { postsData } from "../../helper/postsData";
 import { ErrorPageWrapper } from "../404";
+import useTimeout from "hooks/useTimeout";
 
 const Post = () => {
   const router = useRouter();
@@ -19,14 +20,10 @@ const Post = () => {
   const PostComponent = postsData[category]?.[toSentenceCase(slug)]?.component;
 
   // if component not found, navigate user to 404 page
-  useEffect(() => {
-    const timerId = setTimeout(() => {
-      if (!PostComponent) router.push("/404");
-    }, 1000);
-    return () => {
-      clearInterval(timerId);
-    };
-  }, []);
+
+  useTimeout(() => {
+    if (!PostComponent) router.push("/404");
+  }, 1000);
 
   return (
     <>
