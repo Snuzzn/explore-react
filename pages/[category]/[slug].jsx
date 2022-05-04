@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PageLayout from "../../components/PageLayout";
 import UseStateIntro from "../../posts/UseStateIntro";
 import UseEffectIntro from "../../posts/UseEffectIntro";
@@ -18,9 +18,19 @@ const Post = () => {
 
   const PostComponent = postsData[category]?.[toSentenceCase(slug)]?.component;
 
+  // if component not found, navigate user to 404 page
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      if (!PostComponent) router.push("/404");
+    }, 1000);
+    return () => {
+      clearInterval(timerId);
+    };
+  }, []);
+
   return (
     <>
-      <PageLayout title={title}>{PostComponent}</PageLayout>
+      {PostComponent && <PageLayout title={title}>{PostComponent}</PageLayout>}
     </>
   );
 };

@@ -90,3 +90,8 @@ with ui elements like modals
  isolation: isolate;
 }
 
+
+html, body, #root, #__next {
+  height: 100%;
+ }
+ 

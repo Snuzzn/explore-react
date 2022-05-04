@@ -22,22 +22,30 @@ function MyApp({ Component, pageProps }) {
         <title>Explore React</title>
       </Head>
       <ThemeProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-        <Footer>
-          <FooterContent>
-            Note: Code snippets do not include styling details to keep things
-            concise.
-          </FooterContent>
-          <FooterContent>Copyright © 2022 Explore React</FooterContent>
-        </Footer>
+        <PageContainer>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+          <Footer>
+            <FooterContent>
+              Note: Code snippets do not include styling details to keep things
+              concise.
+            </FooterContent>
+            <FooterContent>Copyright © 2022 Explore React</FooterContent>
+          </Footer>
+        </PageContainer>
       </ThemeProvider>
     </>
   );
 }
 
 export default MyApp;
+
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
 
 const Layout = styled.div`
   display: flex;
@@ -46,7 +54,8 @@ const Layout = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 15px;
-  height: 100%;
+  flex-grow: 1;
+  /* height: 100%; */
 `;
 
 const Footer = styled.div`
