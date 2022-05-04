@@ -4,13 +4,14 @@ import Link from "next/link";
 import { StyledLink } from "./styles/Styles";
 import { ThemeContext } from "../context/ThemeProvider";
 import useUiSound from "../hooks/useUiSound";
+import { toKebabCase } from "helper/general";
 const bubbleClickSfx = "/sounds/bubbleClick.mp3";
 
 const Feature = ({ title, route, category }) => {
   const { play } = useUiSound(bubbleClickSfx);
 
   return (
-    <Link href={`/${category.toLowerCase()}/${route}`} passHref>
+    <Link href={`/${toKebabCase(category)}/${route}`} passHref>
       <Container onClick={() => play()}>
         <Title>{title}</Title>
       </Container>

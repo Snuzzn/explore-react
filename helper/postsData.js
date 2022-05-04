@@ -91,7 +91,7 @@ export const postsData = {
       component: <SearchFilter />,
     },
   },
-  "mini projects": {
+  "mini-projects": {
     "Crowdfunder with testing": {
       component: <Crowdfunder />,
     },
