@@ -13,3 +13,6 @@ export const bubble = "/sounds/bubble.mp3";
 export const startSfx = "/sounds/confirmation_001.ogg";
 export const endSfx = "/sounds/confirmation_002.ogg";
 export const pauseSfx = "/sounds/bong_001.ogg";
+export const sharpIncrSfx = "/sounds/maximize_009.ogg";
+export const sharpDecrSfx = "/sounds/minimize_009.ogg";
+export const doubleClickSfx = "/sounds/Minimalist10.ogg";

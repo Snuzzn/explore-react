@@ -11,27 +11,36 @@ import {
   Hint,
   InlineCode,
 } from "../components/styles/Styles";
+import { doubleClickSfx, sharpDecrSfx, sharpIncrSfx } from "../helper/sounds";
 import useLogs from "../hooks/useLogs";
+import useUiSound from "../hooks/useUiSound";
 
 const HandlingEvents = () => {
   const circleRef = useRef();
 
   const [isHintOn, setIsHintOn] = useState(true);
+  const { play: playIncr } = useUiSound(sharpIncrSfx, { rate: 0.3 });
+  const { play: playDecr } = useUiSound(sharpDecrSfx, { rate: 0.3 });
+  const { play: playClick } = useUiSound(doubleClickSfx);
 
-  const handleDrag = () => {
+  const handleDragStart = () => {
     circleRef.current.style.width = "150px";
     circleRef.current.style.height = "150px";
+    playIncr();
     setIsHintOn(false);
+    updateLogs("Started dragging!");
   };
 
   const handleDragEnd = () => {
     circleRef.current.style.width = "100px";
     circleRef.current.style.height = "100px";
-    updateLogs("Dragging finished!");
+    playDecr();
+    updateLogs("Finished dragging!");
     setIsHintOn(true);
   };
 
   const handleClick = () => {
+    playClick();
     updateLogs("Clicked!");
     const currBgColor = circleRef.current.style.backgroundColor;
     if (currBgColor === "rgb(87, 115, 255)" || currBgColor === "")
@@ -47,7 +56,7 @@ const HandlingEvents = () => {
         <DraggingCont>
           <Circle
             onClick={handleClick}
-            onDrag={handleDrag}
+            onDragStart={handleDragStart}
             onDragEnd={handleDragEnd}
             ref={circleRef}
             drag
@@ -120,12 +129,17 @@ const codeSnippets = [
     lang: "jsx",
     code: `const HandlingEvents = () => {
   
+
   const handleClick = () => {
     console.log("Clicked!")
   };
 
+  const handleDragStart = () => {
+    console.log("Started dragging!");
+  };
+
   const handleDragEnd = () => {
-    console.log("Dragging finished!");
+    console.log("Finished dragging!");
   };
 
 
@@ -134,6 +148,7 @@ const codeSnippets = [
       <Hint>Drag me around!</Hint>
       <Circle
         onClick={handleClick}
+        onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
       />
     </DemoContainer>
