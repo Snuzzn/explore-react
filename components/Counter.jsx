@@ -35,10 +35,10 @@ function Counter({ updateLogs }) {
 
   return (
     <CounterContainer>
-      <UnstyledBtn onClick={decrementCount}>
+      <UnstyledBtn onClick={decrementCount} data-test-id="decrease">
         <MinusIcon size="2em" />
       </UnstyledBtn>
-      <div>{count}</div>
+      <div data-test-id="count">{count}</div>
       <UnstyledBtn
         onClick={() => {
           setCount(count + 1);
@@ -46,6 +46,7 @@ function Counter({ updateLogs }) {
           setDecreaseRate(0.75);
           playIncrease();
         }}
+        data-test-id="increase"
       >
         <PlusIcon size="2em" />
       </UnstyledBtn>

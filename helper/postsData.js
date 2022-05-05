@@ -22,6 +22,7 @@ import MusicPlayer from "../posts/MusicPlayer";
 import CountdownTimer from "../posts/PomdoroTimer";
 import PokemonRedux from "../posts/PokemonRedux/main";
 import HandlingEvents from "../posts/HandlingEvents";
+import CypressDemo from "posts/CypressDemo";
 
 // Each post must be in sentence case.
 // If you want a custom casing, include a title attribute in the object
@@ -90,11 +91,15 @@ export const postsData = {
     "Search filter": {
       component: <SearchFilter />,
     },
-  },
-  "mini-projects": {
-    "Crowdfunder with testing": {
+    "Crowdfunder with unit/integration testing": {
       component: <Crowdfunder />,
     },
+    "End to end testing": {
+      title: "End-to-end testing",
+      component: <CypressDemo />,
+    },
+  },
+  "mini-projects": {
     "Typescript imdb": {
       component: <TypescriptDemo />,
       title: "Typescript IMDB",

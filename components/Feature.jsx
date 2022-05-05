@@ -21,7 +21,7 @@ const Feature = ({ title, route, category }) => {
 
 export default Feature;
 
-const Container = styled.div`
+const Container = styled.a`
   display: flex;
   border-radius: 10px;
   align-items: center;

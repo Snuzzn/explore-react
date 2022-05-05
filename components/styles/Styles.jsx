@@ -43,7 +43,6 @@ const baseIconBtn = css`
   border: none;
   background-color: #2b2a33;
   cursor: pointer;
-  padding: 11px;
   border-radius: 8px;
   &:hover {
     background-color: #373641;
@@ -55,8 +54,9 @@ const baseIconBtn = css`
   }
 `;
 
-export const IconBtn = styled.button`
+export const IconBtn = styled.a`
   ${baseIconBtn}
+  padding: 10px;
 `;
 
 export const IconButton = styled.button`
