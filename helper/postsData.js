@@ -91,7 +91,8 @@ export const postsData = {
     "Search filter": {
       component: <SearchFilter />,
     },
-    "Crowdfunder with unit/integration testing": {
+    "Unit and integration testing": {
+      title: "Unit and integration testing",
       component: <Crowdfunder />,
     },
     "End to end testing": {

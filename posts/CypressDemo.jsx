@@ -2,13 +2,19 @@ import Codeblock from "components/Codeblock";
 import DemoCont from "components/DemoCont";
 import InfoCard from "components/InfoCard";
 import { Hyperlink, openInNewTab } from "components/styles/Styles";
-import React from "react";
+import React, { useState } from "react";
+import styled from "styled-components";
+import { loadSkeleton } from "./FetchWithSkeleton";
 
 const CypressDemo = () => {
+  // const [hasVideoLoaded, setHasVideoLoaded] = useState(false);
+
   return (
     <>
       <DemoCont>
-        <video src="/cypress-demo.mp4" controls />
+        <video src="/cypress-demo.mp4" controls>
+          <SkeletonVideo />
+        </video>
       </DemoCont>
       <InfoCard>
         End-to-end testing involves testing an application&apos;s user flow from
@@ -24,6 +30,12 @@ const CypressDemo = () => {
 };
 
 export default CypressDemo;
+
+const SkeletonVideo = styled.div`
+  height: 500px;
+  width: 600px;
+  animation: ${loadSkeleton} 1s linear infinite alternate;
+`;
 
 const codeFiles = [
   {
