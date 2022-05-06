@@ -16,3 +16,4 @@ export const pauseSfx = "/sounds/bong_001.ogg";
 export const sharpIncrSfx = "/sounds/maximize_009.ogg";
 export const sharpDecrSfx = "/sounds/minimize_009.ogg";
 export const doubleClickSfx = "/sounds/Minimalist10.ogg";
+export const correctSfx = "/sounds/Modern7.ogg";

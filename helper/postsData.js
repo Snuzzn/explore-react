@@ -23,6 +23,7 @@ import CountdownTimer from "../posts/PomdoroTimer";
 import PokemonRedux from "../posts/PokemonRedux/main";
 import HandlingEvents from "../posts/HandlingEvents";
 import CypressDemo from "posts/CypressDemo";
+import WhackAMole from "posts/WhackAMole";
 
 // Each post must be in sentence case.
 // If you want a custom casing, include a title attribute in the object
@@ -117,6 +118,9 @@ export const postsData = {
     "Redux pokemon battle": {
       title: "Redux Pokemon battle",
       component: <PokemonRedux />,
+    },
+    "Whack a mole": {
+      component: <WhackAMole />,
     },
   },
 };
