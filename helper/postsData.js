@@ -24,6 +24,7 @@ import PokemonRedux from "../posts/PokemonRedux/main";
 import HandlingEvents from "../posts/HandlingEvents";
 import CypressDemo from "posts/CypressDemo";
 import WhackAMole from "posts/WhackAMole";
+import ModalDemo from "posts/ModalDemo";
 
 // Each post must be in sentence case.
 // If you want a custom casing, include a title attribute in the object
@@ -85,6 +86,9 @@ export const postsData = {
     },
     "Recursive menu": {
       component: <RecursiveMenu />,
+    },
+    "Modal dialog": {
+      component: <ModalDemo />,
     },
     "Search debounce": {
       component: <SearchDebounce />,
