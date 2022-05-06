@@ -4,7 +4,7 @@ import styled from "styled-components";
 import ThemeProvider from "../context/ThemeProvider";
 import GlobalStyle from "../styles/globalStyles";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, ssr }) {
   return (
     <>
       <GlobalStyle />
@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider>
         <PageContainer>
           <Layout>
-            <Component {...pageProps} />
+            <Component {...pageProps} ssr={ssr} />
           </Layout>
           <Footer>
             <FooterContent>

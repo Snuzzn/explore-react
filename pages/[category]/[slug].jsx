@@ -9,27 +9,50 @@ import { toSentenceCase } from "../../helper/general";
 import { postsData } from "../../helper/postsData";
 import { ErrorPageWrapper } from "../404";
 import useTimeout from "hooks/useTimeout";
+import { motion } from "framer-motion";
 
-const Post = () => {
-  const router = useRouter();
-  const { category, slug } = router.query;
-
+const Post = ({ category, slug, ssr }) => {
   const title =
     postsData[category]?.[toSentenceCase(slug)]?.title || toSentenceCase(slug);
 
   const PostComponent = postsData[category]?.[toSentenceCase(slug)]?.component;
 
-  // if component not found, navigate user to 404 page
-
-  useTimeout(() => {
-    if (!PostComponent) router.push("/404");
-  }, 1000);
-
   return (
-    <>
-      {PostComponent && <PageLayout title={title}>{PostComponent}</PageLayout>}
-    </>
+    <motion.div
+      initial={!ssr && { y: 200, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ opacity: 0, y: 100 }}
+      transition={{ duration: 0.3, type: "tween" }}
+    >
+      <PageLayout title={title}>{PostComponent}</PageLayout>
+    </motion.div>
   );
 };
 
 export default Post;
+
+export async function getStaticPaths() {
+  let paths = [];
+  for (const category in postsData) {
+    for (const slug in postsData[category]) {
+      paths.push({ params: { category: category, slug: slug } });
+    }
+  }
+
+  return {
+    paths: paths,
+    fallback: false,
+  };
+}
+
+export const getStaticProps = async (context) => {
+  const category = context.params.category;
+  const slug = context.params.slug;
+
+  return {
+    props: {
+      category: category,
+      slug: slug,
+    },
+  };
+};

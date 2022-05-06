@@ -11,12 +11,7 @@ function PageLayout({ children, title }) {
   const { play } = useUiSound(bubbleClick);
 
   return (
-    <motion.div
-      initial={{ y: 200, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ opacity: 0, y: 100 }}
-      transition={{ duration: 0.3, type: "tween" }}
-    >
+    <>
       <Header>
         <Breadcrumbs>
           <Link href="/" passHref>
@@ -30,7 +25,7 @@ function PageLayout({ children, title }) {
         {/* {children === <MusicPlayer /> && <MuteButton />} */}
       </Header>
       <ContentsWrapper>{children}</ContentsWrapper>
-    </motion.div>
+    </>
   );
 }
 

@@ -10,12 +10,12 @@ import { useState } from "react";
 import { toKebabCase } from "../helper/general";
 import { postsData } from "../helper/postsData";
 
-function Home() {
+function Home({ ssr }) {
   const [activeCategory, setActiveCategory] = useState("");
 
   return (
     <HomeWrapper
-      initial={{ opacity: 0, x: 100 }}
+      initial={!ssr && { opacity: 0, x: 100 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3, type: "tween" }}
@@ -36,7 +36,7 @@ function Home() {
                 <Feature
                   key={feature[0]}
                   title={feature[1].title || feature[0]}
-                  route={toKebabCase(feature[0])}
+                  route={feature[0]}
                   category={category}
                 />
               ))}

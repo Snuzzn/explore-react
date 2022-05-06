@@ -11,7 +11,7 @@ const Feature = ({ title, route, category }) => {
   const { play } = useUiSound(bubbleClickSfx);
 
   return (
-    <Link href={`/${toKebabCase(category)}/${route}`} passHref>
+    <Link href={`/${category}/${route}`} passHref>
       <Container onClick={() => play()}>
         <Title>{title}</Title>
       </Container>
