@@ -26,6 +26,8 @@ import CypressDemo from "posts/CypressDemo";
 import WhackAMole from "posts/WhackAMole";
 import ModalDemo from "posts/ModalDemo";
 import KanbanBoard from "posts/KanbanBoard";
+import PhotoGallery from "posts/PhotoCarousel";
+import PhotoCarousel from "posts/PhotoCarousel";
 
 // Each post must be in sentence case.
 // If you want a custom casing, include a title attribute in the object
@@ -96,6 +98,9 @@ export const postsData = {
     },
     "Search filter": {
       component: <SearchFilter />,
+    },
+    "Photo carousel": {
+      component: <PhotoCarousel />,
     },
     "Unit and integration testing": {
       title: "Unit and integration testing",

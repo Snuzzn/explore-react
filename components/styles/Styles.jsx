@@ -120,7 +120,7 @@ export const ListItem = styled.div`
   gap: 10px;
 `;
 
-export const UnstyledBtn = styled.button`
+export const UnstyledBtn = styled(motion.button)`
   border: none;
   text-decoration: none;
   background: none;
