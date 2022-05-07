@@ -66,7 +66,7 @@ const Modal = ({ children, isOpen, setIsOpen }) => {
   );
 };
 
-const animateModalInOut = {
+export const animateModalInOut = {
   initial: {
     opacity: 0,
     y: 100,

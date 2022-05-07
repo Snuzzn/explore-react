@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 function DemoCont({ children }) {
   return (
-    <DemoWrapper layout>
+    <DemoWrapper layout="size">
       <BorderText>DEMO</BorderText>
       {children}
     </DemoWrapper>
