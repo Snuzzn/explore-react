@@ -18,9 +18,9 @@ const TicTacToe = () => {
   const { play: end } = useUiSound(happyRing);
 
   const takeTurn = (ind) => {
-    playClick();
     if (winner) return;
     if (board[ind]) return;
+    playClick();
     const clonedBoard = [...board];
     clonedBoard[ind] = playerTurn;
     setBoard(clonedBoard);
@@ -50,9 +50,10 @@ const TicTacToe = () => {
     if (hasWon) {
       setWinner(playerTurn === "p2" ? "p1" : "p2");
       end();
+    } else {
+      const numEmpty = board.reduce((acc, tile) => (!tile ? acc + 1 : acc), 0);
+      if (numEmpty === 0) setWinner("No one");
     }
-    const numEmpty = board.reduce((acc, tile) => (!tile ? acc + 1 : acc), 0);
-    if (numEmpty === 0) setWinner("No one");
   }, [board, playerTurn]);
 
   const restart = () => {
