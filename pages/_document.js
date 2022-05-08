@@ -1,4 +1,5 @@
 import Document, { Html, Main, NextScript } from "next/document";
+import Head from "next/document";
 import { ServerStyleSheet } from "styled-components";
 import MyApp from "./_app";
 
@@ -28,12 +29,15 @@ export default class MyDocument extends Document {
       sheet.seal();
     }
   }
+  render() {
+    return (
+      <Html lang="en">
+        <Head></Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
 }
-
-// const LoadingPage = styled.div`
-//   height: 100vh;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   background-color: #181819;
-// `;
