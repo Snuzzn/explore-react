@@ -13,6 +13,7 @@ const PassingProps = () => {
           {quotes.map((quote) => (
             <QuoteCard key={quote.id} {...quote} />
           ))}
+          <FadedBot />
         </QuotesWrapper>
       </DemoCont>
       <InfoCard>
@@ -30,6 +31,9 @@ export default PassingProps;
 const QuotesWrapper = styled.div`
   height: 450px;
   overflow: auto;
+  position: relative;
+  /* display: flex;
+  flex-direction: column; */
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -42,6 +46,19 @@ const QuotesWrapper = styled.div`
 
   scrollbar-color: #373a3f transparent;
   scrollbar-width: thin;
+`;
+
+const FadedBot = styled.div`
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  height: 100px;
+  pointer-events: none;
+  /* width: 550px; */
+  /* background-color: blue; */
+  /* align-self: flex-start; */
+  background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), #181819cd);
+  margin: auto auto;
 `;
 
 const quotes = [
