@@ -30,7 +30,7 @@ function PassingState() {
         </ParentCont>
       </DemoCont>
       <InfoCard>
-        You can pass state between sibilings by creating the state inside the
+        You can share state between sibilings by creating the state inside the
         parent to begin with, then pass the state to the children so they can
         both access it.
       </InfoCard>
@@ -71,9 +71,9 @@ const Title = styled.p`
 
 const codeblocks = [
   {
-    name: "PassingStateDemo",
+    name: "SharingState",
     lang: "jsx",
-    code: `function PassingStateDemo() {
+    code: `function SharingState() {
   const [count, setCount] = React.useState(0);
   return (
     <Parent>

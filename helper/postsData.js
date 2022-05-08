@@ -29,6 +29,7 @@ import KanbanBoard from "posts/KanbanBoard";
 import PhotoGallery from "posts/PhotoCarousel";
 import PhotoCarousel from "posts/PhotoCarousel";
 import TicTacToe from "posts/TicTacToe";
+import PassingProps from "posts/PassingProps";
 
 // Each post must be in sentence case.
 // If you want a custom casing, include a title attribute in the object
@@ -54,7 +55,10 @@ export const postsData = {
     "Managing object state": {
       component: <ManagingObjectState />,
     },
-    "Passing state": {
+    "Passing props": {
+      component: <PassingProps />,
+    },
+    "Sharing state": {
       component: <PassingState />,
     },
     "Use effect hook": {

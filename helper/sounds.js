@@ -19,3 +19,5 @@ export const doubleClickSfx = "/sounds/Minimalist10.ogg";
 export const correctSfx = "/sounds/Modern7.ogg";
 export const minimalClick = "/sounds/Minimalist12.ogg";
 export const happyRing = "/sounds/African4.ogg";
+export const modernOn = "/sounds/Modern8.ogg";
+export const modernOff = "/sounds/Modern9.ogg";
