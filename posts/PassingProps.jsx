@@ -54,11 +54,7 @@ const FadedBot = styled.div`
   left: 0;
   height: 100px;
   pointer-events: none;
-  /* width: 550px; */
-  /* background-color: blue; */
-  /* align-self: flex-start; */
   background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), #181819cd);
-  margin: auto auto;
 `;
 
 const quotes = [

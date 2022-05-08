@@ -17,22 +17,17 @@ const WithoutMemo = lazy(() => import("./AvgWithoutMemo"));
 const WithMemo = lazy(() => import("./AvgWithMemo"));
 
 const UseMemoDemo = () => {
-  const { logs, updateLogs } = useLogs();
   return (
     <>
       <DemoCont>
-        {/* <WithUseEffectAndState /> */}
-        {/* <WithUseMemo /> */}
         <ReviewsWrapper>
           {reviewData.slice(0, 2).map((review) => (
             <ReviewCard review={review} key={review.name} />
           ))}
           <IoEllipsisVerticalSharp color="#59576b" />
+          <FadedOutBar />
         </ReviewsWrapper>
         <DemosWrapper>
-          {/* <Suspense fallback={"Loading"}>
-            <WithMemo />
-          </Suspense> */}
           <AvgRatingWithoutMemo />
           <AvgRatingWithMemo />
         </DemosWrapper>
@@ -80,6 +75,7 @@ const ReviewsWrapper = styled.div`
   gap: 20px;
   margin-bottom: 30px;
   align-items: center;
+  position: relative;
 `;
 
 export const AvgRatingWrapper = styled.div`
@@ -98,6 +94,15 @@ export const Average = ({ average }) => {
     </AvgRatingWrapper>
   );
 };
+
+const FadedOutBar = styled.div`
+  height: 200px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  pointer-events: none;
+  background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), #181819cd);
+`;
 
 const codeWithoutMemo = {
   name: "WithoutMemo",

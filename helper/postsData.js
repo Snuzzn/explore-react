@@ -30,6 +30,7 @@ import PhotoGallery from "posts/PhotoCarousel";
 import PhotoCarousel from "posts/PhotoCarousel";
 import TicTacToe from "posts/TicTacToe";
 import PassingProps from "posts/PassingProps";
+import Wordle from "posts/Wordle";
 
 // Each post must be in sentence case.
 // If you want a custom casing, include a title attribute in the object
@@ -144,5 +145,8 @@ export const postsData = {
     "Tic tac toe": {
       component: <TicTacToe />,
     },
+    // Wordle: {
+    //   component: <Wordle />,
+    // },
   },
 };

@@ -16,7 +16,8 @@ const AvgRatingWithoutMemo = () => {
       return acc + review.rating;
     }, 0) / reviews.length;
 
-  console.log(average);
+  // consoleLog(4);
+  console.log("what");
 
   return (
     <MiniDemoWrapper>

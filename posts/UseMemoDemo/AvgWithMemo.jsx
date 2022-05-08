@@ -34,8 +34,6 @@ const AvgRatingWithMemo = () => {
   //   calculate();
   // }, [reviews]);
 
-  console.log(average);
-
   return (
     <MiniDemoWrapper>
       <BorderText style={{ color: "#676c74" }}>with useMemo</BorderText>

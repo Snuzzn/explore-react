@@ -77,6 +77,8 @@ const Wrapper = styled.figure`
 const Quote = styled.blockquote`
   margin: 0;
   font-size: 1.3rem;
+  /* width: 300px; */
+  hyphens: auto;
   &::before {
     content: "“";
   }

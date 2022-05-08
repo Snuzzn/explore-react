@@ -133,7 +133,6 @@ const codeSnippets = [
     lang: "jsx",
     code: `const HandlingEvents = () => {
   
-
   const handleClick = () => {
     console.log("Clicked!")
   };
