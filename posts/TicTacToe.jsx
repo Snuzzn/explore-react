@@ -7,13 +7,18 @@ import { fadeInOutAnimation, UnstyledBtn } from "components/styles/Styles";
 import { MdClear, MdOutlineCircle } from "react-icons/md";
 import { motion } from "framer-motion";
 import Codeblock from "components/Codeblock";
+import useUiSound from "hooks/useUiSound";
+import { happyRing, minimalClick } from "helper/sounds";
 
 const TicTacToe = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [playerTurn, setPlayerTurn] = useState("p1");
   const [winner, setWinner] = useState(null);
+  const { play: playClick } = useUiSound(minimalClick);
+  const { play: end } = useUiSound(happyRing);
 
   const takeTurn = (ind) => {
+    playClick();
     if (winner) return;
     if (board[ind]) return;
     const clonedBoard = [...board];
@@ -42,7 +47,10 @@ const TicTacToe = () => {
     if (board[2] && board[2] === board[4] && board[2] === board[6])
       hasWon = true;
 
-    if (hasWon) setWinner(playerTurn === "p2" ? "p1" : "p2");
+    if (hasWon) {
+      setWinner(playerTurn === "p2" ? "p1" : "p2");
+      end();
+    }
     const numEmpty = board.reduce((acc, tile) => (!tile ? acc + 1 : acc), 0);
     if (numEmpty === 0) setWinner("No one");
   }, [board, playerTurn]);

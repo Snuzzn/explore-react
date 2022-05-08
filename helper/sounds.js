@@ -17,3 +17,5 @@ export const sharpIncrSfx = "/sounds/maximize_009.ogg";
 export const sharpDecrSfx = "/sounds/minimize_009.ogg";
 export const doubleClickSfx = "/sounds/Minimalist10.ogg";
 export const correctSfx = "/sounds/Modern7.ogg";
+export const minimalClick = "/sounds/Minimalist12.ogg";
+export const happyRing = "/sounds/African4.ogg";

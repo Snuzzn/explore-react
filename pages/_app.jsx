@@ -30,8 +30,8 @@ function MyApp({ Component, pageProps, ssr }) {
           </Layout>
           <Footer>
             <FooterContent>
-              Note: Code snippets do not include styling details to keep things
-              concise.
+              Note: Code snippets do not include styling details unless they are
+              the focus of the exercise.
             </FooterContent>
             <FooterContent>Copyright © 2022 Explore React</FooterContent>
           </Footer>
