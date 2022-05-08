@@ -1,4 +1,4 @@
-import { modernOff, modernOn } from "helper/sounds";
+import { decreaseSfx, increaseSfx, modernOff, modernOn } from "helper/sounds";
 import useUiSound from "hooks/useUiSound";
 import React, { useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
@@ -11,18 +11,26 @@ const QuoteCard = ({ content, author, title, img, likes, year }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [numLikes, setNumLikes] = useState(likes);
 
-  const { play: playOn } = useUiSound(modernOn);
-  const { play: playOff } = useUiSound(modernOff);
+  const { play: likeSfx } = useUiSound(increaseSfx);
+  const { play: unlikeSfx } = useUiSound(decreaseSfx);
+  const { play: markSfx } = useUiSound(modernOn);
+  const { play: unMarkSfx } = useUiSound(modernOff);
 
   const handleLike = () => {
     if (isLiked) {
       setNumLikes((numLikes) => numLikes - 1);
-      // playOff();
+      unlikeSfx();
     } else {
       setNumLikes((numLikes) => numLikes + 1);
-      // playOn();
+      likeSfx();
     }
     setIsLiked(!isLiked);
+  };
+
+  const toggleBookmark = () => {
+    if (isBookmarked) unMarkSfx();
+    else markSfx();
+    setIsBookmarked(!isBookmarked);
   };
 
   return (
@@ -44,8 +52,8 @@ const QuoteCard = ({ content, author, title, img, likes, year }) => {
         </Like>
         <Bookmark
           isBookmarked={isBookmarked}
-          onClick={() => setIsBookmarked(!isBookmarked)}
           whileTap={{ scale: 0.7 }}
+          onClick={toggleBookmark}
         >
           <BsFillBookmarkFill size="1.1em" />
         </Bookmark>
