@@ -31,6 +31,7 @@ import PhotoCarousel from "posts/PhotoCarousel";
 import TicTacToe from "posts/TicTacToe";
 import PassingProps from "posts/PassingProps";
 import Wordle from "posts/Wordle";
+import Accordion from "posts/Accordion";
 
 // Each post must be in sentence case.
 // If you want a custom casing, include a title attribute in the object
@@ -108,7 +109,9 @@ export const postsData = {
     "Photo carousel": {
       component: <PhotoCarousel />,
     },
-
+    // Accordion: {
+    //   component: <Accordion />,
+    // },
     "Unit and integration testing": {
       title: "Unit and integration testing",
       component: <Crowdfunder />,
