@@ -11,6 +11,17 @@ import {
   SearchWrapper,
 } from "../components/styles/Styles";
 import { AnimatePresence } from "framer-motion";
+import { Button } from "./StyledComponents";
+
+const debounce = (func, timeout = 300) => {
+  let timer;
+  return (...args) => {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      func(...args);
+    }, timeout);
+  };
+};
 
 function SearchDebounce() {
   const [results, setResults] = React.useState([]);
@@ -29,57 +40,36 @@ function SearchDebounce() {
     } else setResults([]);
   };
 
-  const debounce = (func) => {
-    let timer;
-    return function (...args) {
-      const context = this;
-      if (timer) clearTimeout(timer);
-      timer = setTimeout(() => {
-        timer = null;
-        func.apply(context, args);
-      }, 300);
-    };
-  };
-
-  const optimisedFunc = React.useCallback(debounce(handleChange), []);
-
   return (
     <>
       <DemoCont>
         <SearchWrapper>
           <SearchBar
-            onChange={(e) => {
-              optimisedFunc(e.target.value);
-            }}
+            onChange={debounce((e) => handleChange(e.target.value))}
             placeholder="Search for a recipe..."
           />
-          <>
-            {results.length !== 0 && (
-              <ResultsCont>
-                <>
-                  {results.map((meal) => (
-                    <AnimatePresence key={meal}>
-                      <Result
-                        layout
-                        key={meal}
-                        href={`https://www.google.com/search?q=${meal}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        {...fadeInOutAnimation}
-                      >
-                        {meal}
-                      </Result>
-                    </AnimatePresence>
-                  ))}
-                </>
-              </ResultsCont>
-            )}
-          </>
+          {results.length !== 0 && (
+            <ResultsCont>
+              {results.map((meal) => (
+                <AnimatePresence key={meal}>
+                  <Result
+                    layout
+                    key={meal}
+                    href={`https://www.google.com/search?q=${meal}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    {...fadeInOutAnimation}
+                  >
+                    {meal}
+                  </Result>
+                </AnimatePresence>
+              ))}
+            </ResultsCont>
+          )}
         </SearchWrapper>
       </DemoCont>
-
       <InfoCard>
-        The debounce strategey is to wait for some time before triggering an
+        The debounce strategy is to wait for some time before triggering an
         event. Here, we want to avoid making an API call per character entered.
         Instead, we make the call after the user finishes typing.
       </InfoCard>
@@ -92,7 +82,17 @@ function SearchDebounce() {
 
 export default SearchDebounce;
 
-const codeblock = `function SearchDebounce() {
+const codeblock = `const debounce = (func, timeout = 300) => {
+  let timer;
+  return (...args) => {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      func(...args);
+    }, timeout);
+  };
+};
+
+function SearchDebounce() {
   const [results, setResults] = React.useState([]);
 
   const handleChange = async (val) => {
@@ -112,46 +112,26 @@ const codeblock = `function SearchDebounce() {
     } else setResults([]);
   };
 
-  const debounce = (func) => {
-    let timer;
-    return function (...args) {
-      const context = this;
-      if (timer) clearTimeout(timer);
-      timer = setTimeout(() => {
-        timer = null;
-        func.apply(context, args);
-      }, 300);
-    };
-  };
-
-  const optimisedFunc = React.useCallback(debounce(handleChange), []);
-
   return (
     <SearchWrapper>
       <SearchBar
-        onChange={(e) => {
-          optimisedFunc(e.target.value);
-        }}
+        onChange={debounce((e) => handleChange(e.target.value))}
         placeholder="Search for a recipe..."
       />
-      <>
-        {results.length !== 0 && (
-          <ResultsCont>
-            <>
-              {results.map((meal) => (
-                <Result
-                  key={meal}
-                  href={\`https://www.google.com/search?q=\${meal}\`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {meal}
-                </Result>
-              ))}
-            </>
-          </ResultsCont>
-        )}
-      </>
+      {results.length !== 0 && (
+        <ResultsCont>
+          {results.map((meal) => (
+            <Result
+              key={meal}
+              href={\`https://www.google.com/search?q=\${meal}\`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {meal}
+            </Result>
+          ))}
+        </ResultsCont>
+      )}
     </SearchWrapper>
   );
 }
