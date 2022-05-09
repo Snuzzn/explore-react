@@ -84,7 +84,7 @@ const UserAvatar = ({ letter }) => {
   );
 };
 
-const StyledAvatar = styled(Avatar.Root)`
+export const StyledAvatar = styled(Avatar.Root)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -96,7 +96,7 @@ const StyledAvatar = styled(Avatar.Root)`
   border-radius: 100%;
 `;
 
-const StyledFallback = styled(Avatar.Fallback)`
+export const StyledFallback = styled(Avatar.Fallback)`
   width: 100%;
   height: 100%;
   display: flex;
