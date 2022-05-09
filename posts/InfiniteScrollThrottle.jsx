@@ -3,6 +3,9 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import * as Avatar from "@radix-ui/react-avatar";
 import { StyledAvatar, StyledFallback } from "./UseMemoDemo/ReviewCard";
+import { keyframes } from "styled-components";
+import Codeblock from "components/Codeblock";
+import InfoCard from "components/InfoCard";
 
 const throttle = (fn, duration = 500) => {
   let id;
@@ -59,20 +62,47 @@ const InfiniteScrollThrottle = () => {
     <>
       <DemoCont>
         <Wrapper ref={ref}>
-          <UsersWrapper>
-            {users.map((user, index) => (
-              <User key={user.id}>
-                <UserAvatar
-                  src={user.avatar}
-                  letter={user.first_name[0].toUpperCase()}
-                />
-                {user.first_name}
-              </User>
-            ))}
-          </UsersWrapper>
-          <FadedBar />
+          {users.length > 0 ? (
+            <>
+              <UsersWrapper>
+                {users.map((user, index) => (
+                  <User key={user.id}>
+                    <UserAvatar
+                      src={user.avatar}
+                      letter={user.first_name[0].toUpperCase()}
+                    />
+                    {user.first_name}
+                  </User>
+                ))}
+              </UsersWrapper>
+              <FadedBar />
+            </>
+          ) : (
+            <UsersWrapper>
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+              <FadedBar />
+            </UsersWrapper>
+          )}
         </Wrapper>
       </DemoCont>
+      <InfoCard>
+        <p>
+          The throttle strategy minimises the number of calls made within a
+          certain time interval.
+        </p>
+        <p>
+          Unlike debouncing which calls the function when the event{" "}
+          <strong>hasn&apos;t</strong> been carried out for a while, throttling
+          calls the function <strong>while</strong> the event is being carried
+          out.
+        </p>
+      </InfoCard>
+      <Codeblock codeFiles={codeSnippet} />
     </>
   );
 };
@@ -84,6 +114,8 @@ const Wrapper = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   height: 500px;
+  width: 400px;
+
   // Scrollbar
   &::-webkit-scrollbar {
     width: 6px;
@@ -104,7 +136,6 @@ const UsersWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  width: 400px;
 `;
 
 const User = styled.div`
@@ -126,6 +157,28 @@ const FadedBar = styled.div`
   background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), #181819);
 `;
 
+const loadSkeleton = keyframes`
+  0% {
+    background-color: #283036;
+  }
+  100% {
+    background-color: #181819;
+  }
+`;
+
+const Skeleton = styled.div`
+  animation: ${loadSkeleton} 1s linear infinite alternate;
+  width: 300px;
+  height: 70px;
+  border-radius: 15px;
+`;
+
+const SkeletonsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
 const UserAvatar = ({ src, letter }) => {
   return (
     <StyledAvatar>
@@ -134,3 +187,77 @@ const UserAvatar = ({ src, letter }) => {
     </StyledAvatar>
   );
 };
+
+const codeSnippet = [
+  {
+    name: "InfiniteScroll",
+    lang: "jsx",
+    code: `const throttle = (fn, delay = 500) => {
+  let id;
+  return function (...args) {
+    if (id) return; // exit if timer exists
+    fn(...args);
+    id = setTimeout(() => {
+      id = null; // release lock
+    }, delay);
+  };
+};
+
+const InfiniteScroll = () => {
+  const [users, setUsers] = useState([]);
+
+  const fetchUsers = useCallback(async () => {
+    const res = await fetch(
+      "https://random-data-api.com/api/users/random_user?size=50"
+    );
+    const data = await res.json();
+    setUsers((users) => [...users, ...data]);
+  }, []);
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const ref = useRef(null);
+  const hello = useCallback(
+    (e) => {
+      const portionScrolled =
+        e.target.scrollTop / (e.target.scrollHeight - e.target.offsetHeight);
+      if (portionScrolled > 0.8) {
+        fetchUsers();
+      }
+    },
+    [fetchUsers]
+  );
+
+  useEffect(() => {
+    const scrollCont = ref.current;
+    scrollCont.addEventListener("scroll", throttle(hello));
+
+    return () => {
+      scrollCont.removeEventListener("scroll", throttle(hello));
+    };
+  }, [ref, hello]);
+
+  return (
+    <Wrapper ref={ref}>
+      {users.length > 0 ? (
+        <UsersWrapper>
+          {users.map((user, index) => (
+            <User key={user.id}>
+              <UserAvatar
+                src={user.avatar}
+                letter={user.first_name[0].toUpperCase()}
+              />
+              {user.first_name}
+            </User>
+          ))}
+        </UsersWrapper>
+      ) : (
+        <SkeletonUsers/> 
+      )}
+    </Wrapper>
+  );
+};`,
+  },
+];
