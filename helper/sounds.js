@@ -21,3 +21,4 @@ export const minimalClick = "/sounds/Minimalist12.ogg";
 export const happyRing = "/sounds/African4.ogg";
 export const modernOn = "/sounds/Modern8.ogg";
 export const modernOff = "/sounds/Modern9.ogg";
+export const whack = "/sounds/woodBlock2.ogg";

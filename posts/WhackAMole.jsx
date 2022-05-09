@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 import useUiSound from "hooks/useUiSound";
-import { correctSfx } from "helper/sounds";
+import { whack } from "helper/sounds";
 import Codeblock from "components/Codeblock";
 
 // const grid = Array(3).fill(Array(3).fill(false));
@@ -16,7 +16,7 @@ const grid = [
 const WhackAMole = () => {
   const [score, setScore] = useState(0);
   const [coordinates, setCoordinates] = useState([0, 0]);
-  const { play } = useUiSound(correctSfx);
+  const { play } = useUiSound(whack);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
