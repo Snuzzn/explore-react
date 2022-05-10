@@ -34,6 +34,7 @@ import Wordle from "posts/Wordle";
 import Accordion from "posts/Accordion";
 import InfiniteScrollThrottle from "posts/InfiniteScrollThrottle";
 import UsePersistentStateDemo from "posts/UsePersistentStateDemo";
+import MemoisingComponents from "posts/MemoisingComponents";
 
 // Each post must be in sentence case.
 // If you want a custom casing, include a title attribute in the object
@@ -91,6 +92,9 @@ export const postsData = {
     "Use memo hook": {
       component: <UseMemoDemo />,
       title: "useMemo hook",
+    },
+    "Memoising components": {
+      component: <MemoisingComponents />,
     },
     "Managing interval with use ref": {
       title: "Managing intervals with useRef",
