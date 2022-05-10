@@ -1,5 +1,6 @@
 import Codeblock from "components/Codeblock";
 import DemoCont from "components/DemoCont";
+import InfoCard from "components/InfoCard";
 import usePersistentState from "hooks/usePersistentState";
 import React, { useEffect } from "react";
 
@@ -19,6 +20,10 @@ const UsePersistentStateDemo = () => {
           <span> time{numVisits > 1 && "s"}</span>
         </div>
       </DemoCont>
+      <InfoCard>
+        This is a custom hook that saves the state into local storage when
+        initialised/updated, and retrieves it in future sessions.
+      </InfoCard>
       <Codeblock codeFiles={codeFiles} />
     </>
   );
