@@ -15,7 +15,7 @@ const ToggleableSearchBar = ({ setPosts, toggleSearch, setToggleSearch }) => {
     for (const category in postsData) {
       let catResults = {};
       for (const item in postsData[category]) {
-        if (item.toLowerCase().includes(query.input.toLowerCase())) {
+        if (item.toLowerCase().includes(query.value.toLowerCase())) {
           catResults[item] = postsData[category][item];
         }
       }
@@ -53,12 +53,7 @@ const ToggleableSearchBar = ({ setPosts, toggleSearch, setToggleSearch }) => {
           transition={{ ease: "easeOut", duration: 0.2 }}
           key="searchForm"
         >
-          <Bar
-            autoFocus
-            value={query.input}
-            onChange={query.onChange}
-            onKeyDown={handleKeyPress}
-          />
+          <Bar autoFocus {...query} onKeyDown={handleKeyPress} />
           <UnstyledBtn type="button" onClick={handleClear}>
             <MdOutlineClear />
           </UnstyledBtn>

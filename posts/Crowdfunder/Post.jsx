@@ -12,7 +12,7 @@ const Post = ({ title, content, raisedSoFar, target, img }) => {
 
   const { mutate } = useSWRConfig();
   const handlePay = async (e, backingAmount, setIsBacking) => {
-    const val = backingAmount.input;
+    const val = backingAmount.value;
     e?.preventDefault();
     if (isNaN(val) || val < 0) return;
     if (val === "") {

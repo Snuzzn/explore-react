@@ -1,18 +1,18 @@
 import React from "react";
 
 const useInput = () => {
-  const [input, setInput] = React.useState("");
+  const [value, setValue] = React.useState("");
 
   const handleChange = (e) => {
-    setInput(e.target.value);
+    setValue(e.target.value);
   };
 
   const reset = () => {
-    setInput("");
+    setValue("");
   };
 
   return {
-    input,
+    value,
     onChange: handleChange,
     reset: reset,
   };

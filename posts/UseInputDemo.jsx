@@ -13,8 +13,8 @@ const UseInputDemo = () => {
 
   const { logs, updateLogs } = useLogs();
   useEffect(() => {
-    updateLogs(`name: "${name.input}"`);
-  }, [name.input, updateLogs]);
+    updateLogs(`name: "${name.value}"`);
+  }, [name.value, updateLogs]);
 
   return (
     <>
@@ -31,8 +31,8 @@ const UseInputDemo = () => {
       </InfoCard>
       <Codeblock
         codeFiles={[
-          { code: codeHook, name: "useInput", lang: "jsx" },
           { code: codeDemo, name: "UseInputDemo", lang: "jsx" },
+          { code: codeHook, name: "useInput", lang: "jsx" },
         ]}
         naturalHeight={true}
       />
@@ -43,18 +43,18 @@ const UseInputDemo = () => {
 export default UseInputDemo;
 
 const codeHook = `const useInput = () => {
-  const [input, setInput] = React.useState("");
+  const [value, setValue] = React.useState("");
 
   const handleChange = (e) => {
-    setInput(e.target.value);
+    setValue(e.target.value);
   };
 
   const reset = () => {
-    setInput("");
+    setValue("");
   };
 
   return {
-    input,
+    value,
     onChange: handleChange,
     reset: reset,
   };
@@ -64,7 +64,8 @@ export default useInput;`;
 
 const codeDemo = `const UseInputDemo = () => {
   const name = useInput("");
-  console.log(\`name: \"\${name.input}\"\`);
+  console.log(name);
+
   return (
     <Input placeholder="Enter your name..." {...name} />
   );

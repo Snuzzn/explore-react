@@ -17,7 +17,7 @@ const PassingProps = () => {
         </QuotesWrapper>
       </DemoCont>
       <InfoCard>
-        We can pass props (properties) to another component. This lets us break
+        We can pass props (properties) to a child component. This lets us break
         our application down into reusable components. The above example
         involves reusing a stateful component.
       </InfoCard>
