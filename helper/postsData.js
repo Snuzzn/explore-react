@@ -33,6 +33,7 @@ import PassingProps from "posts/PassingProps";
 import Wordle from "posts/Wordle";
 import Accordion from "posts/Accordion";
 import InfiniteScrollThrottle from "posts/InfiniteScrollThrottle";
+import UsePersistentStateDemo from "posts/UsePersistentStateDemo";
 
 // Each post must be in sentence case.
 // If you want a custom casing, include a title attribute in the object
@@ -82,6 +83,10 @@ export const postsData = {
     "Use input hook": {
       component: <UseInputDemo />,
       title: "useInput hook",
+    },
+    "Use persistant state hook": {
+      component: <UsePersistentStateDemo />,
+      title: "usePersistentState Hook",
     },
     "Use memo hook": {
       component: <UseMemoDemo />,

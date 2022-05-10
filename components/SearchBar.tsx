@@ -47,6 +47,9 @@ const SearchInput = styled.input`
   font-size: 16pt;
   box-sizing: border-box;
   width: 100%;
+  &::placeholder {
+    color: #8d98ab;
+  }
 
   &:focus {
     outline: none !important;
