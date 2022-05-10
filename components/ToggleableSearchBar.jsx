@@ -15,8 +15,6 @@ const ToggleableSearchBar = ({
 }) => {
   const query = useInput();
   const handleSearch = (e) => {
-    console.log(query.input);
-
     e.preventDefault();
     console.log(posts);
     const newPostsData = {};
@@ -45,6 +43,7 @@ const ToggleableSearchBar = ({
         <UnstyledBtn
           key="searchBtn"
           {...fadeInOutAnimation}
+          transition={{ ease: "easeOut", duration: 0.2 }}
           onClick={() => setToggleSearch(true)}
         >
           <FiSearch />
@@ -54,6 +53,7 @@ const ToggleableSearchBar = ({
         <BarWrapperForm
           onSubmit={handleSearch}
           {...fadeInOutAnimation}
+          transition={{ ease: "easeOut", duration: 0.2 }}
           key="searchForm"
         >
           <Bar autoFocus value={query.input} onChange={query.onChange} />
