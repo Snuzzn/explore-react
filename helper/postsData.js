@@ -110,9 +110,7 @@ export const postsData = {
     "Search filter": {
       component: <SearchFilter />,
     },
-    "Photo carousel": {
-      component: <PhotoCarousel />,
-    },
+
     // Accordion: {
     //   component: <Accordion />,
     // },
@@ -145,6 +143,9 @@ export const postsData = {
     "Redux pokemon battle": {
       title: "Redux Pokemon battle",
       component: <PokemonRedux />,
+    },
+    "Photo carousel": {
+      component: <PhotoCarousel />,
     },
     "Whack a mole": {
       component: <WhackAMole />,

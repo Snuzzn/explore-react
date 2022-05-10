@@ -4,16 +4,21 @@ import styled from "styled-components";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { AnimatePresence, motion } from "framer-motion";
 import Codeblock from "components/Codeblock";
-const images = ["corgi", "husky", "shiba"];
+import useUiSound from "hooks/useUiSound";
+import { bubbleClick } from "helper/sounds";
+const images = ["corgi", "husky", "samoyed", "pom", "retriever"];
 
 const PhotoCarousel = () => {
-  const [slide, setSlide] = useState(1);
+  const [slide, setSlide] = useState(2);
   const [direction, setDirection] = useState(1);
+
+  const { play } = useUiSound(bubbleClick);
 
   const navigateGallery = (diff) => {
     if (slide + diff >= 0 && slide + diff < images.length) {
       setDirection(diff > 0 ? 1 : -1);
       setSlide((slide) => slide + diff);
+      play();
     }
   };
 
@@ -117,7 +122,7 @@ const codeSnippet = [
     code: ` // Inspired by https://www.framer.com/docs/examples/#exit-animations
 import { AnimatePresence, motion } from "framer-motion";
 
-const images = ["corgi", "husky", "shiba"];
+const images = ["corgi", "husky", "samoyed", "pom", "retriever"];
 
 const PhotoCarousel = () => {
   const [slide, setSlide] = useState(1);
