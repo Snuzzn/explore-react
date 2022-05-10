@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { toKebabCase } from "../helper/general";
 import { Link } from "react-scroll";
 import { motion } from "framer-motion";
+import { postsData } from "helper/postsData";
 
 function OverviewItem({ category, activeCategory, setActiveCategory }) {
   return (

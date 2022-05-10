@@ -9,9 +9,15 @@ import styled from "styled-components";
 import { useState } from "react";
 import { toKebabCase } from "../helper/general";
 import { postsData } from "../helper/postsData";
+import SearchBar from "components/SearchBar.tsx";
+import ToggleableSearchBar from "components/ToggleableSearchBar";
+import useInput from "hooks/useInput";
 
 function Home({ ssr }) {
   const [activeCategory, setActiveCategory] = useState("");
+
+  const [posts, setPosts] = useState(postsData);
+  const [toggleSearch, setToggleSearch] = useState(false);
 
   return (
     <HomeWrapper
@@ -20,48 +26,68 @@ function Home({ ssr }) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3, type: "tween" }}
     >
-      <ContentsWrapper>
+      <ContentsWrapper layout="position">
         <HeaderBar>
           <Title>Explore React</Title>
-          <MuteButton />
+          {/* <SearchBar /> */}
+          <Flex>
+            <ToggleableSearchBar
+              posts={posts}
+              setPosts={setPosts}
+              toggleSearch={toggleSearch}
+              setToggleSearch={setToggleSearch}
+            />
+            <MuteButton />
+          </Flex>
         </HeaderBar>
-        {Object.keys(postsData).map((category) => (
-          <CategoryCont
-            key={category}
-            borderText={category.charAt(0).toUpperCase() + category.slice(1)}
-            id={toKebabCase(category)}
-          >
-            <FlexContainer>
-              {Object.entries(postsData[category]).map((feature) => (
-                <Feature
-                  key={feature[0]}
-                  title={feature[1].title || feature[0]}
-                  route={feature[0]}
-                  category={category}
-                />
-              ))}
-            </FlexContainer>
-          </CategoryCont>
-        ))}
+        {Object.keys(posts).map((category) => {
+          if (Object.entries(posts[category]).length === 0) return <></>;
+          return (
+            <CategoryCont
+              key={category}
+              borderText={category.charAt(0).toUpperCase() + category.slice(1)}
+              id={toKebabCase(category)}
+            >
+              <FlexContainer>
+                {Object.entries(posts[category]).map((feature) => (
+                  <Feature
+                    key={feature[0]}
+                    title={feature[1].title || feature[0]}
+                    route={feature[0]}
+                    category={category}
+                  />
+                ))}
+              </FlexContainer>
+            </CategoryCont>
+          );
+        })}
       </ContentsWrapper>
-
-      <TableOfContents>
-        <TocTitle smooth>Overview</TocTitle>
-        {Object.keys(postsData).map((category) => (
-          <OverviewItem
-            key={category}
-            category={category.charAt(0).toUpperCase() + category.slice(1)}
-            setActiveCategory={setActiveCategory}
-            activeCategory={activeCategory}
-          />
-        ))}
-        <TocDivider />
-      </TableOfContents>
+      {!toggleSearch && (
+        <TableOfContents layout>
+          <TocTitle smooth>Overview</TocTitle>
+          {Object.keys(posts).map((category) => (
+            <OverviewItem
+              key={category}
+              category={category.charAt(0).toUpperCase() + category.slice(1)}
+              setActiveCategory={setActiveCategory}
+              activeCategory={activeCategory}
+              setPosts={setPosts}
+            />
+          ))}
+          <TocDivider />
+        </TableOfContents>
+      )}
     </HomeWrapper>
   );
 }
 
 export default Home;
+
+const Flex = styled.div`
+  display: flex;
+  gap: 20px;
+  align-items: center;
+`;
 
 const HeaderBar = styled.div`
   display: flex;
@@ -74,15 +100,17 @@ const HomeWrapper = styled(motion.div)`
   gap: 90px;
   height: 100%;
   align-items: flex-start;
+  padding-top: 20px;
 `;
 
-const ContentsWrapper = styled.div`
+const ContentsWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 50px;
+  width: 700px;
 `;
 
-const TableOfContents = styled.aside`
+const TableOfContents = styled(motion.aside)`
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -114,7 +142,7 @@ const FlexContainer = styled.div`
 
 const Title = styled.h1`
   font-size: 26pt;
-  align-self: flex-start;
   margin-bottom: 0;
   color: white;
+  margin-top: 0;
 `;

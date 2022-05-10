@@ -1,21 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import { StyledLink } from "./styles/Styles";
+import { fadeInOutAnimation, StyledLink } from "./styles/Styles";
 import { ThemeContext } from "../context/ThemeProvider";
 import useUiSound from "../hooks/useUiSound";
 import { toKebabCase } from "helper/general";
+import { motion } from "framer-motion";
 const bubbleClickSfx = "/sounds/bubbleClick.mp3";
 
 const Feature = ({ title, route, category }) => {
   const { play } = useUiSound(bubbleClickSfx);
 
   return (
-    <Link href={`/${category}/${route}`} passHref>
-      <Container onClick={() => play()}>
-        <Title>{title}</Title>
-      </Container>
-    </Link>
+    <motion.div {...fadeInOutAnimation}>
+      <Link href={`/${category}/${route}`} passHref>
+        <Container onClick={() => play()}>
+          <Title>{title}</Title>
+        </Container>
+      </Link>
+    </motion.div>
   );
 };
 
