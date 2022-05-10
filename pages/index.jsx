@@ -32,7 +32,6 @@ function Home({ ssr }) {
           {/* <SearchBar /> */}
           <Flex>
             <ToggleableSearchBar
-              posts={posts}
               setPosts={setPosts}
               toggleSearch={toggleSearch}
               setToggleSearch={setToggleSearch}

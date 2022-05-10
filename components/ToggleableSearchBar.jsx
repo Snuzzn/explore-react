@@ -7,16 +7,10 @@ import useInput from "hooks/useInput";
 import { postsData } from "helper/postsData";
 import { MdOutlineClear } from "react-icons/md";
 
-const ToggleableSearchBar = ({
-  posts,
-  setPosts,
-  toggleSearch,
-  setToggleSearch,
-}) => {
+const ToggleableSearchBar = ({ setPosts, toggleSearch, setToggleSearch }) => {
   const query = useInput();
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log(posts);
     const newPostsData = {};
     for (const category in postsData) {
       let catResults = {};
@@ -26,16 +20,19 @@ const ToggleableSearchBar = ({
         }
       }
       newPostsData[category] = catResults;
-      // const titles = Object.entries(posts[category]);
-      // const results = titles.filter(([item, val]) =>
-      //   item.toLowerCase().includes(query.input.toLowerCase())
-      // );
-      // console.log(results);
-      // newPostsData[category] = results;
     }
     setPosts(newPostsData);
   };
-  console.log(query);
+
+  const handleClear = () => {
+    query.reset();
+    setPosts(postsData);
+    setToggleSearch(false);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Escape") handleClear();
+  };
 
   return (
     <AnimatePresence exitBeforeEnter>
@@ -56,16 +53,13 @@ const ToggleableSearchBar = ({
           transition={{ ease: "easeOut", duration: 0.2 }}
           key="searchForm"
         >
-          <Bar autoFocus value={query.input} onChange={query.onChange} />
-          <UnstyledBtn
-            type="button"
-            onClick={() => {
-              console.log("hello");
-              query.reset();
-              setPosts(postsData);
-              setToggleSearch(false);
-            }}
-          >
+          <Bar
+            autoFocus
+            value={query.input}
+            onChange={query.onChange}
+            onKeyDown={handleKeyPress}
+          />
+          <UnstyledBtn type="button" onClick={handleClear}>
             <MdOutlineClear />
           </UnstyledBtn>
         </BarWrapperForm>
