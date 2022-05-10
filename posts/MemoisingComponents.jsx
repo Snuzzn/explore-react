@@ -1,3 +1,4 @@
+import Codeblock from "components/Codeblock";
 import DemoCont, { BorderText } from "components/DemoCont";
 import InfoCard from "components/InfoCard";
 import {
@@ -24,7 +25,7 @@ const MemoisingComponents = () => {
       </DemoCont>
       <InfoCard>
         <p>
-          Generally, if a parent rerenders, all of its children will also
+          By default, if a parent rerenders, all of its children will also
           rerender. By memoising each dot light, it will only rerender if its
           props change.
         </p>
@@ -49,6 +50,7 @@ const MemoisingComponents = () => {
         Only use it for very long lists or when the children components are
         expensive to rerender.
       </WarningCard>
+      <Codeblock codeFiles={codeFiles} />
     </>
   );
 };
@@ -106,16 +108,11 @@ const MemoizedDotLight = memo(DotLight);
 const pulse = keyframes`
   0% {
     background-color: #313944;
-    /* border: 2px solid #2B2A33; */
     outline: none;
   }
-
-
   50% {
     background-color: #ff149134;
-    /* outline: 5px solid #313944; */
   }
- 
 `;
 
 const Dot = styled.div`
@@ -147,3 +144,71 @@ const GridWrapper = styled.div`
   gap: 10px;
   align-items: center;
 `;
+
+const codeFiles = [
+  {
+    name: "MemoisingComponentsDemo",
+    lang: "jsx",
+    code: `const MemoisingComponents = () => {
+  return (
+    <Wrapper>
+      <LightGridDemo isMemoised={false} />
+      <LightGridDemo isMemoised={true} />
+    </Wrapper>
+  );
+};
+`,
+  },
+  {
+    name: "LightGrid",
+    lang: "jsx",
+    code: `const LightGrid = ({ isMemoised }) => {
+  const [lights, setLights] = useState(Array(100).fill(false));
+
+  const toggle = useCallback((ind) => {
+    setLights((lights) => {
+      const lightsClone = [...lights];
+      lightsClone[ind] = !lightsClone[ind];
+      return lightsClone;
+    });
+  }, []);
+
+  const numOn = lights.reduce((acc, light) => (light ? (acc += 1) : acc), 0);
+
+  return (
+    <MiniDemoWrapper>
+      {numOn} lights on
+      <Grid>
+        {lights.map((isOn, ind) => (
+          <>
+            {isMemoised ? (
+              <MemoizedDotLight
+                toggle={toggle}
+                key={ind}
+                ind={ind}
+                isOn={isOn}
+              />
+            ) : (
+              <DotLight toggle={toggle} key={ind} ind={ind} isOn={isOn} />
+            )}
+          </>
+        ))}
+      </Grid>
+    </MiniDemoWrapper>
+  );
+};`,
+  },
+  {
+    name: "DotLight",
+    lang: "jsx",
+    code: `const DotLight = ({ isOn, ind, toggle }) => {
+  console.log("rerender");
+  return (
+    <Dot isOn={isOn} onClick={() => toggle(ind)} />
+  );
+};
+
+const MemoizedDotLight = memo(DotLight);
+  `,
+  },
+];
