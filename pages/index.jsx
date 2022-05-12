@@ -7,7 +7,7 @@ import MuteButton from "../components/MuteButton";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useState } from "react";
-import { toKebabCase } from "../helper/general";
+import { toKebabCase, toSentenceCase } from "../helper/general";
 import { postsData } from "../helper/postsData";
 import SearchBar from "components/SearchBar.tsx";
 import ToggleableSearchBar from "components/ToggleableSearchBar";
@@ -51,7 +51,7 @@ function Home({ ssr }) {
                 {Object.entries(posts[category]).map((feature) => (
                   <Feature
                     key={feature[0]}
-                    title={feature[1].title || feature[0]}
+                    title={feature[1].title || toSentenceCase(feature[0])}
                     route={feature[0]}
                     category={category}
                   />

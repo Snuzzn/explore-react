@@ -51,85 +51,85 @@ export const postsData = {
       component: <UseStateIntro />,
       title: "useState hook",
     },
-    // "Managing boolean state": {
-    //   component: <ManagingBooleanState />,
-    // },
-    // "Managing array state": {
-    //   component: <ManagingArrayState />,
-    // },
-    // "Managing object state": {
-    //   component: <ManagingObjectState />,
-    // },
-    // "Passing props": {
-    //   component: <PassingProps />,
-    // },
-    // "Sharing state": {
-    //   component: <PassingState />,
-    // },
-    // "Use effect hook": {
-    //   component: <UseEffectIntro />,
-    //   title: "useEffect hook",
-    // },
-    // "Conditional rendering": {
-    //   component: <ConditionalRendering />,
-    // },
-    // "Styled components": {
-    //   component: <StyledComponents />,
-    // },
+    "managing-boolean-state": {
+      component: <ManagingBooleanState />,
+    },
+    "managing-array-state": {
+      component: <ManagingArrayState />,
+    },
+    "managing-object-state": {
+      component: <ManagingObjectState />,
+    },
+    "passing-props": {
+      component: <PassingProps />,
+    },
+    "sharing-state": {
+      component: <PassingState />,
+    },
+    "use-effect-hook": {
+      component: <UseEffectIntro />,
+      title: "useEffect hook",
+    },
+    "conditional-rendering": {
+      component: <ConditionalRendering />,
+    },
+    "styled-components": {
+      component: <StyledComponents />,
+    },
   },
   intermediate: {
-    // "Fetch with loading state": {
-    //   component: <LoadingSkeleton />,
-    // },
-    // "Use input hook": {
-    //   component: <UseInputDemo />,
-    //   title: "useInput hook",
-    // },
-    // "Use persistant state hook": {
-    //   component: <UsePersistentStateDemo />,
-    //   title: "usePersistentState Hook",
-    // },
-    // "Use memo hook": {
-    //   component: <UseMemoDemo />,
-    //   title: "useMemo hook",
-    // },
-    // "Memoising components": {
-    //   component: <MemoisingComponents />,
-    // },
-    // "Managing interval with use ref": {
-    //   title: "Managing intervals with useRef",
-    //   component: <ManagingIntervalWithUseRef />,
-    // },
-    // "Storing previous state with use ref": {
-    //   title: "Storing previous state with useRef",
-    //   component: <StorePreviousStateUseRef />,
-    // },
-    // "Recursive menu": {
-    //   component: <RecursiveMenu />,
-    // },
-    // "Modal dialog": {
-    //   component: <ModalDemo />,
-    // },
-    // "Search debounce": {
-    //   component: <SearchDebounce />,
-    // },
-    // "Infinite scroll throttle": {
-    //   component: <InfiniteScrollThrottle />,
-    // },
-    // "Search filter": {
-    //   component: <SearchFilter />,
-    // },
-    // Accordion: {
+    "fetch-with-loading-state": {
+      component: <LoadingSkeleton />,
+    },
+    "use-input-hook": {
+      component: <UseInputDemo />,
+      title: "useInput hook",
+    },
+    "use-persistant-state-hook": {
+      component: <UsePersistentStateDemo />,
+      title: "usePersistentState Hook",
+    },
+    "use-memo-hook": {
+      component: <UseMemoDemo />,
+      title: "useMemo hook",
+    },
+    "memoising-components": {
+      component: <MemoisingComponents />,
+    },
+    "managing-interval-with-use-ref": {
+      title: "Managing intervals with useRef",
+      component: <ManagingIntervalWithUseRef />,
+    },
+    "storing-previous-state-with-use-ref": {
+      title: "Storing previous state with useRef",
+      component: <StorePreviousStateUseRef />,
+    },
+    "recursive-menu": {
+      component: <RecursiveMenu />,
+    },
+    "modal-dialog": {
+      component: <ModalDemo />,
+    },
+    "search-debounce": {
+      component: <SearchDebounce />,
+    },
+    "infinite-scroll-throttle": {
+      component: <InfiniteScrollThrottle />,
+    },
+    "search-filter": {
+      component: <SearchFilter />,
+    },
+    // accordion: {
     //   component: <Accordion />,
     // },
-    // "Unit and integration testing": {
-    //   title: "Unit and integration testing",
-    //   component: <Crowdfunder />,
-    // },
-    // "End to end testing": {
-    //   title: "End-to-end testing",
-    //   component: <CypressDemo />,
-    // },
+    "unit-and-integration-testing": {
+      title: "Unit and integration testing",
+      component: <Crowdfunder />,
+    },
+    "end-to-end-testing": {
+      title: "End-to-end testing",
+      component: <CypressDemo />,
+    },
   },
   "mini-projects": {
     "Typescript imdb": {
@@ -142,25 +142,25 @@ export const postsData = {
     // "Kanban board": {
     //   component: <KanbanBoard />,
     // },
-    // "Music player": {
-    //   component: <MusicPlayer />,
-    // },
-    // "Countdown timer": {
-    //   component: <CountdownTimer />,
-    // },
-    // "Redux pokemon battle": {
-    //   title: "Redux Pokemon battle",
-    //   component: <PokemonRedux />,
-    // },
-    // "Photo carousel": {
-    //   component: <PhotoCarousel />,
-    // },
-    // "Whack a mole": {
-    //   component: <WhackAMole />,
-    // },
-    // "Tic tac toe": {
-    //   component: <TicTacToe />,
-    // },
+    "music-player": {
+      component: <MusicPlayer />,
+    },
+    "countdown-timer": {
+      component: <CountdownTimer />,
+    },
+    "redux-pokemon-battle": {
+      title: "Redux Pokemon battle",
+      component: <PokemonRedux />,
+    },
+    "photo-carousel": {
+      component: <PhotoCarousel />,
+    },
+    "Whack-a-mole": {
+      component: <WhackAMole />,
+    },
+    "tic-tac-toe": {
+      component: <TicTacToe />,
+    },
     // Wordle: {
     //   component: <Wordle />,
     // },
