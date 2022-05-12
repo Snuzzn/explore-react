@@ -12,10 +12,9 @@ import useTimeout from "hooks/useTimeout";
 import { motion } from "framer-motion";
 
 const Post = ({ category, slug, ssr }) => {
-  const title =
-    postsData[category]?.[toSentenceCase(slug)]?.title || toSentenceCase(slug);
+  const title = postsData[category]?.[slug]?.title || toSentenceCase(slug);
 
-  const PostComponent = postsData[category]?.[toSentenceCase(slug)]?.component;
+  const PostComponent = postsData[category]?.[slug]?.component;
 
   return (
     <motion.div

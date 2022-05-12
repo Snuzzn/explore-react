@@ -41,13 +41,13 @@ import MemoisingComponents from "posts/MemoisingComponents";
 
 export const postsData = {
   fundamentals: {
-    "List rendering": {
+    "list-rendering": {
       component: <ListRendering />,
     },
-    "Handling events": {
+    "handling-events": {
       component: <HandlingEvents />,
     },
-    "Use state hook": {
+    "use-state-hook": {
       component: <UseStateIntro />,
       title: "useState hook",
     },
