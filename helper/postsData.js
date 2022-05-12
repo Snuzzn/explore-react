@@ -132,11 +132,11 @@ export const postsData = {
     },
   },
   "mini-projects": {
-    "Typescript imdb": {
+    "typescript-imdb": {
       component: <TypescriptDemo />,
       title: "Typescript IMDB",
     },
-    "Todo list": {
+    "todo-list": {
       component: <TodoList />,
     },
     // "Kanban board": {
@@ -155,7 +155,7 @@ export const postsData = {
     "photo-carousel": {
       component: <PhotoCarousel />,
     },
-    "Whack-a-mole": {
+    "whack-a-mole": {
       component: <WhackAMole />,
     },
     "tic-tac-toe": {
