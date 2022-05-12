@@ -12,6 +12,7 @@ import { postsData } from "../helper/postsData";
 import SearchBar from "components/SearchBar.tsx";
 import ToggleableSearchBar from "components/ToggleableSearchBar";
 import useInput from "hooks/useInput";
+import { openInNewTab } from "components/styles/Styles";
 
 function Home({ ssr }) {
   const [activeCategory, setActiveCategory] = useState("");
@@ -74,6 +75,10 @@ function Home({ ssr }) {
             />
           ))}
           <TocDivider />
+          <Card href="https://beta.reactjs.org/" {...openInNewTab}>
+            <ReactLogo src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" />
+            React Docs
+          </Card>
         </TableOfContents>
       )}
     </HomeWrapper>
@@ -144,4 +149,28 @@ const Title = styled.h1`
   margin-bottom: 0;
   color: white;
   margin-top: 0;
+`;
+
+const Card = styled.a`
+  border: 2px solid #323944;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  gap: 15px;
+  color: #82878f;
+  transition: all 150ms ease-out;
+  &:hover {
+    color: #b6becc;
+    cursor: pointer;
+    background-color: #2f35405d;
+    /* border-color: #4f5765; */
+  }
+`;
+
+const ReactLogo = styled.img`
+  width: 20px;
+  height: 20px;
 `;
