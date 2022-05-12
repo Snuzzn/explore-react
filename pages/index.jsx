@@ -13,6 +13,8 @@ import SearchBar from "components/SearchBar.tsx";
 import ToggleableSearchBar from "components/ToggleableSearchBar";
 import useInput from "hooks/useInput";
 import { openInNewTab } from "components/styles/Styles";
+import { SiNextdotjs } from "react-icons/si";
+import { FaReact } from "react-icons/fa";
 
 function Home({ ssr }) {
   const [activeCategory, setActiveCategory] = useState("");
@@ -76,8 +78,12 @@ function Home({ ssr }) {
           ))}
           <TocDivider />
           <Card href="https://beta.reactjs.org/" {...openInNewTab}>
-            <ReactLogo src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" />
+            <FaReact color="#5773FF" />
             React Docs
+          </Card>
+          <Card href="https://nextjs.org/" {...openInNewTab}>
+            <SiNextdotjs color="white" />
+            Next.js
           </Card>
         </TableOfContents>
       )}
