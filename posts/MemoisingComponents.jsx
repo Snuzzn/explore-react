@@ -182,7 +182,7 @@ const codeFiles = [
         {lights.map((isOn, ind) => (
           <>
             {isMemoised ? (
-              <MemoizedDotLight
+              <MemoisedDotLight
                 toggle={toggle}
                 key={ind}
                 ind={ind}
@@ -208,7 +208,7 @@ const codeFiles = [
   );
 };
 
-const MemoizedDotLight = memo(DotLight);
+const MemoisedDotLight = memo(DotLight);
   `,
   },
 ];
