@@ -81,9 +81,14 @@ function Home({ ssr }) {
             <FaReact color="#5773FF" />
             React Docs
           </Card>
-          <Card href="https://nextjs.org/" {...openInNewTab}>
-            <SiNextdotjs color="white" />
-            Next.js
+          <Card href="https://www.programiz.com/javascript" {...openInNewTab}>
+            <img
+              src="/images/programizLogo.png"
+              alt="programiz logo"
+              width="10px"
+              style={{ marginLeft: "5px" }}
+            />
+            JS Programiz
           </Card>
         </TableOfContents>
       )}
