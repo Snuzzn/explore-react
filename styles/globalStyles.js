@@ -1,11 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
-  @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto:700|Roboto+Mono&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+  
 
   body {
     margin: 0;

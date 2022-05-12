@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import styled from "styled-components";
 import ThemeProvider from "../context/ThemeProvider";
 import GlobalStyle from "../styles/globalStyles";
+import "../styles/fonts.css";
 
 function MyApp({ Component, pageProps, ssr }) {
   return (
